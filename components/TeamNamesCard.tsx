@@ -5,11 +5,11 @@ import ImageHolder from "./ImageHolder";
 interface TeamNamesProps {
     teamName1: string;
     teamName2: string;
-    teamSource1: ImageSourcePropType;
-    teamSource2: ImageSourcePropType;
+    teamSource1?: ImageSourcePropType;
+    teamSource2?: ImageSourcePropType;
 }
 
-const TeamNamesCard: React.FC<TeamNamesProps> = ({ teamName1, teamName2, teamSource1, teamSource2 }) => {
+const TeamNamesCard: React.FC<TeamNamesProps> = ({ teamName1, teamName2, teamSource1 = require('../assets/no-image.jpg'), teamSource2 = require('../assets/no-image.jpg') }) => {
     return (
         <View style={styles.cardContainer}>
             <View style={styles.cardSecondContainer}>
