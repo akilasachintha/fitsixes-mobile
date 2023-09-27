@@ -1,1 +1,0 @@
-# fitsixes-mobile
