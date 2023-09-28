@@ -15,9 +15,9 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/splash2.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#101B62"
     },
     "jsEngine": "hermes",
     "assetBundlePatterns": [
@@ -29,7 +29,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#101B62"
       },
       "package": "com.fitsixes.mobile",
       "versionCode": 1
