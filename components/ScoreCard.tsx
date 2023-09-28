@@ -118,13 +118,13 @@ const styles = StyleSheet.create({
         width: '17%'
     },
     firstCardText: {
-        color: '#101B62',
+        color: '#000532',
         fontSize: 18,
         fontWeight: '600',
         textAlign: 'justify'
     },
     secondCard: {
-        backgroundColor: '#101B62',
+        backgroundColor: '#000532',
         borderTopLeftRadius: 40,
         borderBottomRightRadius: 40,
         width: 320,

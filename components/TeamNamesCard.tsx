@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     cardContainer: {
         alignSelf: 'center',
         borderRadius: 32,
-        backgroundColor: "#101B62",
+        backgroundColor: "#000532",
         elevation: 5,
         width: 320,
         height: 150

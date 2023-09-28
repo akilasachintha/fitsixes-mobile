@@ -11,7 +11,7 @@ interface ImageHolderProps {
 const ImageHolder: React.FC<ImageHolderProps> = ({
     source,
     size,
-    borderColor = "#13FAF8",
+    borderColor = "#05fffc",
     borderWidth = 2,
 }) => {
     return (
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     imageContainer: {
         borderRadius: 50,
         overflow: "hidden",
-        backgroundColor: "#101B62"
+        backgroundColor: "#000532"
     },
     image: {
         flex: 1,
