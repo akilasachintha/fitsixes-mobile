@@ -1,9 +1,17 @@
 {
   "expo": {
-    "name": "fitsixes-mobile",
+    "name": "Fit Sixes",
+    "description": "A mobile app for the Fit Sixes website",
     "slug": "fitsixes-mobile",
     "version": "1.0.0",
+    "owner": "fitsixes",
+    "privacy": "public",
     "orientation": "portrait",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "scheme": "com.fitsixes.mobile",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -11,6 +19,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "jsEngine": "hermes",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -21,10 +30,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.fitsixes.mobile",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "6dc7409c-c616-4299-a47a-08af5748547c"
+      }
     }
   }
 }
