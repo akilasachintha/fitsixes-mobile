@@ -11,16 +11,19 @@ interface ImageHolderProps {
 const ImageHolder: React.FC<ImageHolderProps> = ({
     source,
     size,
-    borderColor = "#13FAF8",
+    borderColor = "#05fffc",
     borderWidth = 2,
 }) => {
+    const circleSize = Math.max(size, 0);
+
     return (
         <View
             style={[
                 styles.imageContainer,
                 {
-                    width: size,
-                    height: size,
+                    width: circleSize,
+                    height: circleSize,
+                    borderRadius: circleSize / 2,
                     borderColor,
                     borderWidth,
                 },
@@ -35,9 +38,8 @@ export default ImageHolder;
 
 const styles = StyleSheet.create({
     imageContainer: {
-        borderRadius: 50,
         overflow: "hidden",
-        backgroundColor: "#101B62"
+        backgroundColor: "#000532",
     },
     image: {
         flex: 1,
