@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, ImageSourcePropType, StyleSheet, Text, View } from "react-native";
+import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import ImageHolder from "./ImageHolder";
 
 interface TeamNamesProps {
@@ -48,8 +48,9 @@ const styles = StyleSheet.create({
         borderRadius: 32,
         backgroundColor: "#000532",
         elevation: 5,
-        width: 320,
-        height: 150
+        width: "90%",
+        height: 150,
+        marginVertical: "5%"
     },
     cardSecondContainer: {
         alignSelf: 'center',
