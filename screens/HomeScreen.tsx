@@ -1,6 +1,6 @@
-import {Text, TouchableOpacity} from "react-native";
-import {SafeAreaView} from "react-native-safe-area-context";
-import {useNavigation} from "@react-navigation/native";
+import { Text, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 
 
 export default function HomeScreen() {
