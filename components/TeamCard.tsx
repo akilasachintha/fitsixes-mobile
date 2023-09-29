@@ -1,5 +1,7 @@
 import React from "react"
 import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
+import ImageHolder from "./ImageHolder";
+import { Text } from "react-native";
 
 interface TeamCardProps {
     teamName: string;
@@ -10,9 +12,23 @@ interface TeamCardProps {
 const TeamCard: React.FC<TeamCardProps> = ({ teamName, source = require('../assets/no-image.jpg'), index }) => {
     return (
         <View style={styles.cardContainer}>
-            <View style={{ justifyContent: index % 2 === 0 ? 'flex-start' : 'flex-end' }}>
-                <Image source={require('../assets/fit-sixes.png')} style={styles.image} />
+            <View>
+                <Image
+                    source={require('../assets/fit-sixes.png')}
+                    style={[
+                        styles.image,
+                        { alignSelf: index % 2 === 0 ? 'flex-start' : 'flex-end' }
+                    ]}
+                />
             </View>
+
+            <View style={styles.teamNameContainer}>
+                <ImageHolder source={source} size={60} />
+                <Text style={styles.teamName} numberOfLines={3} ellipsizeMode="tail">
+                    {teamName.length > 20 ? `${teamName.slice(0, 30)}...` : teamName}
+                </Text>
+            </View>
+
         </View>
     )
 }
@@ -21,13 +37,28 @@ export default TeamCard;
 
 const styles = StyleSheet.create({
     cardContainer: {
-        width: 160,
-        height: 190,
+        width: 140,
+        height: 165,
         backgroundColor: '#000532',
-        borderRadius: 10
+        borderRadius: 30,
+        elevation: 5
     },
     image: {
-        height: 20,
-        width: 20
+        height: 65,
+        width: 65,
+        marginTop: -5
+    },
+    teamNameContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        marginTop: -8,
+    },
+    teamName: {
+        marginTop: 15,
+        color: '#fff',
+        fontSize: 14,
+        fontWeight: '700',
+        textAlign: 'center'
     }
 })
