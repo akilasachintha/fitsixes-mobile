@@ -1,10 +1,12 @@
 import {SafeAreaView} from "react-native-safe-area-context";
-import {Text} from "react-native";
+import ScoreCard from "../components/ScoreCard";
+import TeamNamesCard from "../components/TeamNamesCard";
 
 export default function ScoreboardScreen() {
     return (
         <SafeAreaView>
-            <Text>ScoreboardScreen</Text>
+            <TeamNamesCard teamName1="Geveo" teamName2="WSO2"/>
+            <ScoreCard/>
         </SafeAreaView>
     )
 }

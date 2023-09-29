@@ -100,16 +100,16 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                     return (
                         <View style={styles.tabIcon}>
                             {
-                                routeName === "HomeTab" && <Ionicons name="ios-home" size={22} color="#fff"/>
+                                routeName === "HomeTab" && <Ionicons name="ios-home" size={22} color="rgba(19, 250, 248, 1)"/>
                             }
                             {
-                                routeName === "TeamTab" && <Foundation name="target-two" size={25} color="#fff"/>
+                                routeName === "TeamTab" && <Foundation name="target-two" size={25} color="rgba(19, 250, 248, 1)"/>
                             }
                             {
-                                routeName === "CartTab" && <Ionicons name="cart" size={25} color="#fff"/>
+                                routeName === "CartTab" && <Ionicons name="cart" size={25} color="rgba(19, 250, 248, 1)"/>
                             }
                             {
-                                routeName === "ProfileTab" && <Ionicons name="person" size={22} color="#fff"/>
+                                routeName === "ProfileTab" && <Ionicons name="person" size={22} color="rgba(19, 250, 248, 1)"/>
                             }
                         </View>
                     )

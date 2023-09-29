@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 
 const playerDetails = [
     {
@@ -55,7 +55,7 @@ const ScoreCard: React.FC<ScoreCardProps> = ({ }) => {
                 {playerDetails?.map((item: any, index) => {
                     let length = playerDetails.length;
                     return (
-                        <View>
+                        <View key={index}>
                             <View style={styles.playerDetails} key={index}>
                                 <View style={styles.cardContent1}>
                                     <Text style={[styles.secondCardText]} numberOfLines={2} ellipsizeMode="tail">{item.name.length > 20 ? `${item.name.slice(0, 25)}...` : item.name}</Text>
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     firstCard: {
-        width: 320,
+        width: "90%",
         height: 60,
         borderRadius: 50,
         backgroundColor: '#FFF',
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#000532',
         borderTopLeftRadius: 40,
         borderBottomRightRadius: 40,
-        width: 320,
+        width: "90%",
         marginTop: 20
     },
     secondCardText: {
