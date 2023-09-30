@@ -1,5 +1,4 @@
-import {SafeAreaView} from "react-native-safe-area-context";
-import {ScrollView} from "react-native";
+import {SafeAreaView, ScrollView} from "react-native";
 import {useNavigation} from "@react-navigation/native";
 import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
 

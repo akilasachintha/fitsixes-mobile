@@ -1,10 +1,7 @@
-import {SafeAreaView} from "react-native-safe-area-context";
-import {ScrollView, Text, TouchableOpacity} from "react-native";
-import {useNavigation} from "@react-navigation/native";
+import {SafeAreaView, ScrollView} from "react-native";
 import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
 
 export default function MatchesLiveScreen() {
-    const navigation = useNavigation();
     return (
         <SafeAreaView>
             <ScrollView showsVerticalScrollIndicator={false}>

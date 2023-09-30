@@ -31,7 +31,7 @@ function MyDrawer({props}: any) {
             name: "Home",
             icon: <Ionicons name={"ios-home-outline"} size={22} color={"#fff"}/>,
             // @ts-ignore
-            navigationAction: () => navigation.navigate("HomeTab"),
+            navigationAction: () => navigation.navigate("HomeTab", {screen: "HomeTabHomeStack",}),
         },
         {
             id: 2,

@@ -13,6 +13,7 @@ export default function TabNavigator({route}: any) {
     const getTabBarLabelStyle = (tabName: string): StyleProp<TextStyle> => {
         return {
             color: routeName === tabName ? "#fff" : "#101B62",
+            fontSize: 12,
             fontWeight: "bold",
         };
     };
@@ -22,7 +23,8 @@ export default function TabNavigator({route}: any) {
             initialRouteName="UpcomingTab"
             screenOptions={{
                 tabBarStyle: {
-                    marginTop: "4%",
+                    marginVertical: "2%",
+                    marginBottom: "4%",
                     backgroundColor: "#fff",
                     marginHorizontal: "8%",
                     borderRadius: 30,

@@ -16,7 +16,7 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash2.png",
-      "resizeMode": "cover",
+      "resizeMode": "contain",
       "backgroundColor": "#101B62"
     },
     "jsEngine": "hermes",

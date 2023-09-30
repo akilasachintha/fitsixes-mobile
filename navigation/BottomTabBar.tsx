@@ -8,8 +8,8 @@ import CartScreen from "../screens/CartScreen";
 import {getFocusedRouteNameFromRoute, useNavigation} from "@react-navigation/native";
 import StackNavigatorHome from "./StackNavigatorHome";
 import StackNavigatorTeam from "./StackNavigatorTeam";
-import TopHeaderBar from "../components/TopHeaderBar";
 import {useAuth} from "../context/AuthContext";
+import TopHeaderBar from "../components/TopHeaderBar";
 
 const Tab = createBottomTabNavigator();
 
@@ -44,14 +44,6 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
     return (
         <Tab.Navigator screenOptions={({route}) => ({
             headerShown: true,
-            tabBarVisibilityAnimationConfig: {
-                show: {
-                    animation: 'timing',
-                    config: {
-                        duration: 300,
-                    },
-                }
-            },
             header: () => <TopHeaderBar/>,
             tabBarShowLabel: false,
             tabBarStyle: {
@@ -147,6 +139,7 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                 )
             }
             <Tab.Screen name="MainTab" component={MainScreen} options={{
+                headerShown: false,
                 tabBarButton: (props) => (
                     <CustomTabBarButton children={props.children} onPress={props.onPress}/>
                 )

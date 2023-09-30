@@ -1,7 +1,5 @@
-import {SafeAreaView} from "react-native-safe-area-context";
-import {StyleSheet, Text, View} from "react-native";
+import {SafeAreaView, StyleSheet, Text, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
-import {useAuth} from "../context/AuthContext";
 import ImageHolder from "../components/ImageHolder";
 import HeaderText from "../components/HeaderText";
 import TextInputField from "../components/TextInputField";
@@ -9,7 +7,6 @@ import Button from "../components/Button";
 
 export default function ForgetPasswordScreen() {
     const navigation = useNavigation();
-    const {isLoggedIn, login, logout} = useAuth();
 
     const handleForgotPassword = () => {
         // @ts-ignore

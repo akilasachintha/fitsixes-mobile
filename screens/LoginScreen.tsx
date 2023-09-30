@@ -1,5 +1,4 @@
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {SafeAreaView} from "react-native-safe-area-context";
+import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
 import {useAuth} from "../context/AuthContext";
 import ImageHolder from "../components/ImageHolder";
@@ -9,7 +8,7 @@ import Button from "../components/Button";
 
 export default function LoginScreen() {
     const navigation = useNavigation();
-    const {isLoggedIn, login, logout} = useAuth();
+    const {login} = useAuth();
 
     const handleLogin = () => {
         login();

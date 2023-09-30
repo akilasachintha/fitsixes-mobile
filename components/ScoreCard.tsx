@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: "2%"
     },
     firstCard: {
         width: "90%",

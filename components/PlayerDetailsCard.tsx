@@ -45,9 +45,9 @@ export default PlayerDetailsCard;
 
 const styles = StyleSheet.create({
     playerCardContainer: {
-        width: 364,
-        height: 75,
-        backgroundColor: '#101B62',
+        marginHorizontal: '5%',
+        height: 70,
+        backgroundColor: '#000532',
         borderRadius: 112,
         alignSelf: 'center',
         marginVertical: "2%",

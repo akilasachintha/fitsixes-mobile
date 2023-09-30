@@ -11,28 +11,31 @@ export default function TopHeaderBar() {
     }
 
     return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.hamburgerContainer} activeOpacity={0.8} onPress={handleHamBurgerClick}>
-                <View style={[styles.hamburgerBar, {width: 25}]}/>
-                <View style={[styles.hamburgerBar, {width: 15}]}/>
-                <View style={[styles.hamburgerBar, {width: 20}]}/>
-                <View style={[styles.hamburgerBar, {width: 15}]}/>
-            </TouchableOpacity>
-            <View>
-                <Text style={styles.headerText}>Fit Sixes</Text>
+        <View>
+            <View style={styles.headerContainer}>
+                <TouchableOpacity style={styles.hamburgerContainer} activeOpacity={0.8} onPress={handleHamBurgerClick}>
+                    <View style={[styles.hamburgerBar, {width: 25}]}/>
+                    <View style={[styles.hamburgerBar, {width: 15}]}/>
+                    <View style={[styles.hamburgerBar, {width: 20}]}/>
+                    <View style={[styles.hamburgerBar, {width: 15}]}/>
+                </TouchableOpacity>
+                <View>
+                    <Text style={styles.headerText}>Fit Sixes</Text>
+                </View>
+                <ImageHolder source={require("../assets/fit-sixes-icon.png")} size={48} borderColor={"#101B62"}/>
             </View>
-            <ImageHolder source={require("../assets/fit-sixes-icon.png")} size={48} borderColor={"#101B62"}/>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
+    headerContainer: {
         flexDirection: "row",
+        alignItems: "center",
         justifyContent: "space-between",
         marginHorizontal: "5%",
-        marginTop: "8%",
-        alignItems: "center",
+        marginTop: 30,
+        paddingVertical: 10,
     },
     hamburgerContainer: {},
     hamburgerBar: {

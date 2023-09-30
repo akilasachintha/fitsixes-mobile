@@ -1,5 +1,4 @@
-import {SafeAreaView} from "react-native-safe-area-context";
-import {FlatList, StyleSheet, TouchableOpacity, View} from "react-native";
+import {FlatList, SafeAreaView, StyleSheet, TouchableOpacity, View} from "react-native";
 import TeamCard from "../components/TeamCard";
 import {useNavigation} from "@react-navigation/native";
 
@@ -96,7 +95,7 @@ export default function TeamScreen() {
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
-        paddingHorizontal: 40,
+        paddingHorizontal: "5%",
     },
     flatList: {},
     columnWrapperStyle: {

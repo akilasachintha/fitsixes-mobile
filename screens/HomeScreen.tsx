@@ -1,9 +1,7 @@
-import { Text, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
-import {ScrollView, StyleSheet, View} from "react-native";
+import {SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {useNavigation} from "@react-navigation/native";
 import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
-
+import React from "react";
 
 export default function HomeScreen() {
     const navigation = useNavigation();
@@ -66,7 +64,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         marginHorizontal: "8%",
-        marginVertical: "4%",
+        marginBottom: "4%",
     },
     leftText: {
         color: "#101B62",

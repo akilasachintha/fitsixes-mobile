@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         padding: "4%",
         backgroundColor: "#101B62",
         borderRadius: 20,
-        marginVertical: "2%",
+        marginBottom: "4%",
     },
     titleContainer: {
         width: "100%",
