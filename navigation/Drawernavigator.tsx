@@ -33,7 +33,7 @@ function MyDrawer() {
             name: "Home",
             icon: <Ionicons name={"ios-home-outline"} size={22} color={THEME.COLORS.white}/>,
             // @ts-ignore
-            navigationAction: () => navigation.navigate("HomeTab", {screen: "HomeTabHomeStack",}),
+            navigationAction: () => navigation.navigate("HomeTab", {screen: "HomeTabMatchesStack",}),
         },
         {
             id: 2,
@@ -54,18 +54,18 @@ function MyDrawer() {
             name: "Teams",
             icon: <MaterialCommunityIcons name={"target"} size={24} color={THEME.COLORS.white}/>,
             // @ts-ignore
-            navigationAction: () => navigation.navigate("TeamTab"),
+            navigationAction: () => navigation.navigate("TeamTab", {screen: "TeamTabTeamStack",}),
         },
         {
             id: 5,
             name: isLoggedIn ? "Logout" : "Login",
-            icon: <MaterialCommunityIcons name={"target"} size={24} color={THEME.COLORS.white}/>,
+            icon: <MaterialIcons name="logout" size={24} color={THEME.COLORS.white}/>,
             navigationAction: () => {
                 // @ts-ignore
                 !isLoggedIn ? navigation.navigate("LoginStack") : logout();
             }
         }
-    ]
+    ];
 
     return (
         <SafeAreaView style={styles.mainContainer}>

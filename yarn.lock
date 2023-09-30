@@ -1187,10 +1187,10 @@
     mv "~2"
     safe-json-stringify "~1"
 
-"@expo/cli@0.10.12":
-  version "0.10.12"
-  resolved "https://registry.yarnpkg.com/@expo/cli/-/cli-0.10.12.tgz#7a5f8d1a19912496fd6c848096321f8d60b5fa8c"
-  integrity sha512-sc4IkRBbm6HO1Z/0JeJMY/sJiyCAfHyt2EOHhAY8jYfbXr/aqCIGsPrwEGQAfGpsE2OPvyzRa+byZG03HRPTkQ==
+"@expo/cli@0.10.13":
+  version "0.10.13"
+  resolved "https://registry.yarnpkg.com/@expo/cli/-/cli-0.10.13.tgz#6503e6c477a8407986cd645952b0ad6177e08fe7"
+  integrity sha512-8ciyz+yIDih6zCNMWK0IyEv411W7vej/TaWIFGarogPVbFokXrUKr0aKoQG1RU1SLlY4eUpHakbIzqog+rhJdQ==
   dependencies:
     "@babel/runtime" "^7.20.0"
     "@expo/code-signing-certificates" "0.0.5"
@@ -1967,7 +1967,7 @@
   resolved "https://registry.yarnpkg.com/@react-native/normalize-colors/-/normalize-colors-0.72.0.tgz#14294b7ed3c1d92176d2a00df48456e8d7d62212"
   integrity sha512-285lfdqSXaqKuBbbtP9qL2tDrfxdOFtIMvkKadtleRQkdOxx+uzGvFr82KHmc/sSiMtfXGp7JnFYWVh4sFl7Yw==
 
-"@react-native/virtualized-lists@^0.72.4", "@react-native/virtualized-lists@^0.72.8":
+"@react-native/virtualized-lists@^0.72.8":
   version "0.72.8"
   resolved "https://registry.yarnpkg.com/@react-native/virtualized-lists/-/virtualized-lists-0.72.8.tgz#a2c6a91ea0f1d40eb5a122fb063daedb92ed1dc3"
   integrity sha512-J3Q4Bkuo99k7mu+jPS9gSUSgq+lLRSI/+ahXNwV92XgJ/8UgOTxu2LPwhJnBk/sQKxq7E8WkZBnBiozukQMqrw==
@@ -2130,15 +2130,7 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.7.tgz#f9361f7b87fd5d8188b2c998db0a1f47e9fb391a"
   integrity sha512-FbtmBWCcSa2J4zL781Zf1p5YUBXQomPEcep9QZCfRfQgTxz3pJWiDFLebohZ9fFntX5ibzOkSsrJ0TEew8cAog==
 
-"@types/react-native@^0.72.3":
-  version "0.72.3"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.72.3.tgz#eb5726eb3ec6b79a10db7a295cc0346eb5e9331a"
-  integrity sha512-9+g+DBJIY3bG7+ZlYzKPr9kxTQxUuZQgLWZhYK4RlIcrsm3qaJhL2PU2e/K4CjnzznWCo2Islgec94x2z1pG4Q==
-  dependencies:
-    "@react-native/virtualized-lists" "^0.72.4"
-    "@types/react" "*"
-
-"@types/react@*", "@types/react@^18.2.23":
+"@types/react@^18.2.23":
   version "18.2.23"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.23.tgz#60ad6cf4895e93bed858db0e03bcc4ff97d0410e"
   integrity sha512-qHLW6n1q2+7KyBEYnrZpcsAmU/iiCh9WGCKgXvMxx89+TYdJWRjZohVIo9XTcoLhfX3+/hP0Pbulu3bCZQ9PSA==
@@ -3452,13 +3444,13 @@ expo-status-bar@~1.6.0:
   resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-1.6.0.tgz#e79ffdb9a84d2e0ec9a0dc7392d9ab364fefa9cf"
   integrity sha512-e//Oi2WPdomMlMDD3skE4+1ZarKCJ/suvcB4Jo/nO427niKug5oppcPNYO+csR6y3ZglGuypS+3pp/hJ+Xp6fQ==
 
-expo@~49.0.12:
-  version "49.0.12"
-  resolved "https://registry.yarnpkg.com/expo/-/expo-49.0.12.tgz#4abbfcf23fa0d0115502b80c8758f15587d48624"
-  integrity sha512-g3dJHpp2aGCH6WpMySUBoBtgpWSk9Hglrezj/u7GmKkDGfvXpqvmJBtHcJlFpoAXLHF/BX+WO+3u6TiahyuJxA==
+expo@^49.0.13:
+  version "49.0.13"
+  resolved "https://registry.yarnpkg.com/expo/-/expo-49.0.13.tgz#9ee185d4eb1ac2859e67895bd919db5a04d1b8ec"
+  integrity sha512-k2QFmT5XN490ksjKJgogfS5SFj6ZKCu1GwWz4VUV4S9gkPjzr8zQAZoVPKaWxUYRb6xDpTJXdhLt7gSnV3bJvw==
   dependencies:
     "@babel/runtime" "^7.20.0"
-    "@expo/cli" "0.10.12"
+    "@expo/cli" "0.10.13"
     "@expo/config" "8.1.2"
     "@expo/config-plugins" "7.2.5"
     "@expo/vector-icons" "^13.0.0"
