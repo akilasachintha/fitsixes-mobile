@@ -6,6 +6,7 @@ import {SafeAreaView} from "react-native-safe-area-context";
 import {useNavigation} from "@react-navigation/native";
 import {Ionicons, MaterialCommunityIcons, MaterialIcons} from "@expo/vector-icons";
 import React from "react";
+import {useAuth} from "../context/AuthContext";
 
 const Drawer = createDrawerNavigator();
 export default function DrawerNavigator() {
@@ -20,9 +21,9 @@ export default function DrawerNavigator() {
     );
 }
 
-
 function MyDrawer({props}: any) {
     const navigation = useNavigation();
+    const {isLoggedIn, login, logout} = useAuth();
 
     const drawerItems = [
         {
@@ -37,14 +38,14 @@ function MyDrawer({props}: any) {
             name: "Live Score",
             icon: <MaterialIcons name={"live-tv"} size={24} color={"#fff"}/>,
             // @ts-ignore
-            navigationAction: () => navigation.navigate("HomeTab", {screen: "HomeTabMatchesStack",}),
+            navigationAction: () => navigation.navigate("HomeTabMatchesStack", {screen: "LiveTab",}),
         },
         {
             id: 3,
             name: "Match Schedule",
             icon: <MaterialIcons name={"schedule"} size={24} color={"#fff"}/>,
             // @ts-ignore
-            navigationAction: () => navigation.navigate("HomeTab", {screen: "HomeTabMatchesStack",}),
+            navigationAction: () => navigation.navigate("HomeTabMatchesStack", {screen: "UpcomingTab",}),
         },
         {
             id: 4,
@@ -52,6 +53,15 @@ function MyDrawer({props}: any) {
             icon: <MaterialCommunityIcons name={"target"} size={24} color={"#fff"}/>,
             // @ts-ignore
             navigationAction: () => navigation.navigate("TeamTab"),
+        },
+        {
+            id: 5,
+            name: isLoggedIn ? "Logout" : "Login",
+            icon: <MaterialCommunityIcons name={"target"} size={24} color={"#fff"}/>,
+            navigationAction: () => {
+                // @ts-ignore
+                !isLoggedIn ? navigation.navigate("LoginStack") : logout();
+            }
         }
     ]
 

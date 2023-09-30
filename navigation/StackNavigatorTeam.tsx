@@ -1,7 +1,7 @@
-import HomeScreen from "../screens/HomeScreen";
-import MatchesScreen from "../screens/MatchesScreen";
-import ScoreboardScreen from "../screens/ScoreboardScreen";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import TeamScreen from "../screens/TeamScreen";
+import TeamMembersScreen from "../screens/TeamMembersScreen";
+import TopHeaderBar from "../components/TopHeaderBar";
 
 const Stack = createNativeStackNavigator();
 
@@ -9,10 +9,10 @@ export default function StackNavigatorTeam() {
     return (
         <Stack.Navigator screenOptions={{
             headerShown: false,
+            animation: "slide_from_right",
         }}>
-            <Stack.Screen name="TeamTabHomeStack" component={HomeScreen}/>
-            <Stack.Screen name="HomeTabMatchesStack" component={MatchesScreen}/>
-            <Stack.Screen name="HomeTabScoreboardStack" component={ScoreboardScreen}/>
+            <Stack.Screen name="TeamTabTeamStack" component={TeamScreen}/>
+            <Stack.Screen name="TeamTabTeamMembersStack" component={TeamMembersScreen}/>
         </Stack.Navigator>
     )
 }

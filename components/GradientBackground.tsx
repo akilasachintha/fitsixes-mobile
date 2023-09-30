@@ -1,7 +1,7 @@
 // GradientBackground.tsx
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import {StyleSheet} from 'react-native';
+import {LinearGradient} from 'expo-linear-gradient';
 
 interface GradientBackgroundProps {
   children: React.ReactNode;

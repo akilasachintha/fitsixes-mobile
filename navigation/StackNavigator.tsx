@@ -10,9 +10,9 @@ export default function StackNavigator() {
             headerShown: false,
             animation: "slide_from_right",
         }}>
+            <Stack.Screen name="HomeStack" component={DrawerNavigator}/>
             <Stack.Screen name="LoginStack" component={LoginScreen}/>
             <Stack.Screen name="ForgetPasswordStack" component={ForgetPasswordScreen}/>
-            <Stack.Screen name="HomeStack" component={DrawerNavigator}/>
         </Stack.Navigator>
     );
 }

@@ -1,16 +1,19 @@
-import {createStackNavigator} from "@react-navigation/stack";
 import HomeScreen from "../screens/HomeScreen";
-import MatchesScreen from "../screens/MatchesScreen";
 import ScoreboardScreen from "../screens/ScoreboardScreen";
+import TabNavigator from "./TabNavigator";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
+
 export default function StackNavigatorHome() {
     return (
-        <Stack.Navigator screenOptions={{
-            headerShown: false,
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false,
+                animation: "slide_from_right",
         }}>
             <Stack.Screen name="HomeTabHomeStack" component={HomeScreen}/>
-            <Stack.Screen name="HomeTabMatchesStack" component={MatchesScreen}/>
+            <Stack.Screen name="HomeTabMatchesStack" component={TabNavigator}/>
             <Stack.Screen name="HomeTabScoreboardStack" component={ScoreboardScreen}/>
         </Stack.Navigator>
     );

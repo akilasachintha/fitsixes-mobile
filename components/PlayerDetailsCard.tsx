@@ -1,7 +1,6 @@
-import { Text, View, Image, StyleSheet, ImageSourcePropType } from 'react-native'
-import React, { Component } from 'react'
+import {Image, ImageSourcePropType, StyleSheet, Text, View} from 'react-native'
+import React from 'react'
 import ImageHolder from './ImageHolder'
-
 
 interface PlayerDetailsCardProps {
     url: ImageSourcePropType;
@@ -20,9 +19,9 @@ const PlayerDetailsCard: React.FC<PlayerDetailsCardProps> = ({
             <View style={styles.playerCardSubContainer}>
                 <View style={styles.playerProfileContainer}>
                     <ImageHolder
-                        source={url ? url : require('../assets/no-image.jpg')} // Replace with the actual image path
-                        size={60} // Specify the desired size
-                        borderColor="#13FAF8" // Optionally, specify borderColor and borderWidth
+                        source={url ? url : require('../assets/no-image.jpg')}
+                        size={60}
+                        borderColor="#13FAF8"
                         borderWidth={3}
                     />
                 </View>
@@ -52,6 +51,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#101B62',
         borderRadius: 112,
         alignSelf: 'center',
+        marginVertical: "2%",
     },
 
     playerCardSubContainer: {
