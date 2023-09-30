@@ -2,6 +2,7 @@ import {Image, ImageBackground, ImageProps, StyleSheet, Text, TouchableOpacity, 
 import ImageHolder from "./ImageHolder";
 import {useNavigation} from "@react-navigation/native";
 import {THEME} from "../config/theme";
+import {PATHS} from "../config/paths";
 
 interface MatchDetailCardProps {
     matchNo: number;
@@ -32,7 +33,7 @@ export default function MatchDetailCard({matchNo, team1, team2, team1Score, team
     return (
         <TouchableOpacity activeOpacity={0.8} onPress={handleMatchCardClick}>
             <ImageBackground
-                source={require("../assets/fit-sixes.png")}
+                source={PATHS.IMAGES.FIT_SIXES_LOGO}
                 resizeMode="contain"
                 imageStyle={matchStatus === "Live" ? {display: "flex"} : {display: "none"}}
                 style={styles.container}>
@@ -75,7 +76,7 @@ export default function MatchDetailCard({matchNo, team1, team2, team1Score, team
                     </View>
                     {
                         matchStatus !== MatchStatus.Live && (
-                            <Image source={require("../assets/fit-sixes.png")} style={{width: 140, height: 100}}/>
+                            <Image source={PATHS.IMAGES.FIT_SIXES_LOGO} style={{width: 140, height: 100}}/>
                         )
                     }
                 </View>

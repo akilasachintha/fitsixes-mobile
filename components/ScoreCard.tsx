@@ -39,7 +39,7 @@ const ScoreCard: React.FC<ScoreCardProps> = ({ }) => {
         <View style={styles.container}>
             <View style={styles.firstCard}>
                 <View style={styles.cardContent1}>
-                    <Text style={styles.firstCardText}>Batsmans</Text>
+                    <Text style={styles.firstCardText}>Batman</Text>
                 </View>
 
                 <View style={styles.cardContent2}>
@@ -71,7 +71,6 @@ const ScoreCard: React.FC<ScoreCardProps> = ({ }) => {
                                         );
                                     })}
                                 </View>
-
                             </View>
                             {length !== index + 1 && (
                                 <View style={styles.line}></View>
@@ -136,7 +135,6 @@ const styles = StyleSheet.create({
         color: THEME.COLORS.white,
         fontSize: 18,
         fontWeight: '600',
-        // textAlign: 'justify',
     },
     playerDetails: {
         flexDirection: 'row',

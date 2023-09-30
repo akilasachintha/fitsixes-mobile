@@ -12,7 +12,7 @@ interface ImageHolderProps {
 const ImageHolder: React.FC<ImageHolderProps> = ({
     source,
     size,
-    borderColor = "#05fffc",
+    borderColor =  THEME.COLORS.border,
     borderWidth = 2,
 }) => {
     const circleSize = Math.max(size, 0);

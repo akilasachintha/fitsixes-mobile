@@ -2,6 +2,7 @@ import React from "react";
 import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import ImageHolder from "./ImageHolder";
 import {THEME} from "../config/theme";
+import {PATHS} from "../config/paths";
 
 interface TeamNamesProps {
     teamName1: string;
@@ -10,7 +11,7 @@ interface TeamNamesProps {
     teamSource2?: ImageSourcePropType;
 }
 
-const TeamNamesCard: React.FC<TeamNamesProps> = ({ teamName1, teamName2, teamSource1 = require('../assets/no-image.jpg'), teamSource2 = require('../assets/no-image.jpg') }) => {
+const TeamNamesCard: React.FC<TeamNamesProps> = ({teamName1, teamName2, teamSource1 = PATHS.IMAGES.NO_IMAGE, teamSource2 = PATHS.IMAGES.NO_IMAGE}) => {
     return (
         <View style={styles.cardContainer}>
             <View style={styles.cardSecondContainer}>

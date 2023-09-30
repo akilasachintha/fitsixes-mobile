@@ -2,6 +2,7 @@ import React from "react"
 import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import ImageHolder from "./ImageHolder";
 import {THEME} from "../config/theme";
+import {PATHS} from "../config/paths";
 
 interface TeamCardProps {
     teamName: string;
@@ -14,7 +15,7 @@ const TeamCard: React.FC<TeamCardProps> = ({ teamName, source = require('../asse
         <View style={styles.cardContainer}>
             <View>
                 <Image
-                    source={require('../assets/fit-sixes.png')}
+                    source={PATHS.IMAGES.FIT_SIXES_LOGO}
                     style={[
                         styles.image,
                         { alignSelf: index % 2 === 0 ? 'flex-start' : 'flex-end' }

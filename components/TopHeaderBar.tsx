@@ -2,6 +2,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import ImageHolder from "./ImageHolder";
 import {useNavigation} from "@react-navigation/native";
 import {THEME} from "../config/theme";
+import {PATHS} from "../config/paths";
 
 export default function TopHeaderBar() {
     const navigation = useNavigation();
@@ -23,7 +24,7 @@ export default function TopHeaderBar() {
                 <View>
                     <Text style={styles.headerText}>Fit Sixes</Text>
                 </View>
-                <ImageHolder source={require("../assets/fit-sixes-icon.png")} size={48}
+                <ImageHolder source={PATHS.IMAGES.FIT_SIXES_LOGO} size={48}
                              borderColor={THEME.COLORS.primary}/>
             </View>
         </View>

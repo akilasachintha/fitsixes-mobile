@@ -1,6 +1,7 @@
 import {SafeAreaView, ScrollView} from "react-native";
 import {useNavigation} from "@react-navigation/native";
 import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
+import {PATHS} from "../config/paths";
 
 export default function MatchesCompletedScreen() {
     const navigation = useNavigation();
@@ -11,40 +12,40 @@ export default function MatchesCompletedScreen() {
                     matchStatus={MatchStatus.Completed}
                     team1={"Team 1"}
                     team2={"Team 2"}
-                    team1Image={require("../assets/no-image.jpg")}
-                    team2Image={require("../assets/no-image.jpg")}
+                    team1Image={PATHS.IMAGES.NO_IMAGE}
+                    team2Image={PATHS.IMAGES.NO_IMAGE}
                     matchNo={10}
                 />
                 <MatchDetailCard
                     matchStatus={MatchStatus.Completed}
                     team1={"Team 1"}
                     team2={"Team 2"}
-                    team1Image={require("../assets/no-image.jpg")}
-                    team2Image={require("../assets/no-image.jpg")}
+                    team1Image={PATHS.IMAGES.NO_IMAGE}
+                    team2Image={PATHS.IMAGES.NO_IMAGE}
                     matchNo={10}
                 />
                 <MatchDetailCard
                     matchStatus={MatchStatus.Completed}
                     team1={"Team 1"}
                     team2={"Team 2"}
-                    team1Image={require("../assets/no-image.jpg")}
-                    team2Image={require("../assets/no-image.jpg")}
+                    team1Image={PATHS.IMAGES.NO_IMAGE}
+                    team2Image={PATHS.IMAGES.NO_IMAGE}
                     matchNo={10}
                 />
                 <MatchDetailCard
                     matchStatus={MatchStatus.Completed}
                     team1={"Team 1"}
                     team2={"Team 2"}
-                    team1Image={require("../assets/no-image.jpg")}
-                    team2Image={require("../assets/no-image.jpg")}
+                    team1Image={PATHS.IMAGES.NO_IMAGE}
+                    team2Image={PATHS.IMAGES.NO_IMAGE}
                     matchNo={10}
                 />
                 <MatchDetailCard
                     matchStatus={MatchStatus.Completed}
                     team1={"Team 1"}
                     team2={"Team 2"}
-                    team1Image={require("../assets/no-image.jpg")}
-                    team2Image={require("../assets/no-image.jpg")}
+                    team1Image={PATHS.IMAGES.NO_IMAGE}
+                    team2Image={PATHS.IMAGES.NO_IMAGE}
                     matchNo={10}
                 />
             </ScrollView>

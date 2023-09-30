@@ -8,12 +8,13 @@ import {Ionicons, MaterialCommunityIcons, MaterialIcons} from "@expo/vector-icon
 import React from "react";
 import {useAuth} from "../context/AuthContext";
 import {THEME} from "../config/theme";
+import {PATHS} from "../config/paths";
 
 const Drawer = createDrawerNavigator();
 export default function DrawerNavigator() {
     return (
         <Drawer.Navigator
-            drawerContent={(props) => <MyDrawer {...props}/>}
+            drawerContent={() => <MyDrawer/>}
             screenOptions={{
                 headerShown: false,
             }}>
@@ -22,9 +23,9 @@ export default function DrawerNavigator() {
     );
 }
 
-function MyDrawer({props}: any) {
+function MyDrawer() {
     const navigation = useNavigation();
-    const {isLoggedIn, login, logout} = useAuth();
+    const {isLoggedIn, logout} = useAuth();
 
     const drawerItems = [
         {
@@ -69,7 +70,7 @@ function MyDrawer({props}: any) {
     return (
         <SafeAreaView style={styles.mainContainer}>
             <View style={{justifyContent: "center", alignItems: "center"}}>
-                <Image source={require("../assets/images/fit-sixes-drawer-logo.png")}
+                <Image source={PATHS.IMAGES.FIT_SIXES_LOGO}
                        style={styles.drawerImage}/>
             </View>
             <View style={styles.drawerContentContainer}>
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
     },
     drawerImage: {
         width: "100%",
-        height: 150,
+        height: 200,
         resizeMode: "contain"
     },
     drawerContentContainer: {
