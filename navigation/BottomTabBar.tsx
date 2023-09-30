@@ -5,9 +5,11 @@ import {GestureResponderEvent, StyleSheet, Text, View} from "react-native";
 import {Foundation, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 import React from "react";
 import CartScreen from "../screens/CartScreen";
-import TeamScreen from "../screens/TeamScreen";
 import {getFocusedRouteNameFromRoute, useNavigation} from "@react-navigation/native";
 import StackNavigatorHome from "./StackNavigatorHome";
+import StackNavigatorTeam from "./StackNavigatorTeam";
+import TopHeaderBar from "../components/TopHeaderBar";
+import {useAuth} from "../context/AuthContext";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,6 +25,7 @@ interface BottomTabNavigatorProps {
 export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'HomeTab';
     const navigation = useNavigation();
+    const {isLoggedIn} = useAuth();
 
     const handleHomeTabPress = () => {
         // @ts-ignore
@@ -40,13 +43,18 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
 
     return (
         <Tab.Navigator screenOptions={({route}) => ({
-            headerShown: false,
+            headerShown: true,
+            tabBarVisibilityAnimationConfig: {
+                show: {
+                    animation: 'timing',
+                    config: {
+                        duration: 300,
+                    },
+                }
+            },
+            header: () => <TopHeaderBar/>,
             tabBarShowLabel: false,
             tabBarStyle: {
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                right: 0,
                 height: 60,
                 backgroundColor: "#ffffff",
                 ...styles.shadow,
@@ -125,22 +133,43 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                             },
                         }}
             />
-            <Tab.Screen name="TeamTab" component={TeamScreen}
-                        listeners={{
-                            tabPress: (e: any) => {
-                                if (e.tabPress) {
-                                    handleTeamTabPress();
-                                }
-                            },
-                        }}
-            />
+            {
+                isLoggedIn && (
+                    <Tab.Screen name="TeamTab" component={StackNavigatorTeam}
+                                listeners={{
+                                    tabPress: (e: any) => {
+                                        if (e.tabPress) {
+                                            handleTeamTabPress();
+                                        }
+                                    },
+                                }}
+                    />
+                )
+            }
             <Tab.Screen name="MainTab" component={MainScreen} options={{
                 tabBarButton: (props) => (
                     <CustomTabBarButton children={props.children} onPress={props.onPress}/>
                 )
             }}/>
-            <Tab.Screen name="CartTab" component={CartScreen}/>
-            <Tab.Screen name="ProfileTab" component={ProfileScreen}/>
+            {
+                isLoggedIn && <Tab.Screen name="CartTab" component={CartScreen}/>
+            }
+            {
+                isLoggedIn && <Tab.Screen name="ProfileTab" component={ProfileScreen}/>
+            }
+            {
+                !isLoggedIn && (
+                    <Tab.Screen name="TeamTab" component={StackNavigatorTeam}
+                                listeners={{
+                                    tabPress: (e: any) => {
+                                        if (e.tabPress) {
+                                            handleTeamTabPress();
+                                        }
+                                    },
+                                }}
+                    />
+                )
+            }
         </Tab.Navigator>
     );
 }

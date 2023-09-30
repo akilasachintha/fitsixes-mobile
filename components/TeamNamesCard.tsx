@@ -25,7 +25,6 @@ const TeamNamesCard: React.FC<TeamNamesProps> = ({ teamName1, teamName2, teamSou
                 <View style={styles.imageContainer}>
                     <Image source={require('../assets/fit-sixes.png')} style={styles.image} />
                 </View>
-
                 <View style={styles.teamDetails}>
                     <ImageHolder source={teamSource2} size={70} />
                     <View style={styles.teamNameContainer}>
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
         elevation: 5,
         width: "90%",
         height: 150,
-        marginVertical: "5%"
+        marginBottom: "5%"
     },
     cardSecondContainer: {
         alignSelf: 'center',
