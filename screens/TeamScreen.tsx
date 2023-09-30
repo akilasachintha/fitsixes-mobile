@@ -79,6 +79,7 @@ export default function TeamScreen() {
             <FlatList
                 showsVerticalScrollIndicator={false}
                 style={styles.flatList}
+                centerContent={true}
                 numColumns={2}
                 columnWrapperStyle={styles.columnWrapperStyle}
                 data={teamList}
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     itemContainer: {
-        flex: 1,
+        margin: "2%",
     },
     touchableHighlight: {
         padding: 1,

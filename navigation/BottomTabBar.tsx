@@ -182,7 +182,7 @@ const CustomTabBarButton = ({children}: CustomTabBarButtonProps) => {
                 width: 70,
                 height: 70,
                 borderRadius: 35,
-                borderWidth: 5,
+                borderWidth: 4,
                 borderColor: THEME.COLORS.border,
                 ...styles.shadow
             }
