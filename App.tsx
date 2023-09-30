@@ -1,20 +1,52 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
+import StackNavigator from "./navigation/StackNavigator";
+import {StatusBar} from "expo-status-bar";
+import * as SplashScreen from "expo-splash-screen";
+import {useCallback, useEffect, useState} from "react";
+import {View} from "react-native";
+import {AuthProvider} from "./context/AuthContext";
+import {THEME} from "./config/theme";
+
+SplashScreen.preventAutoHideAsync().catch((e) => console.error(e));
+
+const navTheme = DefaultTheme;
+navTheme.colors.background = THEME.COLORS.white;
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const [isAppReady, setIsAppReady] = useState(false);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    const onLayoutRootView = useCallback(async () => {
+        if (isAppReady) {
+            await SplashScreen.hideAsync();
+        }
+    }, [isAppReady]);
+
+    useEffect(() => {
+        async function prepare() {
+            try {
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            } catch (e) {
+                console.warn(e);
+            } finally {
+                setIsAppReady(true);
+            }
+        }
+
+        prepare().catch((e) => console.error(e));
+    }, []);
+
+    if (!isAppReady) {
+        return null;
+    }
+
+    return (
+        <View onLayout={onLayoutRootView} style={{flex: 1}}>
+            <NavigationContainer theme={navTheme}>
+                <AuthProvider>
+                    <StackNavigator/>
+                    <StatusBar style="dark"/>
+                </AuthProvider>
+            </NavigationContainer>
+        </View>
+    );
+}
