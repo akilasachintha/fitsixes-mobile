@@ -1,6 +1,8 @@
 import {Image, ImageSourcePropType, StyleSheet, Text, View} from 'react-native'
 import React from 'react'
 import ImageHolder from './ImageHolder'
+import {THEME} from "../config/theme";
+import {PATHS} from "../config/paths";
 
 interface PlayerDetailsCardProps {
     url: ImageSourcePropType;
@@ -19,7 +21,7 @@ const PlayerDetailsCard: React.FC<PlayerDetailsCardProps> = ({
             <View style={styles.playerCardSubContainer}>
                 <View style={styles.playerProfileContainer}>
                     <ImageHolder
-                        source={url ? url : require('../assets/no-image.jpg')}
+                        source={url ? url : PATHS.IMAGES.NO_IMAGE}
                         size={60}
                         borderColor="#13FAF8"
                         borderWidth={3}
@@ -34,7 +36,7 @@ const PlayerDetailsCard: React.FC<PlayerDetailsCardProps> = ({
                     </Text>
                 </View>
                 <View style={styles.logoContainer}>
-                    <Image style={styles.logoView} resizeMode='center' source={require('../assets/images/fit-sixes-drawer-logo.png')} />
+                    <Image style={styles.logoView} resizeMode='center' source={PATHS.IMAGES.FIT_SIXES_LOGO} />
                 </View>
             </View>
         </View>
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
     playerCardContainer: {
         marginHorizontal: '5%',
         height: 70,
-        backgroundColor: '#000532',
+        backgroundColor: THEME.COLORS.primary,
         borderRadius: 112,
         alignSelf: 'center',
         marginVertical: "2%",

@@ -4,6 +4,7 @@ import MatchesLiveScreen from "../screens/MatchesLiveScreen";
 import MatchesCompletedScreen from "../screens/MatchesCompletedScreen";
 import {getFocusedRouteNameFromRoute} from "@react-navigation/native";
 import {StyleProp, TextStyle} from "react-native";
+import {THEME} from "../config/theme";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -12,7 +13,7 @@ export default function TabNavigator({route}: any) {
 
     const getTabBarLabelStyle = (tabName: string): StyleProp<TextStyle> => {
         return {
-            color: routeName === tabName ? "#fff" : "#101B62",
+            color: routeName === tabName ? THEME.COLORS.white : THEME.COLORS.primary,
             fontSize: 12,
             fontWeight: "bold",
         };
@@ -25,10 +26,10 @@ export default function TabNavigator({route}: any) {
                 tabBarStyle: {
                     marginVertical: "2%",
                     marginBottom: "4%",
-                    backgroundColor: "#fff",
+                    backgroundColor: THEME.COLORS.white,
                     marginHorizontal: "8%",
                     borderRadius: 30,
-                    shadowColor: "#000532",
+                    shadowColor: THEME.COLORS.primary,
                     shadowOffset: {
                         width: 0,
                         height: 10
@@ -39,11 +40,11 @@ export default function TabNavigator({route}: any) {
                     paddingVertical: "0.5%",
                 },
                 tabBarIndicatorStyle: {
-                    backgroundColor: "#101B62",
+                    backgroundColor: THEME.COLORS.primary,
                     height: "100%",
                     borderRadius: 30,
                     borderWidth: 5,
-                    borderColor: "#fff",
+                    borderColor: THEME.COLORS.white,
                 },
             }}
         >

@@ -2,6 +2,8 @@ import {SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from
 import {useNavigation} from "@react-navigation/native";
 import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
 import React from "react";
+import {THEME} from "../config/theme";
+import {PATHS} from "../config/paths";
 
 export default function HomeScreen() {
     const navigation = useNavigation();
@@ -20,8 +22,8 @@ export default function HomeScreen() {
                     team2={"Team 2"}
                     team1Score={"100/2"}
                     team2Score={"200/2"}
-                    team1Image={require("../assets/no-image.jpg")}
-                    team2Image={require("../assets/no-image.jpg")}
+                    team1Image={PATHS.IMAGES.NO_IMAGE}
+                    team2Image={PATHS.IMAGES.NO_IMAGE}
                     matchNo={10}
                 />
                 <View style={styles.subtitleContainer}>
@@ -34,24 +36,24 @@ export default function HomeScreen() {
                     matchStatus={MatchStatus.Upcoming}
                     team1={"Team 1"}
                     team2={"Team 2"}
-                    team1Image={require("../assets/no-image.jpg")}
-                    team2Image={require("../assets/no-image.jpg")}
+                    team1Image={PATHS.IMAGES.NO_IMAGE}
+                    team2Image={PATHS.IMAGES.NO_IMAGE}
                     matchNo={10}
                 />
                 <MatchDetailCard
                     matchStatus={MatchStatus.Upcoming}
                     team1={"Team 1"}
                     team2={"Team 2"}
-                    team1Image={require("../assets/no-image.jpg")}
-                    team2Image={require("../assets/no-image.jpg")}
+                    team1Image={PATHS.IMAGES.NO_IMAGE}
+                    team2Image={PATHS.IMAGES.NO_IMAGE}
                     matchNo={10}
                 />
                 <MatchDetailCard
                     matchStatus={MatchStatus.Upcoming}
                     team1={"Team 1"}
                     team2={"Team 2"}
-                    team1Image={require("../assets/no-image.jpg")}
-                    team2Image={require("../assets/no-image.jpg")}
+                    team1Image={PATHS.IMAGES.NO_IMAGE}
+                    team2Image={PATHS.IMAGES.NO_IMAGE}
                     matchNo={10}
                 />
             </ScrollView>
@@ -67,12 +69,12 @@ const styles = StyleSheet.create({
         marginBottom: "4%",
     },
     leftText: {
-        color: "#101B62",
+        color: THEME.COLORS.primary,
         fontSize: 18,
         fontWeight: "bold",
     },
     rightText: {
-        color: "#101B62",
+        color: THEME.COLORS.primary,
         fontSize: 16,
         fontWeight: "bold",
     }

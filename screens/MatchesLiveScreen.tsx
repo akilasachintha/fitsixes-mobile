@@ -1,5 +1,6 @@
 import {SafeAreaView, ScrollView} from "react-native";
 import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
+import {PATHS} from "../config/paths";
 
 export default function MatchesLiveScreen() {
     return (
@@ -11,8 +12,8 @@ export default function MatchesLiveScreen() {
                     team2={"Team 2"}
                     team1Score={"100/2"}
                     team2Score={"200/2"}
-                    team1Image={require("../assets/no-image.jpg")}
-                    team2Image={require("../assets/no-image.jpg")}
+                    team1Image={PATHS.IMAGES.NO_IMAGE}
+                    team2Image={PATHS.IMAGES.NO_IMAGE}
                     matchNo={10}
                 />
                 <MatchDetailCard
@@ -21,8 +22,8 @@ export default function MatchesLiveScreen() {
                     team2={"Team 2"}
                     team1Score={"100/2"}
                     team2Score={"200/2"}
-                    team1Image={require("../assets/no-image.jpg")}
-                    team2Image={require("../assets/no-image.jpg")}
+                    team1Image={PATHS.IMAGES.NO_IMAGE}
+                    team2Image={PATHS.IMAGES.NO_IMAGE}
                     matchNo={10}
                 />
                 <MatchDetailCard
@@ -31,8 +32,8 @@ export default function MatchesLiveScreen() {
                     team2={"Team 2"}
                     team1Score={"100/2"}
                     team2Score={"200/2"}
-                    team1Image={require("../assets/no-image.jpg")}
-                    team2Image={require("../assets/no-image.jpg")}
+                    team1Image={PATHS.IMAGES.NO_IMAGE}
+                    team2Image={PATHS.IMAGES.NO_IMAGE}
                     matchNo={10}
                 />
             </ScrollView>

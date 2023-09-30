@@ -1,57 +1,58 @@
 import {FlatList, SafeAreaView, StyleSheet, TouchableOpacity, View} from "react-native";
 import TeamCard from "../components/TeamCard";
 import {useNavigation} from "@react-navigation/native";
+import {PATHS} from "../config/paths";
 
 const teamList = [
     {
         id: 1,
         name: 'Creative Software',
-        src: require('../assets/no-image.jpg')
+        src: PATHS.IMAGES.NO_IMAGE
     },
     {
         id: 2,
         name: 'WSO2',
-        src: require('../assets/no-image.jpg')
+        src: PATHS.IMAGES.NO_IMAGE
     },
     {
         id: 3,
         name: 'MIT',
-        src: require('../assets/no-image.jpg')
+        src: PATHS.IMAGES.NO_IMAGE
     },
     {
         id: 4,
         name: 'DirectFN',
-        src: require('../assets/no-image.jpg')
+        src: PATHS.IMAGES.NO_IMAGE
     },
     {
         id: 5,
         name: 'Cambio Software',
-        src: require('../assets/no-image.jpg')
+        src: PATHS.IMAGES.NO_IMAGE
     },
     {
         id: 6,
         name: 'IFS',
-        src: require('../assets/icon.png')
+        src: PATHS.IMAGES.NO_IMAGE
     },
     {
         id: 7,
         name: 'CodeGen',
-        src: ''
+        src: PATHS.IMAGES.NO_IMAGE
     },
     {
         id: 8,
         name: 'Virtusa',
-        src: ''
+        src: PATHS.IMAGES.NO_IMAGE
     },
     {
         id: 9,
         name: 'Sysco LABS',
-        src: ''
+        src: PATHS.IMAGES.NO_IMAGE
     },
     {
         id: 10,
         name: '99X Technology',
-        src: ''
+        src: PATHS.IMAGES.NO_IMAGE
     }
 ]
 
@@ -79,6 +80,7 @@ export default function TeamScreen() {
             <FlatList
                 showsVerticalScrollIndicator={false}
                 style={styles.flatList}
+                centerContent={true}
                 numColumns={2}
                 columnWrapperStyle={styles.columnWrapperStyle}
                 data={teamList}
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     itemContainer: {
-        flex: 1,
+        margin: "2%",
     },
     touchableHighlight: {
         padding: 1,

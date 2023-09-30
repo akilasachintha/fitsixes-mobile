@@ -1,6 +1,8 @@
 import React from "react";
 import {ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import ImageHolder from './ImageHolder'
+import {THEME} from "../config/theme";
+import {PATHS} from "../config/paths";
 
 interface TeamScoreProps {
     teamName: String;
@@ -10,10 +12,10 @@ interface TeamScoreProps {
     src?: ImageSourcePropType
 }
 
-const TeamScore: React.FC<TeamScoreProps> = ({ teamName, score = 0, wickets = 0, overs = 0.0, src = require('../assets/no-image.jpg') }) => {
+const TeamScore: React.FC<TeamScoreProps> = ({teamName, score = 0, wickets = 0, overs = 0.0, src = PATHS.IMAGES.NO_IMAGE}) => {
     return (
         <View style={styles.container}>
-            <ImageHolder source={src} size={100} borderColor="#000532" borderWidth={1} />
+            <ImageHolder source={src} size={100} borderColor={THEME.COLORS.primary} borderWidth={1}/>
             <View style={styles.teamDetails}>
                 <Text style={styles.teamName} numberOfLines={2} ellipsizeMode="tail">{teamName.length > 20 ? `${teamName.slice(0, 30)}...` : teamName}</Text>
                 <Text style={styles.teamDetailsText}>{score + ' - ' + wickets}</Text>
@@ -39,14 +41,14 @@ const styles = StyleSheet.create({
     },
     teamName: {
         fontSize: 18,
-        color: '#000532',
+        color: THEME.COLORS.primary,
         fontWeight: '700',
         textAlign: 'center',
         marginTop: 5
     },
     teamDetailsText: {
         fontSize: 16,
-        color: '#000532',
+        color: THEME.COLORS.primary,
         fontWeight: '600',
         textAlign: 'center',
         marginTop: 5

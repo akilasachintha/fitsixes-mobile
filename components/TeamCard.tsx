@@ -1,7 +1,8 @@
 import React from "react"
-import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
+import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import ImageHolder from "./ImageHolder";
-import { Text } from "react-native";
+import {THEME} from "../config/theme";
+import {PATHS} from "../config/paths";
 
 interface TeamCardProps {
     teamName: string;
@@ -14,7 +15,7 @@ const TeamCard: React.FC<TeamCardProps> = ({ teamName, source = require('../asse
         <View style={styles.cardContainer}>
             <View>
                 <Image
-                    source={require('../assets/fit-sixes.png')}
+                    source={PATHS.IMAGES.FIT_SIXES_LOGO}
                     style={[
                         styles.image,
                         { alignSelf: index % 2 === 0 ? 'flex-start' : 'flex-end' }
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     cardContainer: {
         width: 140,
         height: 165,
-        backgroundColor: '#000532',
+        backgroundColor: THEME.COLORS.primary,
         borderRadius: 30,
         elevation: 5
     },
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     },
     teamName: {
         marginTop: 15,
-        color: '#fff',
+        color: THEME.COLORS.white,
         fontSize: 14,
         fontWeight: '700',
         textAlign: 'center'

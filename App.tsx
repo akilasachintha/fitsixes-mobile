@@ -5,11 +5,12 @@ import * as SplashScreen from "expo-splash-screen";
 import {useCallback, useEffect, useState} from "react";
 import {View} from "react-native";
 import {AuthProvider} from "./context/AuthContext";
+import {THEME} from "./config/theme";
 
 SplashScreen.preventAutoHideAsync().catch((e) => console.error(e));
 
 const navTheme = DefaultTheme;
-navTheme.colors.background = '#fff';
+navTheme.colors.background = THEME.COLORS.white;
 
 export default function App() {
     const [isAppReady, setIsAppReady] = useState(false);

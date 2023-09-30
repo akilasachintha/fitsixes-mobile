@@ -5,6 +5,8 @@ import ImageHolder from "../components/ImageHolder";
 import HeaderText from "../components/HeaderText";
 import TextInputField from "../components/TextInputField";
 import Button from "../components/Button";
+import {THEME} from "../config/theme";
+import {PATHS} from "../config/paths";
 
 export default function LoginScreen() {
     const navigation = useNavigation();
@@ -24,7 +26,7 @@ export default function LoginScreen() {
     return (
         <SafeAreaView>
             <View style={styles.container}>
-                <ImageHolder source={require("../assets/fit-sixes.png")} size={150} borderWidth={0}/>
+                <ImageHolder source={PATHS.IMAGES.FIT_SIXES_LOGO} size={150} borderWidth={0}/>
                 <HeaderText header={"Login"}/>
                 <TextInputField label={"Email"} placeholder={"abc@gmail.com"}/>
                 <TextInputField label={"Password"} placeholder={"password"} isPassword={true}/>
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
     },
     forgetPasswordText: {
-        color: "#000532",
+        color: THEME.COLORS.primary,
         fontSize: 14,
         textAlign: "right",
     }
