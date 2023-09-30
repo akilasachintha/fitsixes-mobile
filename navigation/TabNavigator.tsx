@@ -26,7 +26,7 @@ export default function TabNavigator({route}: any) {
                 tabBarStyle: {
                     marginVertical: "2%",
                     marginBottom: "4%",
-                    backgroundColor: "#fff",
+                    backgroundColor: THEME.COLORS.white,
                     marginHorizontal: "8%",
                     borderRadius: 30,
                     shadowColor: THEME.COLORS.primary,
