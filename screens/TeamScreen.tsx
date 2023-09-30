@@ -1,6 +1,7 @@
-import { SafeAreaView } from "react-native-safe-area-context";
-import { FlatList, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import {SafeAreaView} from "react-native-safe-area-context";
+import {FlatList, StyleSheet, TouchableOpacity, View} from "react-native";
 import TeamCard from "../components/TeamCard";
+import {useNavigation} from "@react-navigation/native";
 
 const teamList = [
     {
@@ -38,33 +39,55 @@ const teamList = [
         name: 'CodeGen',
         src: ''
     },
+    {
+        id: 8,
+        name: 'Virtusa',
+        src: ''
+    },
+    {
+        id: 9,
+        name: 'Sysco LABS',
+        src: ''
+    },
+    {
+        id: 10,
+        name: '99X Technology',
+        src: ''
+    }
 ]
 
 export default function TeamScreen() {
+    const navigation = useNavigation();
+    const handleTeamCardClick = () => {
+        // @ts-ignore
+        navigation.navigate("TeamTabTeamMembersStack");
+    }
+
     const renderItem = ({ item, index }: { item: any; index: number }) => {
         return (
             <View style={[styles.itemContainer, { padding: 0, marginTop: index % 2 !== 0 ? 30 : 0 }]}>
-                <TouchableHighlight onPress={() => { }} style={styles.touchableHighlight} activeOpacity={0.6} underlayColor={'#000532'}>
+                <TouchableOpacity onPress={handleTeamCardClick}
+                                  style={styles.touchableHighlight}
+                                  activeOpacity={0.9}>
                     <TeamCard teamName={item.name} index={index} source={item.src !== '' || item.src.length !== 0 ? item.src : require('../assets/no-image.jpg')} />
-                </TouchableHighlight>
+                </TouchableOpacity>
             </View>
         )
     };
 
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <FlatList
-                    style={styles.flatList}
-                    numColumns={2}
-                    columnWrapperStyle={styles.columnWrapperStyle}
-                    data={teamList}
-                    keyExtractor={(item: any, index: number) => item.id}
-                    renderItem={({ item, index }: { item: any; index: number }) =>
-                        renderItem({ item, index })
-                    }
+            <FlatList
+                showsVerticalScrollIndicator={false}
+                style={styles.flatList}
+                numColumns={2}
+                columnWrapperStyle={styles.columnWrapperStyle}
+                data={teamList}
+                keyExtractor={(item: any) => item.id}
+                renderItem={({item, index}: { item: any; index: number }) =>
+                    renderItem({item, index})
+                }
                 />
-            </ScrollView>
         </SafeAreaView>
     );
 }
@@ -72,25 +95,19 @@ export default function TeamScreen() {
 
 const styles = StyleSheet.create({
     container: {
-        alignSelf: 'center',
-        width: '100%',
-        flex: 1,
-        height: '100%',
-        paddingBottom: 50
+        justifyContent: 'center',
+        paddingHorizontal: 40,
     },
-    flatList: {
-        margin: 5,
-        padding: 10,
-    },
+    flatList: {},
     columnWrapperStyle: {
         flexDirection: 'row',
-        justifyContent: "space-around"
+        justifyContent: 'space-between',
     },
     itemContainer: {
         flex: 1,
     },
     touchableHighlight: {
-        padding: 12,
+        padding: 1,
         borderRadius: 30
     }
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
+import {Platform, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 interface ButtonProps {
     title: string;
@@ -16,20 +16,18 @@ interface ButtonProps {
 
   const styles = StyleSheet.create({
     button: {
-      backgroundColor: 'rgba(16, 27, 98, 1)', 
-      padding: 10,
+      backgroundColor: '#000532',
       borderRadius: 112,
       alignItems: 'center',
-      width : 310,
-      height : 75,
+      width: '90%',
+      padding: 15,
       justifyContent: 'center',
-
+      marginVertical: "5%",
     },
     buttonText: {
       color: 'rgba(255, 255, 255, 1)',
       fontSize : 24,
       fontWeight : "500",
-      fontFamily : 'Roboto',
     },
     androidShadow: {
       elevation: 3, 

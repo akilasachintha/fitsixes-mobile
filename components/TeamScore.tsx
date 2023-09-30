@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageSourcePropType, StyleSheet, View, Text } from "react-native";
+import {ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import ImageHolder from './ImageHolder'
 
 interface TeamScoreProps {
@@ -30,8 +30,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        marginBottom: 30,
-        marginTop: 10
     },
     teamDetails: {
         flexDirection: 'column',

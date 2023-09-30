@@ -1,7 +1,6 @@
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import TeamScreen from "../screens/TeamScreen";
 import TeamMembersScreen from "../screens/TeamMembersScreen";
-import TopHeaderBar from "../components/TopHeaderBar";
 
 const Stack = createNativeStackNavigator();
 

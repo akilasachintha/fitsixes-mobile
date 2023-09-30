@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet,Text } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import React, {useState} from 'react';
+import {StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {FontAwesome} from '@expo/vector-icons';
 
 interface TextInputFieldProps {
   label : string;
@@ -25,7 +25,6 @@ const TextInputField: React.FC<TextInputFieldProps> = ({
       <Text style={styles.label}> {label} </Text>
 
       <View style={styles.inputContainer}>
-        
         <TextInput
           placeholder={placeholder}
           secureTextEntry={isPassword && !isPasswordVisible}
@@ -52,19 +51,17 @@ const styles = StyleSheet.create({
   mainContainer:{
     flexDirection:'column',
     alignItems:'flex-start',
-    paddingLeft:20,
-    paddingRight:20,
   },
   label : {
-    fontSize : 20,
-    color: 'rgba(16, 27, 98, 1)'
+    fontSize: 18,
+    color: '#000532',
+    fontWeight: '700',
   },
-
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(16, 27, 98, 1)',
+    borderBottomColor: '#000532',
     marginBottom: 20,
     marginLeft :5,
   },
@@ -72,8 +69,8 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 5,
     paddingLeft :  0,
-    fontSize : 12,
-    color: 'rgba(16, 27, 98, 1)'
+    fontSize: 16,
+    color: '#000532'
   },
   passwordToggle: {
     padding: 10,

@@ -11,10 +11,10 @@ const HeaderText: React.FC<HeaderTextProps> = ({ header}) => {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 45,
-    color: 'rgba(16, 27, 98, 1)',
-    fontWeight : '600',
-    fontFamily : 'Roboto'
+    fontSize: 30,
+    color: '#000532',
+    fontWeight : "bold",
+    marginVertical: '8%',
   },
 });
 

@@ -44,7 +44,6 @@ const PlayerDetailsCard: React.FC<PlayerDetailsCardProps> = ({
 export default PlayerDetailsCard;
 
 const styles = StyleSheet.create({
-
     playerCardContainer: {
         width: 364,
         height: 75,
