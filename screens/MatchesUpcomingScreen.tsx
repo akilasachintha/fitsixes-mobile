@@ -1,10 +1,8 @@
 import {SafeAreaView, ScrollView} from "react-native";
-import {useNavigation} from "@react-navigation/native";
 import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
 import {PATHS} from "../config/paths";
 
 export default function MatchesUpcomingScreen() {
-    const navigation = useNavigation();
     return (
         <SafeAreaView>
             <ScrollView showsVerticalScrollIndicator={false}>
