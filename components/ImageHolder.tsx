@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
+import {Image, ImageSourcePropType, StyleSheet, View} from "react-native";
+import {THEME} from "../config/theme";
 
 interface ImageHolderProps {
     source: ImageSourcePropType;
@@ -39,7 +40,7 @@ export default ImageHolder;
 const styles = StyleSheet.create({
     imageContainer: {
         overflow: "hidden",
-        backgroundColor: "#000532",
+        backgroundColor: THEME.COLORS.primary,
     },
     image: {
         flex: 1,

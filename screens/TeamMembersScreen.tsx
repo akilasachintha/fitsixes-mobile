@@ -1,6 +1,7 @@
 import PlayerDetailsCard from "../components/PlayerDetailsCard";
 import ImageHolder from "../components/ImageHolder";
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
+import {THEME} from "../config/theme";
 
 export default function TeamMembersScreen() {
     return (
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     teamCardText: {
-        color: "#000532",
+        color: THEME.COLORS.primary,
         fontSize: 20,
         fontWeight: "bold",
         marginVertical: "4%",

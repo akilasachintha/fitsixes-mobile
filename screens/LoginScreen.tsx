@@ -5,6 +5,7 @@ import ImageHolder from "../components/ImageHolder";
 import HeaderText from "../components/HeaderText";
 import TextInputField from "../components/TextInputField";
 import Button from "../components/Button";
+import {THEME} from "../config/theme";
 
 export default function LoginScreen() {
     const navigation = useNavigation();
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
     },
     forgetPasswordText: {
-        color: "#000532",
+        color: THEME.COLORS.primary,
         fontSize: 14,
         textAlign: "right",
     }

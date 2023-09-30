@@ -1,6 +1,7 @@
 import {Image, ImageSourcePropType, StyleSheet, Text, View} from 'react-native'
 import React from 'react'
 import ImageHolder from './ImageHolder'
+import {THEME} from "../config/theme";
 
 interface PlayerDetailsCardProps {
     url: ImageSourcePropType;
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
     playerCardContainer: {
         marginHorizontal: '5%',
         height: 70,
-        backgroundColor: '#000532',
+        backgroundColor: THEME.COLORS.primary,
         borderRadius: 112,
         alignSelf: 'center',
         marginVertical: "2%",

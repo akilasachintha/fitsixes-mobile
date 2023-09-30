@@ -1,6 +1,7 @@
 import {Image, ImageBackground, ImageProps, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import ImageHolder from "./ImageHolder";
 import {useNavigation} from "@react-navigation/native";
+import {THEME} from "../config/theme";
 
 interface MatchDetailCardProps {
     matchNo: number;
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     container: {
         marginHorizontal: "6%",
         padding: "4%",
-        backgroundColor: "#101B62",
+        backgroundColor: THEME.COLORS.primary,
         borderRadius: 20,
         marginBottom: "4%",
     },
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
         marginBottom: "4%",
     },
     titleText: {
-        color: "#fff",
+        color: THEME.COLORS.white,
         fontSize: 16,
         fontWeight: "bold",
     },
@@ -116,22 +117,22 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     teamImageText: {
-        color: "#fff",
+        color: THEME.COLORS.white,
         fontSize: 14,
         marginLeft: "8%",
         fontWeight: "bold",
     },
     teamScoreText: {
-        color: "#fff",
+        color: THEME.COLORS.white,
         fontSize: 14,
     },
     teamScoreBottomText: {
-        color: "#838181",
+        color: THEME.COLORS.gray,
         fontSize: 10,
         textAlign: "right",
     },
     vsText: {
-        color: "#13FAF8",
+        color: THEME.COLORS.border,
         fontSize: 14,
         fontWeight: "bold",
         textAlign: "left",

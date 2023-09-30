@@ -1,6 +1,7 @@
 import React from "react";
 import {ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import ImageHolder from './ImageHolder'
+import {THEME} from "../config/theme";
 
 interface TeamScoreProps {
     teamName: String;
@@ -39,14 +40,14 @@ const styles = StyleSheet.create({
     },
     teamName: {
         fontSize: 18,
-        color: '#000532',
+        color: THEME.COLORS.primary,
         fontWeight: '700',
         textAlign: 'center',
         marginTop: 5
     },
     teamDetailsText: {
         fontSize: 16,
-        color: '#000532',
+        color: THEME.COLORS.primary,
         fontWeight: '600',
         textAlign: 'center',
         marginTop: 5

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Platform, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {THEME} from "../config/theme";
 
 interface ButtonProps {
     title: string;
@@ -16,7 +17,7 @@ interface ButtonProps {
 
   const styles = StyleSheet.create({
     button: {
-      backgroundColor: '#000532',
+      backgroundColor: THEME.COLORS.primary,
       borderRadius: 112,
       alignItems: 'center',
       width: '90%',
@@ -25,7 +26,7 @@ interface ButtonProps {
       marginVertical: "5%",
     },
     buttonText: {
-      color: 'rgba(255, 255, 255, 1)',
+      color: THEME.COLORS.white,
       fontSize : 24,
       fontWeight : "500",
     },

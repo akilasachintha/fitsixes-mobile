@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {FontAwesome} from '@expo/vector-icons';
+import {THEME} from "../config/theme";
 
 interface TextInputFieldProps {
   label : string;
@@ -38,7 +39,7 @@ const TextInputField: React.FC<TextInputFieldProps> = ({
             <FontAwesome
               name={isPasswordVisible ? 'eye' : 'eye-slash'}
               size={20}
-              color="rgba(16, 27, 98, 1)"
+              color={THEME.COLORS.primary}
             />
           </TouchableOpacity>
         )}
@@ -54,14 +55,14 @@ const styles = StyleSheet.create({
   },
   label : {
     fontSize: 18,
-    color: '#000532',
+    color: THEME.COLORS.primary,
     fontWeight: '700',
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#000532',
+    borderBottomColor: THEME.COLORS.primary,
     marginBottom: 20,
     marginLeft :5,
   },
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingLeft :  0,
     fontSize: 16,
-    color: '#000532'
+    color: THEME.COLORS.primary,
   },
   passwordToggle: {
     padding: 10,

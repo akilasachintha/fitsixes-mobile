@@ -1,6 +1,7 @@
 import React from "react";
 import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import ImageHolder from "./ImageHolder";
+import {THEME} from "../config/theme";
 
 interface TeamNamesProps {
     teamName1: string;
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     cardContainer: {
         alignSelf: 'center',
         borderRadius: 32,
-        backgroundColor: "#000532",
+        backgroundColor: THEME.COLORS.primary,
         elevation: 5,
         width: "90%",
         height: 150,
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     },
     teamName: {
         marginTop: 10,
-        color: '#fff',
+        color: THEME.COLORS.white,
         fontSize: 11,
         fontWeight: '700',
         textAlign: 'center'

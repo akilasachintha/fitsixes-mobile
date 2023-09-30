@@ -2,6 +2,7 @@ import {SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from
 import {useNavigation} from "@react-navigation/native";
 import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
 import React from "react";
+import {THEME} from "../config/theme";
 
 export default function HomeScreen() {
     const navigation = useNavigation();
@@ -67,12 +68,12 @@ const styles = StyleSheet.create({
         marginBottom: "4%",
     },
     leftText: {
-        color: "#101B62",
+        color: THEME.COLORS.primary,
         fontSize: 18,
         fontWeight: "bold",
     },
     rightText: {
-        color: "#101B62",
+        color: THEME.COLORS.primary,
         fontSize: 16,
         fontWeight: "bold",
     }

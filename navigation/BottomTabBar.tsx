@@ -10,6 +10,7 @@ import StackNavigatorHome from "./StackNavigatorHome";
 import StackNavigatorTeam from "./StackNavigatorTeam";
 import {useAuth} from "../context/AuthContext";
 import TopHeaderBar from "../components/TopHeaderBar";
+import {THEME} from "../config/theme";
 
 const Tab = createBottomTabNavigator();
 
@@ -48,7 +49,7 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
             tabBarShowLabel: false,
             tabBarStyle: {
                 height: 60,
-                backgroundColor: "#ffffff",
+                backgroundColor: THEME.COLORS.white,
                 ...styles.shadow,
             },
             tabBarIcon: ({focused}) => {
@@ -57,8 +58,8 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                         <View style={styles.tabIcon}>
                             {
                                 focused ?
-                                    <Ionicons name="ios-home" size={22} color="#000532"/> :
-                                    <Ionicons name="ios-home-outline" size={22} color="#000532"/>
+                                    <Ionicons name="ios-home" size={22} color={THEME.COLORS.primary}/> :
+                                    <Ionicons name="ios-home-outline" size={22} color={THEME.COLORS.primary}/>
                             }
                             <Text style={styles.tabIconText}>Home</Text>
                         </View>
@@ -68,8 +69,8 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                         <View style={styles.tabIcon}>
                             {
                                 focused ?
-                                    <Foundation name="target-two" size={25} color="#000532"/> :
-                                    <MaterialCommunityIcons name="target" size={25} color="#000532"/>
+                                    <Foundation name="target-two" size={25} color={THEME.COLORS.primary}/> :
+                                    <MaterialCommunityIcons name="target" size={25} color={THEME.COLORS.primary}/>
                             }
                             <Text style={styles.tabIconText}>Team</Text>
                         </View>
@@ -79,8 +80,8 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                         <View style={styles.tabIcon}>
                             {
                                 focused ?
-                                    <Ionicons name="cart" size={25} color="#000532"/> :
-                                    <Ionicons name="cart-outline" size={25} color="#000532"/>
+                                    <Ionicons name="cart" size={25} color={THEME.COLORS.primary}/> :
+                                    <Ionicons name="cart-outline" size={25} color={THEME.COLORS.primary}/>
                             }
                             <Text style={styles.tabIconText}>Cart</Text>
                         </View>
@@ -90,8 +91,8 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                         <View style={styles.tabIcon}>
                             {
                                 focused ?
-                                    <Ionicons name="person" size={22} color="#000532"/> :
-                                    <Ionicons name="person-outline" size={22} color="#000532"/>
+                                    <Ionicons name="person" size={22} color={THEME.COLORS.primary}/> :
+                                    <Ionicons name="person-outline" size={22} color={THEME.COLORS.primary}/>
                             }
                             <Text style={styles.tabIconText}>Profile</Text>
                         </View>
@@ -100,16 +101,19 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                     return (
                         <View style={styles.tabIcon}>
                             {
-                                routeName === "HomeTab" && <Ionicons name="ios-home" size={22} color="rgba(19, 250, 248, 1)"/>
+                                routeName === "HomeTab" &&
+                                <Ionicons name="ios-home" size={22} color={THEME.COLORS.border}/>
                             }
                             {
-                                routeName === "TeamTab" && <Foundation name="target-two" size={25} color="rgba(19, 250, 248, 1)"/>
+                                routeName === "TeamTab" &&
+                                <Foundation name="target-two" size={25} color={THEME.COLORS.border}/>
                             }
                             {
-                                routeName === "CartTab" && <Ionicons name="cart" size={25} color="rgba(19, 250, 248, 1)"/>
+                                routeName === "CartTab" && <Ionicons name="cart" size={25} color={THEME.COLORS.border}/>
                             }
                             {
-                                routeName === "ProfileTab" && <Ionicons name="person" size={22} color="rgba(19, 250, 248, 1)"/>
+                                routeName === "ProfileTab" &&
+                                <Ionicons name="person" size={22} color={THEME.COLORS.border}/>
                             }
                         </View>
                     )
@@ -172,14 +176,14 @@ const CustomTabBarButton = ({children}: CustomTabBarButtonProps) => {
         <View style={
             {
                 top: -20,
-                backgroundColor: "#000532",
+                backgroundColor: THEME.COLORS.primary,
                 justifyContent: 'center',
                 alignItems: 'center',
                 width: 70,
                 height: 70,
                 borderRadius: 35,
                 borderWidth: 5,
-                borderColor: "rgba(19, 250, 248, 1)",
+                borderColor: THEME.COLORS.border,
                 ...styles.shadow
             }
         }>
@@ -190,7 +194,7 @@ const CustomTabBarButton = ({children}: CustomTabBarButtonProps) => {
 
 const styles = StyleSheet.create({
     shadow: {
-        shadowColor: "#000532",
+        shadowColor: THEME.COLORS.primary,
         shadowOffset: {
             width: 0,
             height: 10
@@ -204,10 +208,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     tabIconText: {
-        color: "#000532",
+        color: THEME.COLORS.primary,
         fontSize: 11,
     },
     icon: {
-        backgroundColor: "#000532",
+        backgroundColor: THEME.COLORS.primary,
     }
 });

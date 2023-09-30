@@ -1,5 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
+import {THEME} from "../config/theme";
 
 const playerDetails = [
     {
@@ -119,20 +120,20 @@ const styles = StyleSheet.create({
         width: '17%'
     },
     firstCardText: {
-        color: '#000532',
+        color: THEME.COLORS.primary,
         fontSize: 18,
         fontWeight: '600',
         textAlign: 'justify'
     },
     secondCard: {
-        backgroundColor: '#000532',
+        backgroundColor: THEME.COLORS.primary,
         borderTopLeftRadius: 40,
         borderBottomRightRadius: 40,
         width: "90%",
         marginTop: 20
     },
     secondCardText: {
-        color: '#fff',
+        color: THEME.COLORS.white,
         fontSize: 18,
         fontWeight: '600',
         // textAlign: 'justify',
@@ -143,6 +144,6 @@ const styles = StyleSheet.create({
     },
     line: {
         borderBottomWidth: 1,
-        borderColor: '#A3A3A3'
+        borderColor: THEME.COLORS.gray,
     }
 })

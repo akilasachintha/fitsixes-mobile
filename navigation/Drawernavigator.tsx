@@ -7,6 +7,7 @@ import {useNavigation} from "@react-navigation/native";
 import {Ionicons, MaterialCommunityIcons, MaterialIcons} from "@expo/vector-icons";
 import React from "react";
 import {useAuth} from "../context/AuthContext";
+import {THEME} from "../config/theme";
 
 const Drawer = createDrawerNavigator();
 export default function DrawerNavigator() {
@@ -29,35 +30,35 @@ function MyDrawer({props}: any) {
         {
             id: 1,
             name: "Home",
-            icon: <Ionicons name={"ios-home-outline"} size={22} color={"#fff"}/>,
+            icon: <Ionicons name={"ios-home-outline"} size={22} color={THEME.COLORS.white}/>,
             // @ts-ignore
             navigationAction: () => navigation.navigate("HomeTab", {screen: "HomeTabHomeStack",}),
         },
         {
             id: 2,
             name: "Live Score",
-            icon: <MaterialIcons name={"live-tv"} size={24} color={"#fff"}/>,
+            icon: <MaterialIcons name={"live-tv"} size={24} color={THEME.COLORS.white}/>,
             // @ts-ignore
             navigationAction: () => navigation.navigate("HomeTabMatchesStack", {screen: "LiveTab",}),
         },
         {
             id: 3,
             name: "Match Schedule",
-            icon: <MaterialIcons name={"schedule"} size={24} color={"#fff"}/>,
+            icon: <MaterialIcons name={"schedule"} size={24} color={THEME.COLORS.white}/>,
             // @ts-ignore
             navigationAction: () => navigation.navigate("HomeTabMatchesStack", {screen: "UpcomingTab",}),
         },
         {
             id: 4,
             name: "Teams",
-            icon: <MaterialCommunityIcons name={"target"} size={24} color={"#fff"}/>,
+            icon: <MaterialCommunityIcons name={"target"} size={24} color={THEME.COLORS.white}/>,
             // @ts-ignore
             navigationAction: () => navigation.navigate("TeamTab"),
         },
         {
             id: 5,
             name: isLoggedIn ? "Logout" : "Login",
-            icon: <MaterialCommunityIcons name={"target"} size={24} color={"#fff"}/>,
+            icon: <MaterialCommunityIcons name={"target"} size={24} color={THEME.COLORS.white}/>,
             navigationAction: () => {
                 // @ts-ignore
                 !isLoggedIn ? navigation.navigate("LoginStack") : logout();
@@ -89,7 +90,7 @@ function MyDrawer({props}: any) {
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
-        backgroundColor: "#000532"
+        backgroundColor: THEME.COLORS.primary
     },
     drawerImage: {
         width: "100%",
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
         marginVertical: "5%",
     },
     drawerText: {
-        color: "#ffffff",
+        color: THEME.COLORS.white,
         marginLeft: 20,
         fontSize: 16,
         fontWeight: "700",

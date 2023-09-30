@@ -1,6 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import ImageHolder from "./ImageHolder";
 import {useNavigation} from "@react-navigation/native";
+import {THEME} from "../config/theme";
 
 export default function TopHeaderBar() {
     const navigation = useNavigation();
@@ -22,7 +23,8 @@ export default function TopHeaderBar() {
                 <View>
                     <Text style={styles.headerText}>Fit Sixes</Text>
                 </View>
-                <ImageHolder source={require("../assets/fit-sixes-icon.png")} size={48} borderColor={"#101B62"}/>
+                <ImageHolder source={require("../assets/fit-sixes-icon.png")} size={48}
+                             borderColor={THEME.COLORS.primary}/>
             </View>
         </View>
     )
@@ -40,12 +42,12 @@ const styles = StyleSheet.create({
     hamburgerContainer: {},
     hamburgerBar: {
         height: 3,
-        backgroundColor: "#101B62",
+        backgroundColor: THEME.COLORS.primary,
         borderRadius: 5,
         marginVertical: 2,
     },
     headerText: {
-        color: "#101B62",
+        color: THEME.COLORS.primary,
         fontSize: 20,
         fontWeight: "bold",
     }
