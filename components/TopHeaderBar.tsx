@@ -12,6 +12,11 @@ export default function TopHeaderBar() {
         navigation.openDrawer();
     }
 
+    const handleImagePress = () => {
+        // @ts-ignore
+        navigation.openDrawer();
+    }
+
     return (
         <View>
             <View style={styles.headerContainer}>
@@ -24,8 +29,10 @@ export default function TopHeaderBar() {
                 <View>
                     <Text style={styles.headerText}>Fit Sixes</Text>
                 </View>
-                <ImageHolder source={PATHS.IMAGES.FIT_SIXES_LOGO} size={48}
-                             borderColor={THEME.COLORS.primary}/>
+                <TouchableOpacity onPress={handleImagePress} activeOpacity={0.7}>
+                    <ImageHolder source={PATHS.IMAGES.FIT_SIXES_LOGO} size={48}
+                                 borderColor={THEME.COLORS.primary}/>
+                </TouchableOpacity>
             </View>
         </View>
     )

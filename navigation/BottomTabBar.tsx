@@ -11,6 +11,10 @@ import StackNavigatorTeam from "./StackNavigatorTeam";
 import {useAuth} from "../context/AuthContext";
 import TopHeaderBar from "../components/TopHeaderBar";
 import {THEME} from "../config/theme";
+import {ROLES} from "../config/roles";
+import HandleMatchesScreen from "../screens/HandleMatchesScreen";
+import HandleMatchDetailsScreen from "../screens/HandleMatchDetailsScreen";
+import HandleTeamCoordinatorScreen from "../screens/HandleTeamCoordinatorScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,12 +30,12 @@ interface BottomTabNavigatorProps {
 export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'HomeTab';
     const navigation = useNavigation();
-    const {isLoggedIn} = useAuth();
+    const {isLoggedIn, role} = useAuth();
 
     const handleHomeTabPress = () => {
         // @ts-ignore
         navigation.navigate("HomeTab", {
-            screen: "HomeTabHomeStack",
+            screen: "HomeTabMatchesStack",
         });
     }
 
@@ -109,12 +113,69 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                                 <Foundation name="target-two" size={25} color={THEME.COLORS.border}/>
                             }
                             {
-                                routeName === "CartTab" && <Ionicons name="cart" size={25} color={THEME.COLORS.border}/>
+                                routeName === "CartTab" &&
+                                <Ionicons name="cart" size={25} color={THEME.COLORS.border}/>
                             }
                             {
                                 routeName === "ProfileTab" &&
                                 <Ionicons name="person" size={22} color={THEME.COLORS.border}/>
                             }
+                            {
+                                routeName === "HandleMatchTab" &&
+                                <MaterialCommunityIcons name="view-dashboard-edit" size={24}
+                                                        color={THEME.COLORS.border}/>
+                            }
+                            {
+                                routeName === "HandleMatchDetailsTab" &&
+                                <MaterialCommunityIcons name="puzzle-edit" size={24}
+                                                        color={THEME.COLORS.border}/>
+
+                            }
+                            {
+                                routeName === "TeamCoordinatorTab" &&
+                                <MaterialCommunityIcons name="tooltip-edit" size={24}
+                                                        color={THEME.COLORS.border}/>
+
+                            }
+                        </View>
+                    )
+                } else if (route.name === "HandleMatchTab") {
+                    return (
+                        <View style={styles.tabIcon}>
+                            {
+                                focused ?
+                                    <MaterialCommunityIcons name="view-dashboard-edit" size={24}
+                                                            color={THEME.COLORS.primary}/> :
+                                    <MaterialCommunityIcons name="view-dashboard-edit-outline" size={24}
+                                                            color={THEME.COLORS.primary}/>
+                            }
+                            <Text style={styles.tabIconText}>Manage</Text>
+                        </View>
+                    )
+                } else if (route.name === "HandleMatchDetailsTab") {
+                    return (
+                        <View style={styles.tabIcon}>
+                            {
+                                focused ?
+                                    <MaterialCommunityIcons name="puzzle-edit" size={24}
+                                                            color={THEME.COLORS.primary}/> :
+                                    <MaterialCommunityIcons name="puzzle-edit-outline" size={24}
+                                                            color={THEME.COLORS.primary}/>
+                            }
+                            <Text style={styles.tabIconText}>Update</Text>
+                        </View>
+                    )
+                } else if (route.name === "TeamCoordinatorTab") {
+                    return (
+                        <View style={styles.tabIcon}>
+                            {
+                                focused ?
+                                    <MaterialCommunityIcons name="tooltip-edit" size={24}
+                                                            color={THEME.COLORS.primary}/> :
+                                    <MaterialCommunityIcons name="tooltip-edit-outline" size={24}
+                                                            color={THEME.COLORS.primary}/>
+                            }
+                            <Text style={styles.tabIconText}>Edit</Text>
                         </View>
                     )
                 }
@@ -130,7 +191,7 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                         }}
             />
             {
-                isLoggedIn && (
+                isLoggedIn && (role === ROLES.USER || role === ROLES.PITCH_COORDINATOR) && (
                     <Tab.Screen name="TeamTab" component={StackNavigatorTeam}
                                 listeners={{
                                     tabPress: (e: any) => {
@@ -149,10 +210,18 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                 )
             }}/>
             {
-                isLoggedIn && <Tab.Screen name="CartTab" component={CartScreen}/>
+                isLoggedIn && role === ROLES.USER && <Tab.Screen name="CartTab" component={CartScreen}/>
             }
             {
-                isLoggedIn && <Tab.Screen name="ProfileTab" component={ProfileScreen}/>
+                isLoggedIn && role === ROLES.USER && <Tab.Screen name="ProfileTab" component={ProfileScreen}/>
+            }
+            {
+                isLoggedIn && role === ROLES.PITCH_COORDINATOR &&
+                <Tab.Screen name="HandleMatchDetailsTab" component={HandleMatchDetailsScreen}/>
+            }
+            {
+                isLoggedIn && role === ROLES.PITCH_COORDINATOR &&
+                <Tab.Screen name="HandleMatchTab" component={HandleMatchesScreen}/>
             }
             {
                 !isLoggedIn && (
@@ -163,7 +232,22 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                                             handleTeamTabPress();
                                         }
                                     },
-                                }}
+                                }
+                                }
+                    />
+                )
+            }
+            {
+                isLoggedIn && role === ROLES.TEAM_COORDINATOR && (
+                    <Tab.Screen name="TeamCoordinatorTab" component={HandleTeamCoordinatorScreen}
+                                listeners={{
+                                    tabPress: (e: any) => {
+                                        if (e.tabPress) {
+                                            handleTeamTabPress();
+                                        }
+                                    },
+                                }
+                                }
                     />
                 )
             }

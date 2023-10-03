@@ -2,9 +2,13 @@ import React, {createContext, ReactNode, useContext, useEffect, useState} from '
 import {addDataToLocalStorage, getDataFromLocalStorage} from "../helpers/asyncStorage";
 import {DrawerActions, useNavigation} from "@react-navigation/native";
 
-interface AuthContextType {
+export interface AuthContextType {
     isLoggedIn: boolean;
-    login: () => void;
+    token: string | null;
+    deviceToken: string | null;
+    role: string | null;
+    id: string | null;
+    login: (role: string, id: string, token: string, deviceToken: string) => void;
     logout: () => void;
 }
 
@@ -15,22 +19,57 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [token, setToken] = useState<string | null>(null);
+    const [role, setRole] = useState<string | null>(null);
+    const [deviceToken, setDeviceToken] = useState<string | null>(null);
+    const [id, setId] = useState<string | null>(null);
     const navigation = useNavigation();
 
     useEffect(() => {
         const loadLoginStatus = async () => {
-            const storedStatus = await getDataFromLocalStorage("isLoggedIn");
-            setIsLoggedIn(storedStatus === "true");
+            const storedIsLoggedIn = await getDataFromLocalStorage("isLoggedIn");
+            const storedToken = await getDataFromLocalStorage("token");
+            const storedRole = await getDataFromLocalStorage("role");
+            const storedId = await getDataFromLocalStorage("id");
+            const storedDeviceToken = await getDataFromLocalStorage("deviceToken");
+
+            if (storedIsLoggedIn !== null) {
+                setIsLoggedIn(JSON.parse(storedIsLoggedIn));
+            }
+            if (storedToken !== null) {
+                setToken(JSON.parse(storedToken));
+            }
+
+            if (storedRole !== null) {
+                setRole(JSON.parse(storedRole));
+            }
+
+            if (storedId !== null) {
+                setId(JSON.parse(storedId));
+            }
+
+            if (storedDeviceToken !== null) {
+                setDeviceToken(JSON.parse(storedDeviceToken));
+            }
         };
 
         loadLoginStatus().catch((e) => console.error(e));
     }, []);
 
-    const login = async () => {
+    const login = async (role: string, id: string, token: string, deviceToken: string = "") => {
         navigation.dispatch(DrawerActions.closeDrawer());
-        await addDataToLocalStorage("isLoggedIn", "true");
+        await addDataToLocalStorage("isLoggedIn", JSON.stringify(true));
+        await addDataToLocalStorage("token", JSON.stringify(token));
+        await addDataToLocalStorage("role", JSON.stringify(role));
+        await addDataToLocalStorage("id", JSON.stringify(id));
+        await addDataToLocalStorage("deviceToken", JSON.stringify(deviceToken));
+
         setIsLoggedIn(true);
+        setDeviceToken(deviceToken);
+        setRole(role);
+        setToken(token);
+        setId(id);
 
         // @ts-ignore
         navigation.navigate("HomeStack");
@@ -38,15 +77,24 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
 
     const logout = async () => {
         navigation.dispatch(DrawerActions.closeDrawer());
-        await addDataToLocalStorage("isLoggedIn", "false");
+        await addDataToLocalStorage("isLoggedIn", JSON.stringify(false));
+        await addDataToLocalStorage("token", JSON.stringify(null));
+        await addDataToLocalStorage("role", JSON.stringify(null));
+        await addDataToLocalStorage("id", JSON.stringify(null));
+        await addDataToLocalStorage("deviceToken", JSON.stringify(null));
+
         setIsLoggedIn(false);
+        setDeviceToken(null);
+        setRole(null);
+        setToken(null);
+        setId(null);
 
         // @ts-ignore
         navigation.navigate("HomeStack");
     };
 
     return (
-        <AuthContext.Provider value={{isLoggedIn, login, logout}}>
+        <AuthContext.Provider value={{isLoggedIn, token, deviceToken, role, id, login, logout}}>
             {children}
         </AuthContext.Provider>
     );
