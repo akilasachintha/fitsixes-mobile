@@ -53,19 +53,19 @@ const ScoreCard: React.FC<ScoreCardProps> = ({ }) => {
             </View>
 
             <View style={[styles.container, styles.secondCard]}>
-                {playerDetails?.map((item: any, index) => {
+                {playerDetails?.map((item: any, index: number) => {
                     let length = playerDetails.length;
                     return (
                         <View key={index}>
-                            <View style={styles.playerDetails} key={index}>
+                            <View style={styles.playerDetails}>
                                 <View style={styles.cardContent1}>
                                     <Text style={[styles.secondCardText]} numberOfLines={2} ellipsizeMode="tail">{item.name.length > 20 ? `${item.name.slice(0, 25)}...` : item.name}</Text>
                                 </View>
 
                                 <View style={styles.cardContent2}>
-                                    {item.details?.map((i: any) => {
+                                    {item.details?.map((i: any, index: number) => {
                                         return (
-                                            <View style={styles.cardDetails} key={i.id}>
+                                            <View style={styles.cardDetails} key={index}>
                                                 <Text style={[styles.secondCardText]}>{i.six}</Text>
                                             </View>
                                         );

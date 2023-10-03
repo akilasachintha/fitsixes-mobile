@@ -93,7 +93,7 @@ function MyDrawer() {
                 {
                     drawerItems.map((item) => (
                         item.condition(isLoggedIn, role) &&
-                        <View>
+                        <View key={item.id}>
                             <TouchableOpacity key={item.id} style={styles.drawerItemButton}
                                               onPress={item.navigationAction}>
                                 {item.icon}
