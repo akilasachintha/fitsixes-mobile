@@ -1,6 +1,8 @@
 import React, {createContext, ReactNode, useContext, useEffect, useState} from 'react';
 import {addDataToLocalStorage, getDataFromLocalStorage} from "../helpers/asyncStorage";
 import {DrawerActions, useNavigation} from "@react-navigation/native";
+import {useLoadingContext} from "./LoadingContext";
+import {useToast} from "./ToastContext";
 
 export interface AuthContextType {
     isLoggedIn: boolean;
@@ -25,6 +27,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     const [deviceToken, setDeviceToken] = useState<string | null>(null);
     const [id, setId] = useState<string | null>(null);
     const navigation = useNavigation();
+    const {showLoading, hideLoading} = useLoadingContext();
+    const {showToast} = useToast();
 
     useEffect(() => {
         const loadLoginStatus = async () => {
@@ -89,8 +93,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         setToken(null);
         setId(null);
 
-        // @ts-ignore
-        navigation.navigate("HomeStack");
+        showLoading();
+
+        setTimeout(() => {
+            hideLoading();
+            // @ts-ignore
+            navigation.navigate("HomeStack");
+
+            showToast("Successfully logged out");
+        }, 2000);
     };
 
     return (

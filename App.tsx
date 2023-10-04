@@ -46,17 +46,17 @@ export default function App() {
     return (
         <View onLayout={onLayoutRootView} style={{flex: 1}}>
             <ExpoPushNotificationConfig/>
-            <NavigationContainer theme={navTheme}>
-                <AuthProvider>
-                    <ToastProvider>
-                        <LoadingProvider>
+            <ToastProvider>
+                <LoadingProvider>
+                    <NavigationContainer theme={navTheme}>
+                        <AuthProvider>
                             <StackNavigator/>
                             <StatusBar style="dark"/>
                             <LoadingScreen/>
-                        </LoadingProvider>
-                    </ToastProvider>
-                </AuthProvider>
-            </NavigationContainer>
+                        </AuthProvider>
+                    </NavigationContainer>
+                </LoadingProvider>
+            </ToastProvider>
         </View>
     );
 }
