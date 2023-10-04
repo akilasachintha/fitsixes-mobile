@@ -11,13 +11,11 @@ const addDataToLocalStorage = async (key: string, value: string): Promise<void> 
 const getDataFromLocalStorage = async (key: string): Promise<string | null> => {
     try {
         const value = await AsyncStorage.getItem(key);
-        if (value !== null) {
-            return value;
-        }
+        return value !== null ? value : null;
     } catch (e) {
         console.error(e);
+        return null;
     }
-    return null;
 };
 
 const removeDataFromLocalStorage = async (key: string): Promise<void> => {

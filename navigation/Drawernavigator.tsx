@@ -9,6 +9,7 @@ import React from "react";
 import {useAuth} from "../context/AuthContext";
 import {THEME} from "../config/theme";
 import {PATHS} from "../config/paths";
+import {ROLES} from "../config/roles";
 
 const Drawer = createDrawerNavigator();
 export default function DrawerNavigator() {
@@ -25,7 +26,7 @@ export default function DrawerNavigator() {
 
 function MyDrawer() {
     const navigation = useNavigation();
-    const {isLoggedIn, logout} = useAuth();
+    const {isLoggedIn, logout, role} = useAuth();
 
     const drawerItems = [
         {
@@ -33,7 +34,10 @@ function MyDrawer() {
             name: "Home",
             icon: <Ionicons name={"ios-home-outline"} size={22} color={THEME.COLORS.white}/>,
             // @ts-ignore
-            navigationAction: () => navigation.navigate("HomeTab", {screen: "HomeTabHomeStack",}),
+            navigationAction: () => navigation.navigate("HomeTab", {screen: "HomeTabMatchesStack",}),
+            condition: (_isLoggedIn: boolean, _role: string | null) => {
+                return true;
+            }
         },
         {
             id: 2,
@@ -41,6 +45,9 @@ function MyDrawer() {
             icon: <MaterialIcons name={"live-tv"} size={24} color={THEME.COLORS.white}/>,
             // @ts-ignore
             navigationAction: () => navigation.navigate("HomeTabMatchesStack", {screen: "LiveTab",}),
+            condition: (_isLoggedIn: boolean, _role: string | null) => {
+                return true;
+            }
         },
         {
             id: 3,
@@ -48,24 +55,33 @@ function MyDrawer() {
             icon: <MaterialIcons name={"schedule"} size={24} color={THEME.COLORS.white}/>,
             // @ts-ignore
             navigationAction: () => navigation.navigate("HomeTabMatchesStack", {screen: "UpcomingTab",}),
+            condition: (_isLoggedIn: boolean, _role: string | null) => {
+                return true;
+            }
         },
         {
             id: 4,
             name: "Teams",
             icon: <MaterialCommunityIcons name={"target"} size={24} color={THEME.COLORS.white}/>,
             // @ts-ignore
-            navigationAction: () => navigation.navigate("TeamTab"),
+            navigationAction: () => navigation.navigate("TeamTab", {screen: "TeamTabTeamStack",}),
+            condition: (_isLoggedIn: boolean, role: string | null) => {
+                return role !== ROLES.TEAM_COORDINATOR;
+            }
         },
         {
             id: 5,
             name: isLoggedIn ? "Logout" : "Login",
-            icon: <MaterialCommunityIcons name={"target"} size={24} color={THEME.COLORS.white}/>,
+            icon: <MaterialIcons name="logout" size={24} color={THEME.COLORS.white}/>,
             navigationAction: () => {
                 // @ts-ignore
                 !isLoggedIn ? navigation.navigate("LoginStack") : logout();
+            },
+            condition: (_isLoggedIn: boolean, _role: string | null) => {
+                return true;
             }
         }
-    ]
+    ];
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -76,10 +92,20 @@ function MyDrawer() {
             <View style={styles.drawerContentContainer}>
                 {
                     drawerItems.map((item) => (
-                        <TouchableOpacity key={item.id} style={styles.drawerItemButton} onPress={item.navigationAction}>
-                            {item.icon}
-                            <Text style={styles.drawerText}>{item.name}</Text>
-                        </TouchableOpacity>
+                        item.condition(isLoggedIn, role) &&
+                        <View key={item.id}>
+                            <TouchableOpacity key={item.id} style={styles.drawerItemButton}
+                                              onPress={item.navigationAction}>
+                                {item.icon}
+                                <Text style={styles.drawerText}>{item.name}</Text>
+                            </TouchableOpacity>
+                            {
+                                item.id === 4 && (
+                                    <View
+                                        style={{height: 2, backgroundColor: THEME.COLORS.white, marginVertical: 20, borderRadius: 30}}/>
+                                )
+                            }
+                        </View>
                     ))
                 }
             </View>

@@ -6,6 +6,10 @@ import {useCallback, useEffect, useState} from "react";
 import {View} from "react-native";
 import {AuthProvider} from "./context/AuthContext";
 import {THEME} from "./config/theme";
+import {LoadingProvider} from "./context/LoadingContext";
+import LoadingScreen from "./screens/LoadingScreen";
+import {ToastProvider} from "./context/ToastContext";
+import ExpoPushNotificationConfig from "./config/ExpoPushNotificationConfig";
 
 SplashScreen.preventAutoHideAsync().catch((e) => console.error(e));
 
@@ -41,12 +45,18 @@ export default function App() {
 
     return (
         <View onLayout={onLayoutRootView} style={{flex: 1}}>
-            <NavigationContainer theme={navTheme}>
-                <AuthProvider>
-                    <StackNavigator/>
-                    <StatusBar style="dark"/>
-                </AuthProvider>
-            </NavigationContainer>
+            <ExpoPushNotificationConfig/>
+            <ToastProvider>
+                <LoadingProvider>
+                    <NavigationContainer theme={navTheme}>
+                        <AuthProvider>
+                            <StackNavigator/>
+                            <StatusBar style="dark"/>
+                            <LoadingScreen/>
+                        </AuthProvider>
+                    </NavigationContainer>
+                </LoadingProvider>
+            </ToastProvider>
         </View>
     );
 }

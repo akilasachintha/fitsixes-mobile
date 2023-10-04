@@ -6,6 +6,8 @@
     "version": "1.0.0",
     "owner": "fitsixes",
     "privacy": "public",
+    "backgroundColor": "#ffffff",
+    "primaryColor": "#ffffff",
     "orientation": "portrait",
     "platforms": [
       "ios",
@@ -15,9 +17,9 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash2.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#101B62"
+      "backgroundColor": "#000532"
     },
     "jsEngine": "hermes",
     "assetBundlePatterns": [
@@ -29,7 +31,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#101B62"
+        "backgroundColor": "#000532"
       },
       "package": "com.fitsixes.mobile",
       "versionCode": 1
