@@ -1,8 +1,8 @@
-import {Image, ImageBackground, ImageProps, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import { Image, ImageBackground, ImageProps, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ImageHolder from "./ImageHolder";
-import {useNavigation} from "@react-navigation/native";
-import {THEME} from "../config/theme";
-import {PATHS} from "../config/paths";
+import { useNavigation } from "@react-navigation/native";
+import { THEME } from "../config/theme";
+import { PATHS } from "../config/paths";
 
 interface MatchDetailCardProps {
     matchNo: number;
@@ -13,6 +13,8 @@ interface MatchDetailCardProps {
     team1Image: ImageProps;
     team2Image: ImageProps;
     matchStatus: MatchStatusType;
+    overs_T1?: string;
+    overs_T2?: string;
 }
 
 export type MatchStatusType = "Live" | "Upcoming" | "Completed";
@@ -23,7 +25,7 @@ export const MatchStatus: Record<MatchStatusType, MatchStatusType> = {
     Completed: "Completed",
 }
 
-export default function MatchDetailCard({matchNo, team1, team2, team1Score, team2Score, team1Image, team2Image, matchStatus}: MatchDetailCardProps) {
+export default function MatchDetailCard({ matchNo, team1, team2, team1Score, team2Score, team1Image, team2Image, matchStatus, overs_T1, overs_T2 }: MatchDetailCardProps) {
     const navigation = useNavigation();
     const handleMatchCardClick = () => {
         // @ts-ignore
@@ -35,25 +37,25 @@ export default function MatchDetailCard({matchNo, team1, team2, team1Score, team
             <ImageBackground
                 source={PATHS.IMAGES.FIT_SIXES_LOGO}
                 resizeMode="contain"
-                imageStyle={matchStatus === "Live" ? {display: "flex"} : {display: "none"}}
+                imageStyle={matchStatus === "Live" ? { display: "flex" } : { display: "none" }}
                 style={styles.container}>
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText}>Match No : {matchNo}</Text>
                     <Text style={styles.titleText}>{matchStatus}</Text>
                 </View>
                 <View
-                    style={[styles.contentContainer, matchStatus !== MatchStatus.Live ? {flexDirection: "row"} : {flexDirection: "column"}]}>
+                    style={[styles.contentContainer, matchStatus !== MatchStatus.Live ? { flexDirection: "row" } : { flexDirection: "column" }]}>
                     <View>
                         <View style={styles.teamContainer}>
                             <View style={styles.teamImageContainer}>
-                                <ImageHolder source={team1Image} size={40}/>
+                                <ImageHolder source={team1Image} size={40} />
                                 <Text style={styles.teamImageText}>{team1}</Text>
                             </View>
                             {
                                 matchStatus === MatchStatus.Live && (
                                     <View>
                                         <Text style={styles.teamScoreText}>{team1Score}</Text>
-                                        <Text style={styles.teamScoreBottomText}>(27, 2)</Text>
+                                        <Text style={styles.teamScoreBottomText}>{'(' + overs_T1 + ')'}</Text>
                                     </View>
                                 )
                             }
@@ -61,14 +63,14 @@ export default function MatchDetailCard({matchNo, team1, team2, team1Score, team
                         <Text style={styles.vsText}>Vs.</Text>
                         <View style={styles.teamContainer}>
                             <View style={styles.teamImageContainer}>
-                                <ImageHolder source={team2Image} size={40}/>
+                                <ImageHolder source={team2Image} size={40} />
                                 <Text style={styles.teamImageText}>{team2}</Text>
                             </View>
                             {
                                 matchStatus === MatchStatus.Live && (
                                     <View>
                                         <Text style={styles.teamScoreText}>{team2Score}</Text>
-                                        <Text style={styles.teamScoreBottomText}>(27, 2)</Text>
+                                        <Text style={styles.teamScoreBottomText}>{'(' + overs_T2 + ')'}</Text>
                                     </View>
                                 )
                             }
@@ -76,7 +78,7 @@ export default function MatchDetailCard({matchNo, team1, team2, team1Score, team
                     </View>
                     {
                         matchStatus !== MatchStatus.Live && (
-                            <Image source={PATHS.IMAGES.FIT_SIXES_LOGO} style={{width: 140, height: 100}}/>
+                            <Image source={PATHS.IMAGES.FIT_SIXES_LOGO} style={{ width: 140, height: 100 }} />
                         )
                     }
                 </View>

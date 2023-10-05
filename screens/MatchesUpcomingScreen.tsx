@@ -1,9 +1,9 @@
-import {SafeAreaView, ScrollView} from "react-native";
-import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
-import {PATHS} from "../config/paths";
-import {useEffect, useState} from "react";
-import {useAuth} from "../context/AuthContext";
-import {BASE_URL, createAxiosInstance} from "../config/axiosConfig";
+import { SafeAreaView, ScrollView } from "react-native";
+import MatchDetailCard, { MatchStatus } from "../components/MatchDetailCard";
+import { PATHS } from "../config/paths";
+import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { BASE_URL, createAxiosInstance } from "../config/axiosConfig";
 
 export default function MatchesUpcomingScreen() {
 
@@ -12,11 +12,10 @@ export default function MatchesUpcomingScreen() {
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
 
     useEffect(() => {
-        let url = "matches/ongoing";
+        let url = "matches/upcoming";
         axiosInstanceForFitSixes.get(`${url}`).then((response) => {
             if (response && response.data && response.data.data && response.data.data.matches && response.data.data.matches.matches) {
                 setUpcomingMatches(response.data.data.matches.matches);
-                console.log(response.data, '----------data-----------------');
             } else {
                 console.error("Error");
             }
@@ -35,8 +34,8 @@ export default function MatchesUpcomingScreen() {
                             matchStatus={MatchStatus.Upcoming}
                             team1={item.team1}
                             team2={item.team2}
-                            team1Image={PATHS.IMAGES.NO_IMAGE}
-                            team2Image={PATHS.IMAGES.NO_IMAGE}
+                            team1Image={PATHS.IMAGES.Team_1}
+                            team2Image={PATHS.IMAGES.Team_2}
                             matchNo={item.match_no}
                         />
                     )
