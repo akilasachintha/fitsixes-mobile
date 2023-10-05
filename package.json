@@ -4,10 +4,12 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start -c",
-    "android": "expo start --android",
-    "build": "eas build --platform android --profile development --local",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "android": "expo start -c --android",
+    "build:android:dev": "eas build --platform android --profile development --local",
+    "build:android:prod" : "eas build --platform android --profile production --local",
+    "build:ios:prod": "eas build --platform ios --profile production",
+    "ios": "expo start -c --ios",
+    "web": "expo start -c --web"
   },
   "dependencies": {
     "@expo/ngrok": "^2.5.0",
