@@ -1,8 +1,8 @@
-import { Image, ImageBackground, ImageProps, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {Image, ImageBackground, ImageProps, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import ImageHolder from "./ImageHolder";
-import { useNavigation } from "@react-navigation/native";
-import { THEME } from "../config/theme";
-import { PATHS } from "../config/paths";
+import {useNavigation} from "@react-navigation/native";
+import {THEME} from "../config/theme";
+import {PATHS} from "../config/paths";
 
 interface MatchDetailCardProps {
     matchNo: number;
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
         color: THEME.COLORS.border,
         fontSize: 14,
         fontWeight: "bold",
-        textAlign: "left",
+        textAlign: "center",
         marginVertical: "2%",
         paddingHorizontal: "4%",
     },

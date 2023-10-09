@@ -1,9 +1,9 @@
-import { SafeAreaView, ScrollView } from "react-native";
-import MatchDetailCard, { MatchStatus } from "../components/MatchDetailCard";
-import { PATHS } from "../config/paths";
-import { useEffect, useState } from "react";
-import { useAuth } from "../context/AuthContext";
-import { BASE_URL, createAxiosInstance } from "../config/axiosConfig";
+import {RefreshControl, SafeAreaView, ScrollView} from "react-native";
+import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
+import {PATHS} from "../config/paths";
+import React, {useEffect, useState} from "react";
+import {useAuth} from "../context/AuthContext";
+import {BASE_URL, createAxiosInstance} from "../config/axiosConfig";
 
 export default function MatchesCompletedScreen() {
 
@@ -11,7 +11,7 @@ export default function MatchesCompletedScreen() {
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
 
-    useEffect(() => {
+    const fetchCompletedMatches = () => {
         let url = "matches/finish";
         axiosInstanceForFitSixes.get(`${url}`).then((response) => {
             if (response && response.data && response.data.data && response.data.data.matches && response.data.data.matches.matches) {
@@ -22,11 +22,26 @@ export default function MatchesCompletedScreen() {
         }).catch((e) => {
             console.log(e);
         });
+    }
+
+    useEffect(() => {
+        fetchCompletedMatches();
     }, []);
+
+    const handleRefresh = () => {
+        fetchCompletedMatches();
+    };
 
     return (
         <SafeAreaView>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={false}
+                                onRefresh={handleRefresh}
+                            />
+                        }
+            >
                 {completedMatches && completedMatches.map((item: any, index) => {
                     return (
                         <MatchDetailCard

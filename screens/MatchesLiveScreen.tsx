@@ -1,17 +1,16 @@
-import { SafeAreaView, ScrollView } from "react-native";
-import MatchDetailCard, { MatchStatus } from "../components/MatchDetailCard";
-import { PATHS } from "../config/paths";
-import { useEffect, useState } from "react";
-import { useAuth } from "../context/AuthContext";
-import { BASE_URL, createAxiosInstance } from "../config/axiosConfig";
+import {RefreshControl, SafeAreaView, ScrollView} from "react-native";
+import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
+import {PATHS} from "../config/paths";
+import React, {useEffect, useState} from "react";
+import {useAuth} from "../context/AuthContext";
+import {BASE_URL, createAxiosInstance} from "../config/axiosConfig";
 
 export default function MatchesLiveScreen() {
-
     const [ongoingMatches, setOngoingMatches] = useState([]);
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
 
-    useEffect(() => {
+    const fetchLiveMatches = () => {
         let url = "matches/ongoing";
         axiosInstanceForFitSixes.get(`${url}`).then((response) => {
             if (response && response.data && response.data.data && response.data.data.matches && response.data.data.matches.matches) {
@@ -22,11 +21,26 @@ export default function MatchesLiveScreen() {
         }).catch((e) => {
             console.log(e);
         });
+    }
+
+    useEffect(() => {
+        fetchLiveMatches();
     }, []);
+
+    const handleRefresh = () => {
+        fetchLiveMatches();
+    };
 
     return (
         <SafeAreaView>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={false}
+                                onRefresh={handleRefresh}
+                            />
+                        }
+            >
                 {ongoingMatches && ongoingMatches.map((item: any, index) => {
                     let team1_score = `${item.scorecard?.team1.marks}/${item.scorecard?.team1.wickets}`
                     let team2_score = `${item.scorecard?.team2.marks}/${item.scorecard?.team2.wickets}`
