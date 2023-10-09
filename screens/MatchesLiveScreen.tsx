@@ -1,4 +1,4 @@
-import {RefreshControl, SafeAreaView, ScrollView, View} from "react-native";
+import {RefreshControl, SafeAreaView, ScrollView, Text, View} from "react-native";
 import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
 import {PATHS} from "../config/paths";
 import React, {useEffect, useRef, useState} from "react";
@@ -8,7 +8,7 @@ import {BASE_URL, createAxiosInstance} from "../config/axiosConfig";
 export default function MatchesLiveScreen() {
     const [liveMatches, setLiveMatches] = useState([]);
     const [serverMessages, setServerMessages] = useState([]);
-    const [, setIsConnected] = useState<boolean>(false);
+    const [isConnected, setIsConnected] = useState<boolean>(false);
     const reconnectDelay = 3000;
     const ws = useRef<WebSocket | null>(null);
     const authContext = useAuth();
@@ -73,6 +73,7 @@ export default function MatchesLiveScreen() {
 
     return (
         <SafeAreaView>
+            <Text>{JSON.stringify(isConnected)}</Text>
             <ScrollView showsVerticalScrollIndicator={false} refreshControl={
                             <RefreshControl
                                 refreshing={false}
