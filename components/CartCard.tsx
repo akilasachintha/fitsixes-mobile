@@ -51,7 +51,7 @@ const CartCard: React.FC<CartCardProps> = ({
                             <Ionicons
                                 name={'remove-circle-outline'}
                                 size={30}
-                                color={'white'}
+                                color={THEME.COLORS.white}
                             />
                         </TouchableOpacity>
                         <View style={styles.quantity}>
@@ -62,7 +62,7 @@ const CartCard: React.FC<CartCardProps> = ({
                             <Ionicons
                                 name={'add-circle-outline'}
                                 size={30}
-                                color={'white'}
+                                color={THEME.COLORS.white}
                             />
                         </TouchableOpacity>
                     </View>
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '700',
         textAlign: 'center',
-        color: 'white'
+        color: THEME.COLORS.white
     },
     quantityView: {
         flexDirection: 'row',
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
     amount: {
-        color: 'white',
+        color: THEME.COLORS.white,
         fontSize: 25,
         margin: 5
     },
