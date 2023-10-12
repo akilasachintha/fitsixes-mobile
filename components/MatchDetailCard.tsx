@@ -25,7 +25,18 @@ export const MatchStatus: Record<MatchStatusType, MatchStatusType> = {
     Completed: "Completed",
 }
 
-export default function MatchDetailCard({ matchNo, team1, team2, team1Score, team2Score, team1Image, team2Image, matchStatus, overs_T1, overs_T2 }: MatchDetailCardProps) {
+export default function MatchDetailCard({
+                                            matchNo,
+                                            team1 = "Team 1",
+                                            team2 = "Team 2",
+                                            team1Score,
+                                            team2Score,
+                                            team1Image,
+                                            team2Image,
+                                            matchStatus,
+                                            overs_T1,
+                                            overs_T2
+                                        }: MatchDetailCardProps) {
     const navigation = useNavigation();
     const handleMatchCardClick = () => {
         // @ts-ignore
@@ -41,7 +52,19 @@ export default function MatchDetailCard({ matchNo, team1, team2, team1Score, tea
                 style={styles.container}>
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText}>Match No : {matchNo}</Text>
-                    <Text style={styles.titleText}>{matchStatus}</Text>
+                    <View style={{flexDirection: "row"}}>
+                        <Text style={styles.titleText}>{matchStatus}</Text>
+                        {
+                            matchStatus === MatchStatus.Live && (
+                                <View style={{
+                                    backgroundColor: THEME.COLORS.border,
+                                    width: 6,
+                                    height: 6,
+                                    borderRadius: 3,
+                                }}/>
+                            )
+                        }
+                    </View>
                 </View>
                 <View
                     style={[styles.contentContainer, matchStatus !== MatchStatus.Live ? { flexDirection: "row" } : { flexDirection: "column" }]}>
@@ -138,7 +161,7 @@ const styles = StyleSheet.create({
         color: THEME.COLORS.border,
         fontSize: 14,
         fontWeight: "bold",
-        textAlign: "center",
+        textAlign: "left",
         marginVertical: "2%",
         paddingHorizontal: "4%",
     },
