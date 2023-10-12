@@ -191,7 +191,7 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                         }}
             />
             {
-                isLoggedIn && (role === ROLES.USER || role === ROLES.PITCH_COORDINATOR) && (
+                isLoggedIn && (role === ROLES.PLAYER || role === ROLES.PITCH_COORDINATOR) && (
                     <Tab.Screen name="TeamTab" component={StackNavigatorTeam}
                                 listeners={{
                                     tabPress: (e: any) => {
@@ -210,10 +210,10 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                 )
             }}/>
             {
-                isLoggedIn && role === ROLES.USER && <Tab.Screen name="CartTab" component={CartScreen}/>
+                isLoggedIn && role === ROLES.PLAYER && <Tab.Screen name="CartTab" component={CartScreen}/>
             }
             {
-                isLoggedIn && role === ROLES.USER && <Tab.Screen name="ProfileTab" component={ProfileScreen}/>
+                isLoggedIn && role === ROLES.PLAYER && <Tab.Screen name="ProfileTab" component={ProfileScreen}/>
             }
             {
                 isLoggedIn && role === ROLES.PITCH_COORDINATOR &&

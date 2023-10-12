@@ -1,51 +1,61 @@
-import {SafeAreaView, ScrollView} from "react-native";
+import {RefreshControl, SafeAreaView, ScrollView} from "react-native";
 import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
 import {PATHS} from "../config/paths";
+import React, {useEffect, useState} from "react";
+import {useAuth} from "../context/AuthContext";
+import {BASE_URL, createAxiosInstance} from "../config/axiosConfig";
+import {TMatch} from "./MatchesLiveScreen";
 
 export default function MatchesCompletedScreen() {
+
+    const [completedMatches, setCompletedMatches] = useState<TMatch[]>([]);
+    const authContext = useAuth();
+    const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
+
+    const fetchCompletedMatches = () => {
+        let url = "matches/finish";
+        axiosInstanceForFitSixes.get(`${url}`).then((response) => {
+            if (response && response.data && response.data.data && response.data.data.matches && response.data.data.matches.matches) {
+                setCompletedMatches(response.data.data.matches.matches);
+            } else {
+                console.error("Error");
+            }
+        }).catch((e) => {
+            console.log(e);
+        });
+    }
+
+    useEffect(() => {
+        fetchCompletedMatches();
+    }, []);
+
+    const handleRefresh = () => {
+        fetchCompletedMatches();
+    };
+
     return (
         <SafeAreaView>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <MatchDetailCard
-                    matchStatus={MatchStatus.Completed}
-                    team1={"Team 1"}
-                    team2={"Team 2"}
-                    team1Image={PATHS.IMAGES.NO_IMAGE}
-                    team2Image={PATHS.IMAGES.NO_IMAGE}
-                    matchNo={10}
-                />
-                <MatchDetailCard
-                    matchStatus={MatchStatus.Completed}
-                    team1={"Team 1"}
-                    team2={"Team 2"}
-                    team1Image={PATHS.IMAGES.NO_IMAGE}
-                    team2Image={PATHS.IMAGES.NO_IMAGE}
-                    matchNo={10}
-                />
-                <MatchDetailCard
-                    matchStatus={MatchStatus.Completed}
-                    team1={"Team 1"}
-                    team2={"Team 2"}
-                    team1Image={PATHS.IMAGES.NO_IMAGE}
-                    team2Image={PATHS.IMAGES.NO_IMAGE}
-                    matchNo={10}
-                />
-                <MatchDetailCard
-                    matchStatus={MatchStatus.Completed}
-                    team1={"Team 1"}
-                    team2={"Team 2"}
-                    team1Image={PATHS.IMAGES.NO_IMAGE}
-                    team2Image={PATHS.IMAGES.NO_IMAGE}
-                    matchNo={10}
-                />
-                <MatchDetailCard
-                    matchStatus={MatchStatus.Completed}
-                    team1={"Team 1"}
-                    team2={"Team 2"}
-                    team1Image={PATHS.IMAGES.NO_IMAGE}
-                    team2Image={PATHS.IMAGES.NO_IMAGE}
-                    matchNo={10}
-                />
+            <ScrollView showsVerticalScrollIndicator={false}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={false}
+                                onRefresh={handleRefresh}
+                            />
+                        }
+            >
+                {completedMatches && completedMatches.map((item: TMatch, index) => {
+                    return (
+                        <MatchDetailCard
+                            key={index}
+                            matchStatus={MatchStatus.Upcoming}
+                            team1={item.team1}
+                            team2={item.team2}
+                            team1Image={PATHS.IMAGES.Team_1}
+                            team2Image={PATHS.IMAGES.Team_2}
+                            matchNo={item.match_no}
+                        />
+                    )
+                })}
             </ScrollView>
         </SafeAreaView>
     )

@@ -4,13 +4,13 @@ import {AuthContextType} from '../context/AuthContext';
 import {useToast} from "../context/ToastContext";
 
 const I2_AUTH_BASE_URL = 'https://fw2svr60sl.execute-api.ap-south-1.amazonaws.com/beta/';
-const LUNCHBUCKET_BASE_URL = 'https://1p8cy9d7v2.execute-api.ap-south-1.amazonaws.com/dev/';
+const FIT_SIXES_BASE_URL = 'https://j1kydf6tp3.execute-api.ap-south-1.amazonaws.com/dev/v1/';
 
-export const PROJECT_CODE = "65130a05357ed283360539acAVT60UVT4300";
+export const PROJECT_CODE = "651db236cd16f62e555ba30fAVT60UVT4300";
 
 export const BASE_URL = {
     I2_AUTH: I2_AUTH_BASE_URL,
-    LUNCHBUCKET: LUNCHBUCKET_BASE_URL,
+    FIT_SIXES: FIT_SIXES_BASE_URL,
 };
 
 const createAxiosInstance = (authHook: AuthContextType, baseURL: string): AxiosInstance => {
@@ -81,4 +81,4 @@ const createAxiosInstance = (authHook: AuthContextType, baseURL: string): AxiosI
     return instance;
 };
 
-export {createAxiosInstance, I2_AUTH_BASE_URL, LUNCHBUCKET_BASE_URL};
+export {createAxiosInstance, I2_AUTH_BASE_URL, FIT_SIXES_BASE_URL};

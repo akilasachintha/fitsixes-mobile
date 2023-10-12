@@ -5,7 +5,7 @@ import {useToast} from "../context/ToastContext";
 export const useAuthService = () => {
     const authContext = useAuth();
     const axiosInstanceForI2Auth = createAxiosInstance(authContext, BASE_URL.I2_AUTH);
-    const axiosInstanceForLunchBucket = createAxiosInstance(authContext, BASE_URL.LUNCHBUCKET);
+    const axiosInstanceForLunchBucket = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
     const {login} = useAuth();
     const {showToast} = useToast();
 
