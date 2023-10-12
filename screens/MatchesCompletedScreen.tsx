@@ -4,10 +4,11 @@ import {PATHS} from "../config/paths";
 import React, {useEffect, useState} from "react";
 import {useAuth} from "../context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "../config/axiosConfig";
+import {TMatch} from "./MatchesLiveScreen";
 
 export default function MatchesCompletedScreen() {
 
-    const [completedMatches, setCompletedMatches] = useState([]);
+    const [completedMatches, setCompletedMatches] = useState<TMatch[]>([]);
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
 
@@ -42,7 +43,7 @@ export default function MatchesCompletedScreen() {
                             />
                         }
             >
-                {completedMatches && completedMatches.map((item: any, index) => {
+                {completedMatches && completedMatches.map((item: TMatch, index) => {
                     return (
                         <MatchDetailCard
                             key={index}

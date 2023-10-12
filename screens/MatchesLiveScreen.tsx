@@ -5,11 +5,50 @@ import React, {useEffect, useRef, useState} from "react";
 import {useAuth} from "../context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "../config/axiosConfig";
 
+type TServerMatch = {
+    match_id: number;
+    team1: {
+        teamName: string;
+        marks: number;
+        wickets: number;
+        overs: number;
+        balls: number;
+    },
+    team2: {
+        teamName: string;
+        marks: number;
+        wickets: number;
+        overs: number;
+        balls: number;
+    },
+}
+
+export type TMatch = {
+    team1: string;
+    team2: string;
+    match_no: number;
+    scorecard: {
+        team1: {
+            marks: number;
+            wickets: number;
+            overs: number;
+            balls: number;
+        },
+        team2: {
+            marks: number;
+            wickets: number;
+            overs: number;
+            balls: number;
+        }
+    }
+}
+
+const reconnectDelay = 3000;
+
 export default function MatchesLiveScreen() {
-    const [liveMatches, setLiveMatches] = useState([]);
-    const [serverMessages, setServerMessages] = useState([]);
+    const [liveMatches, setLiveMatches] = useState<TMatch[]>([]);
+    const [serverMessages, setServerMessages] = useState<TServerMatch[]>([]);
     const [isConnected, setIsConnected] = useState<boolean>(false);
-    const reconnectDelay = 3000;
     const ws = useRef<WebSocket | null>(null);
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
@@ -84,7 +123,7 @@ export default function MatchesLiveScreen() {
                 {
                     serverMessages && serverMessages.length > 0 ? (
                         <View>
-                            {serverMessages && serverMessages.length > 0 && serverMessages.map((item: any) => {
+                            {serverMessages && serverMessages.length > 0 && serverMessages.map((item: TServerMatch) => {
                                 let team1_score = `${item.team1.marks}/${item.team1.wickets}`
                                 let team2_score = `${item.team2.marks}/${item.team2.wickets}`
                                 let overs_T1 = `${item.team1.overs}.${item.team1.balls}`
@@ -108,7 +147,7 @@ export default function MatchesLiveScreen() {
                         </View>
                     ) : (
                         <View>
-                            {liveMatches && liveMatches.map((item: any, index) => {
+                            {liveMatches && liveMatches.map((item: TMatch, index) => {
                                 let team1_score = `${item.scorecard?.team1.marks}/${item.scorecard?.team1.wickets}`
                                 let team2_score = `${item.scorecard?.team2.marks}/${item.scorecard?.team2.wickets}`
                                 let overs_T1 = `${item.scorecard?.team1.overs}.${item.scorecard?.team1.balls}`
