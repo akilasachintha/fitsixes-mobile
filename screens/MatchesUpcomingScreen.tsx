@@ -48,7 +48,7 @@ export default function MatchesUpcomingScreen() {
                     />
                 }
             >
-                {upcomingMatches.map((item, index) => (
+                {upcomingMatches && upcomingMatches.map((item, index) => (
                     <MatchDetailCard
                         key={index}
                         matchStatus={MatchStatus.Upcoming}
