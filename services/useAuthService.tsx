@@ -1,7 +1,7 @@
 import {BASE_URL, createAxiosInstance, PROJECT_CODE} from "@config/axiosConfig";
 import {useAuth} from "@context/AuthContext";
 import {useToast} from "@context/ToastContext";
-import useExpoPushNotificationConfig from "@config/UseExpoPushNotificationConfig";
+import useExpoPushNotificationConfig from "@config/useExpoPushNotificationConfig";
 
 type LoginData = {
     email: string;

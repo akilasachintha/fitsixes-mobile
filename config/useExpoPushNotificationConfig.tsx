@@ -17,6 +17,7 @@ Notifications.setNotificationHandler({
 
 async function getPermissions(): Promise<boolean> {
     const {status: existingStatus} = await Notifications.getPermissionsAsync();
+
     let finalStatus = existingStatus;
     if (existingStatus !== 'granted') {
         const {status} = await Notifications.requestPermissionsAsync();
@@ -47,10 +48,8 @@ async function registerForPushNotificationsAsync(): Promise<string | undefined> 
             lightColor: THEME.COLORS.primary,
         });
     }
-
     return token;
 }
-
 
 export default function useExpoPushNotificationConfig() {
     const storeDeviceToken = async (): Promise<string> => {

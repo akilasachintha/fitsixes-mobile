@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         marginTop: 24
     },
     profileDetailsContent: {
-        height: 320,
+        paddingVertical: "5%",
         marginHorizontal: "12%",
         backgroundColor: THEME.COLORS.primary,
         borderTopLeftRadius: 50,
@@ -131,12 +131,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-
+        marginVertical: "5%"
     },
     iconView: {
         flexDirection: 'column',
-        width: '20%',
-        marginHorizontal: 10,
+        marginHorizontal: "5%",
         alignItems: 'center',
     },
     iconContent: {
