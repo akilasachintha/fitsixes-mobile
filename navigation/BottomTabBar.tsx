@@ -1,20 +1,25 @@
+import React from "react";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import ProfileScreen from "../screens/ProfileScreen";
-import MainScreen from "../screens/MainScreen";
+import {getFocusedRouteNameFromRoute, useNavigation} from "@react-navigation/native";
 import {GestureResponderEvent, StyleSheet, Text, View} from "react-native";
 import {Foundation, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
-import React from "react";
-import CartScreen from "../screens/CartScreen";
-import {getFocusedRouteNameFromRoute, useNavigation} from "@react-navigation/native";
-import StackNavigatorHome from "./StackNavigatorHome";
-import StackNavigatorTeam from "./StackNavigatorTeam";
-import {useAuth} from "../context/AuthContext";
-import TopHeaderBar from "../components/TopHeaderBar";
-import {THEME} from "../config/theme";
-import {ROLES} from "../config/roles";
-import HandleMatchesScreen from "../screens/HandleMatchesScreen";
-import HandleMatchDetailsScreen from "../screens/HandleMatchDetailsScreen";
-import HandleTeamCoordinatorScreen from "../screens/HandleTeamCoordinatorScreen";
+
+import {THEME} from "@constants/THEME";
+import {ROLES} from "@constants/ROLES";
+
+import {useAuth} from "@context/AuthContext";
+
+import StackNavigatorHome from "@navigation/StackNavigatorHome";
+import StackNavigatorTeam from "@navigation/StackNavigatorTeam";
+
+import HandleMatchesScreen from "@screens/HandleMatchesScreen";
+import HandleMatchDetailsScreen from "@screens/HandleMatchDetailsScreen";
+import HandleTeamCoordinatorScreen from "@screens/HandleTeamCoordinatorScreen";
+import ProfileScreen from "@screens/ProfileScreen";
+import MainScreen from "@screens/MainScreen";
+import CartScreen from "@screens/CartScreen";
+
+import TopHeaderBar from "@components/TopHeaderBar";
 
 const Tab = createBottomTabNavigator();
 

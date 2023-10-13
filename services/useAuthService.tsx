@@ -1,6 +1,6 @@
-import {BASE_URL, createAxiosInstance, PROJECT_CODE} from "../config/axiosConfig";
-import {useAuth} from "../context/AuthContext";
-import {useToast} from "../context/ToastContext";
+import {BASE_URL, createAxiosInstance, PROJECT_CODE} from "@config/axiosConfig";
+import {useAuth} from "@context/AuthContext";
+import {useToast} from "@context/ToastContext";
 
 export const useAuthService = () => {
     const authContext = useAuth();

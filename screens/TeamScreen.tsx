@@ -1,7 +1,7 @@
 import {FlatList, SafeAreaView, StyleSheet, TouchableOpacity, View} from "react-native";
-import TeamCard from "../components/TeamCard";
+import TeamCard from "@components/TeamCard";
 import {useNavigation} from "@react-navigation/native";
-import {PATHS} from "../config/paths";
+import {PATHS} from "@constants/PATHS";
 
 const teamList = [
     {

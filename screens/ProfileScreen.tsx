@@ -1,10 +1,11 @@
-import { SafeAreaView, Text, TouchableOpacity, View, StyleSheet, TextInput, Image, ImageSourcePropType } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import ImageHolder from "../components/ImageHolder";
-import { PATHS } from "../config/paths";
-import { THEME } from "../config/theme";
-import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
+import {Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {useNavigation} from "@react-navigation/native";
+import ImageHolder from "@components/ImageHolder";
+import {PATHS} from "@constants/PATHS";
+import {THEME} from "@constants/THEME";
+import {Ionicons} from "@expo/vector-icons";
+import React, {useState} from "react";
+import {useAuth} from "@context/AuthContext";
 
 interface EyeIconProps {
     onPress: () => void;
@@ -13,7 +14,7 @@ interface EyeIconProps {
     onBlur?: () => void;
 }
 
-const EyeIcon: React.FC<EyeIconProps> = ({ onPress, visible, error, onBlur }) => {
+const EyeIcon: React.FC<EyeIconProps> = ({onPress, visible}) => {
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={styles.eyeIcon}>
@@ -28,26 +29,21 @@ const EyeIcon: React.FC<EyeIconProps> = ({ onPress, visible, error, onBlur }) =>
     );
 };
 
-interface ProfileScreenProps{
-    url: ImageSourcePropType;
-    email: string;
-    password: string;
-   
-}
-const ProfileScreen: React.FC<ProfileScreenProps> = ({
-    email = 'example@email.com',
-    password = 'examplePassword',
-    url
-
-}) =>{
-    const navigation = useNavigation();
+const ProfileScreen = () => {
+    useNavigation();
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const {logout} = useAuth();
+
+    const handleLogout = () => {
+        logout();
+    }
+
     return (
         <SafeAreaView>
             <View style={styles.profileImageView}>
                 <ImageHolder
-                    source={ url ? url : PATHS.IMAGES.NO_IMAGE}
-                    size={200}
+                    source={PATHS.IMAGES.NO_IMAGE}
+                    size={150}
                     borderColor="#13FAF8"
                     borderWidth={2}
                 />
@@ -59,24 +55,24 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
                 <View style={styles.profileDetailsSubContent}>
                     <View style={styles.iconView}>
                         <View style={styles.iconContent}>
-                            <Image source={require('../assets/email_icon.png')} />
+                            <Image source={PATHS.IMAGES.EMAIL_ICON} style={styles.image}/>
                         </View>
                     </View>
                     <View style={styles.inputFieldContent}>
                         <Text style={styles.textView}>Email</Text>
-                        <Text style={styles.inputField}>{email}</Text>
+                        <Text style={styles.inputField}>{"abc@gmail.com"}</Text>
                     </View>
                 </View>
                 <View style={styles.profileDetailsSubContent}>
                     <View style={styles.iconView}>
                         <View style={styles.iconContent}>
-                            <Image source={require('../assets/password_icon.png')} />
+                            <Image source={PATHS.IMAGES.PASSWORD_ICON} style={styles.image}/>
                         </View>
                     </View>
                     <View style={styles.inputFieldContent}>
                         <Text style={styles.textView}>Password</Text>
                         <View style={styles.inputView}>
-                            <Text style={styles.inputField}>{password}</Text>
+                            <Text style={styles.inputField}>{"password"}</Text>
                                 <EyeIcon
                                     onPress={() => setIsPasswordVisible(!isPasswordVisible)}
                                     visible={isPasswordVisible}
@@ -87,14 +83,11 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
                 <View style={styles.profileDetailsSubContent}>
                     <View style={styles.iconView}>
                         <View style={styles.iconContent}>
-                            <Image source={require('../assets/logout_icon.png')} />
+                            <Image source={PATHS.IMAGES.LOGOUT_ICON} style={styles.image}/>
                         </View>
                     </View>
                     <TouchableOpacity style={styles.inputFieldContent}
-                        onPress={()=>{
-                            //@ts-ignore
-                            navigation.openDrawer();  
-                        }}>
+                                      onPress={handleLogout}>
                         <Text style={styles.textView}>Logout</Text>
                     </TouchableOpacity>
                 </View>
@@ -109,6 +102,8 @@ const styles = StyleSheet.create({
     profileImageView: {
         height: 200,
         width: 200,
+        justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 20,
         alignSelf: 'center'
     },
@@ -120,22 +115,22 @@ const styles = StyleSheet.create({
         marginTop: 24
     },
     profileDetailsContent: {
-        height: 360,
-        width: 360,
+        height: 320,
+        marginHorizontal: "12%",
         backgroundColor: THEME.COLORS.primary,
         borderTopLeftRadius: 50,
         borderBottomRightRadius: 50,
         alignSelf: 'center',
-        marginTop: 28,
+        marginTop: "8%",
         elevation: 10,
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-evenly',
+        paddingLeft: "5%",
     },
     profileDetailsSubContent: {
         flexDirection: 'row',
-        width: '80%',
-        marginBottom: 23,
-        marginTop: 23,
-        marginHorizontal: 23,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
 
     },
     iconView: {
@@ -147,8 +142,8 @@ const styles = StyleSheet.create({
     iconContent: {
         backgroundColor: THEME.COLORS.white,
         borderRadius: 25,
-        width: 50,
-        height: 50,
+        width: 40,
+        height: 40,
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -160,7 +155,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     textView: {
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: '700',
         color: THEME.COLORS.white,
     },
@@ -184,10 +179,9 @@ const styles = StyleSheet.create({
     icon: {
         marginLeft: '1%',
     },
-
-
-
-
-
-
-})
+    image: {
+        width: 20,
+        height: 20,
+        resizeMode: 'contain'
+    }
+});

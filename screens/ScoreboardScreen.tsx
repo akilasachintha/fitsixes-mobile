@@ -1,9 +1,9 @@
 import TeamNamesCard from "../components/TeamNamesCard";
 import {SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {THEME} from "../config/theme";
+import {THEME} from "@constants/THEME";
 import {useState} from "react";
-import TeamScore from "../components/TeamScore";
-import ScoreCard from "../components/ScoreCard";
+import TeamScore from "@components/TeamScore";
+import ScoreCard from "@components/ScoreCard";
 
 export default function ScoreboardScreen() {
     const [selectedTab, setSelectedTab] = useState(0);

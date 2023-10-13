@@ -1,14 +1,14 @@
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
-import StackNavigator from "./navigation/StackNavigator";
+import StackNavigator from "@navigation/StackNavigator";
 import {StatusBar} from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 import {useCallback, useEffect, useState} from "react";
 import {View} from "react-native";
-import {AuthProvider} from "./context/AuthContext";
-import {THEME} from "./config/theme";
-import {LoadingProvider} from "./context/LoadingContext";
+import {AuthProvider} from "@context/AuthContext";
+import {THEME} from "@constants/THEME";
+import {LoadingProvider} from "@context/LoadingContext";
 import LoadingScreen from "./screens/LoadingScreen";
-import {ToastProvider} from "./context/ToastContext";
+import {ToastProvider} from "@context/ToastContext";
 import ExpoPushNotificationConfig from "./config/ExpoPushNotificationConfig";
 
 SplashScreen.preventAutoHideAsync().catch((e) => console.error(e));

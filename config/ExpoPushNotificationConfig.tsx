@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 import {Platform} from 'react-native';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
-import {addDataToLocalStorage} from "../helpers/asyncStorage";
+import {addDataToLocalStorage} from "@helpers/asyncStorage";
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({

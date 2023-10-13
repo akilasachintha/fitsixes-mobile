@@ -1,8 +1,8 @@
 import {ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React, {useState} from "react";
-import {THEME} from "../config/theme";
-import ImageHolder from "./ImageHolder";
-import {PATHS} from "../config/paths";
+import {THEME} from "@constants/THEME";
+import ImageHolder from "@components/ImageHolder";
+import {PATHS} from "@constants/PATHS";
 import {Ionicons} from "@expo/vector-icons";
 
 

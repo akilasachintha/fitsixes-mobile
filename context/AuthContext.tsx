@@ -1,8 +1,8 @@
 import React, {createContext, ReactNode, useContext, useEffect, useState} from 'react';
-import {addDataToLocalStorage, getDataFromLocalStorage} from "../helpers/asyncStorage";
+import {addDataToLocalStorage, getDataFromLocalStorage} from "@helpers/asyncStorage";
 import {DrawerActions, useNavigation} from "@react-navigation/native";
-import {useLoadingContext} from "./LoadingContext";
-import {useToast} from "./ToastContext";
+import {useLoadingContext} from "@context/LoadingContext";
+import {useToast} from "@context/ToastContext";
 
 export interface AuthContextType {
     isLoggedIn: boolean;

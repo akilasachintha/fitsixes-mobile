@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {FontAwesome} from '@expo/vector-icons';
-import {THEME} from "../config/theme";
+import {THEME} from "@constants/THEME";
 
 interface TextInputFieldProps {
   label : string;

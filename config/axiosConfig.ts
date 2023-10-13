@@ -1,7 +1,7 @@
 import axios, {AxiosInstance} from 'axios';
-import {useLoadingContext} from '../context/LoadingContext';
-import {AuthContextType} from '../context/AuthContext';
-import {useToast} from "../context/ToastContext";
+import {useLoadingContext} from '@context/LoadingContext';
+import {AuthContextType} from '@context/AuthContext';
+import {useToast} from "@context/ToastContext";
 
 const I2_AUTH_BASE_URL = 'https://fw2svr60sl.execute-api.ap-south-1.amazonaws.com/beta/';
 const FIT_SIXES_BASE_URL = 'https://j1kydf6tp3.execute-api.ap-south-1.amazonaws.com/dev/v1/';

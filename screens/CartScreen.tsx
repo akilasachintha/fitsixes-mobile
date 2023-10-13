@@ -1,8 +1,8 @@
 import {SafeAreaView, StyleSheet, Text, View} from "react-native";
 import React from "react";
-import CartCard from "../components/CartCard";
-import {THEME} from "../config/theme";
-import {PATHS} from "../config/paths";
+import CartCard from "@components/CartCard";
+import {THEME} from "@constants/THEME";
+import {PATHS} from "@constants/PATHS";
 
 export default function CartScreen() {
     return (
