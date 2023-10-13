@@ -9,7 +9,6 @@ import {THEME} from "@constants/THEME";
 import {LoadingProvider} from "@context/LoadingContext";
 import LoadingScreen from "./screens/LoadingScreen";
 import {ToastProvider} from "@context/ToastContext";
-import ExpoPushNotificationConfig from "./config/ExpoPushNotificationConfig";
 
 SplashScreen.preventAutoHideAsync().catch((e) => console.error(e));
 
@@ -45,7 +44,6 @@ export default function App() {
 
     return (
         <View onLayout={onLayoutRootView} style={{flex: 1}}>
-            <ExpoPushNotificationConfig/>
             <ToastProvider>
                 <LoadingProvider>
                     <NavigationContainer theme={navTheme}>
