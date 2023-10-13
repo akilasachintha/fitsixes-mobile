@@ -1,9 +1,9 @@
-import {RefreshControl, SafeAreaView, ScrollView} from "react-native";
-import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
-import {PATHS} from "../config/paths";
-import React, {useEffect, useState} from "react";
-import {useAuth} from "../context/AuthContext";
-import {BASE_URL, createAxiosInstance} from "../config/axiosConfig";
+import { RefreshControl, SafeAreaView, ScrollView } from "react-native";
+import MatchDetailCard, { MatchStatus } from "../components/MatchDetailCard";
+import { PATHS } from "../config/paths";
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { BASE_URL, createAxiosInstance } from "../config/axiosConfig";
 
 export default function MatchesLiveScreen() {
     const [ongoingMatches, setOngoingMatches] = useState([]);
@@ -23,6 +23,7 @@ export default function MatchesLiveScreen() {
         });
     }
 
+
     useEffect(() => {
         fetchLiveMatches();
     }, []);
@@ -34,12 +35,12 @@ export default function MatchesLiveScreen() {
     return (
         <SafeAreaView>
             <ScrollView showsVerticalScrollIndicator={false}
-                        refreshControl={
-                            <RefreshControl
-                                refreshing={false}
-                                onRefresh={handleRefresh}
-                            />
-                        }
+                refreshControl={
+                    <RefreshControl
+                        refreshing={false}
+                        onRefresh={handleRefresh}
+                    />
+                }
             >
                 {ongoingMatches && ongoingMatches.map((item: any, index) => {
                     let team1_score = `${item.scorecard?.team1.marks}/${item.scorecard?.team1.wickets}`
@@ -59,6 +60,7 @@ export default function MatchesLiveScreen() {
                             matchNo={item.match_no}
                             overs_T1={overs_T1}
                             overs_T2={overs_T2}
+                            matchId={item.id}
                         />
                     )
                 })}

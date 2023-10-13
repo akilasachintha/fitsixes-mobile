@@ -1,36 +1,102 @@
 import TeamNamesCard from "../components/TeamNamesCard";
-import {SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {THEME} from "../config/theme";
-import {useState} from "react";
+import { RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { THEME } from "../config/theme";
+import { useEffect, useState } from "react";
 import TeamScore from "../components/TeamScore";
 import ScoreCard from "../components/ScoreCard";
+import { useAuth } from "../context/AuthContext";
+import { BASE_URL, createAxiosInstance } from "../config/axiosConfig";
+import ScoreComponent from "../components/ScoreComponent";
 
-export default function ScoreboardScreen() {
+export default function ScoreboardScreen(props: any) {
+    type MatchDetailsType = {
+        team1: {
+            balls: number;
+            extras: number;
+            fours: number;
+            marks: number;
+            ones: number;
+            overs: number;
+            sixes: number;
+            threes: number;
+            twos: number;
+            wickets: number;
+        };
+        team2: {
+            balls: number;
+            extras: number;
+            fours: number;
+            marks: number;
+            ones: number;
+            overs: number;
+            sixes: number;
+            threes: number;
+            twos: number;
+            wickets: number;
+        };
+    };
     const [selectedTab, setSelectedTab] = useState(0);
+    const [matchDetails, setMatchDetails] = useState<MatchDetailsType[]>([]);
+    const authContext = useAuth();
+    const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
+    const TEAM_1 = props.route.params.team_1;
+    const TEAM_2 = props.route.params.team_2;
+
+    const fetchMatchDetails = async () => {
+        let url = `match/${props.route.params.data}`;
+        try {
+            const response = await axiosInstanceForFitSixes.get(`${url}`);
+            if (response && response.data && response.data.data && response.data.data.match) {
+                const responseDetails = response.data.data.match;
+                setMatchDetails([responseDetails]);
+            } else {
+                console.error("Error");
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    useEffect(() => {
+        fetchMatchDetails();
+    }, []);
+
+    const handleRefresh = () => {
+        fetchMatchDetails();
+    };
+
+
 
     return (
         <SafeAreaView>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <TeamNamesCard teamName1="Geveo" teamName2="WSO2"/>
+            <ScrollView showsVerticalScrollIndicator={false}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={false}
+                        onRefresh={handleRefresh}
+                    />
+                }
+            >
+                <TeamNamesCard teamName1={TEAM_1} teamName2={TEAM_2} />
                 <View style={styles.mainContainer}>
                     <View style={styles.container}>
                         {
                             selectedTab === 0 ?
                                 <TouchableOpacity style={styles.leftContainerText} onPress={() => setSelectedTab(0)}>
-                                    <Text style={styles.leftText}>Geveo</Text>
+                                    <Text style={styles.leftText}>{TEAM_1}</Text>
                                 </TouchableOpacity> :
                                 <TouchableOpacity style={styles.leftContainerNotText} onPress={() => setSelectedTab(0)}>
-                                    <Text style={styles.leftNotText}>Geveo</Text>
+                                    <Text style={styles.leftNotText}>{TEAM_1}</Text>
                                 </TouchableOpacity>
                         }
                         {
                             selectedTab === 1 ?
                                 <TouchableOpacity style={styles.rightContainerText} onPress={() => setSelectedTab(0)}>
-                                    <Text style={styles.leftText}>WSO2</Text>
+                                    <Text style={styles.leftText}>{TEAM_2}</Text>
                                 </TouchableOpacity> :
                                 <TouchableOpacity style={styles.rightContainerNotText}
-                                                  onPress={() => setSelectedTab(1)}>
-                                    <Text style={styles.leftNotText}>WSO2</Text>
+                                    onPress={() => setSelectedTab(1)}>
+                                    <Text style={styles.leftNotText}>{TEAM_2}</Text>
                                 </TouchableOpacity>
                         }
                     </View>
@@ -38,20 +104,17 @@ export default function ScoreboardScreen() {
                 {
                     selectedTab === 0 && (
                         <View>
-                            <TeamScore teamName="Geveo" score="100/2"/>
-                            <ScoreCard/>
+                            {/* <ScoreComponent details={matchDetails[0].team1} teamName={TEAM_1} details2={matchDetails[0].team2} /> */}
+
                         </View>
                     )
-
                 }
                 {
                     selectedTab === 1 && (
                         <View>
-                            <TeamScore teamName="WSO2" score="50/5"/>
-                            <ScoreCard/>
+                            {/* <ScoreComponent details={matchDetails[0].team2} teamName={TEAM_2} details2={matchDetails[0].team1} /> */}
                         </View>
                     )
-
                 }
             </ScrollView>
         </SafeAreaView>

@@ -1,8 +1,8 @@
-import {Image, ImageBackground, ImageProps, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import { Image, ImageBackground, ImageProps, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ImageHolder from "./ImageHolder";
-import {useNavigation} from "@react-navigation/native";
-import {THEME} from "../config/theme";
-import {PATHS} from "../config/paths";
+import { useNavigation } from "@react-navigation/native";
+import { THEME } from "../config/theme";
+import { PATHS } from "../config/paths";
 
 interface MatchDetailCardProps {
     matchNo: number;
@@ -15,6 +15,7 @@ interface MatchDetailCardProps {
     matchStatus: MatchStatusType;
     overs_T1?: string;
     overs_T2?: string;
+    matchId: String;
 }
 
 export type MatchStatusType = "Live" | "Upcoming" | "Completed";
@@ -25,11 +26,11 @@ export const MatchStatus: Record<MatchStatusType, MatchStatusType> = {
     Completed: "Completed",
 }
 
-export default function MatchDetailCard({ matchNo, team1, team2, team1Score, team2Score, team1Image, team2Image, matchStatus, overs_T1, overs_T2 }: MatchDetailCardProps) {
+export default function MatchDetailCard({ matchNo, team1, team2, team1Score, team2Score, team1Image, team2Image, matchStatus, overs_T1, overs_T2, matchId }: MatchDetailCardProps) {
     const navigation = useNavigation();
     const handleMatchCardClick = () => {
         // @ts-ignore
-        navigation.navigate("HomeTabScoreboardStack");
+        navigation.navigate("HomeTabScoreboardStack", { data: matchId, team_1: team1, team_2: team2 });
     }
 
     return (
