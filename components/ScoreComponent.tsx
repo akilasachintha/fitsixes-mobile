@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { THEME } from "../config/theme";
+import { THEME } from "@constants/THEME";
 import ImageHolder from "./ImageHolder";
-import { PATHS } from "../config/paths";
+import { PATHS } from "@constants/PATHS";
 
 interface ScoreCardProps {
     details: {

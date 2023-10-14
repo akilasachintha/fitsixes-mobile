@@ -118,7 +118,6 @@ export default function MatchesLiveScreen() {
 
     return (
         <SafeAreaView>
-            <Text>{JSON.stringify(isConnected)}</Text>
             <ScrollView showsVerticalScrollIndicator={false} refreshControl={
                 <RefreshControl
                     refreshing={false}

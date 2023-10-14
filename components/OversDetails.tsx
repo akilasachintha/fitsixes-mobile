@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { THEME } from '../config/theme'
+import { THEME } from '@constants/THEME'
 
 interface OverDetailsProps {
     details: (number | string)[];
