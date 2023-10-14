@@ -15,9 +15,9 @@ interface MatchDetailCardProps {
     matchStatus: MatchStatusType;
     overs_T1?: string;
     overs_T2?: string;
-    matchId: string;
-    tosWinner: string;
-    firstBat: string;
+    matchId?: string;
+    tosWinner?: string;
+    firstBat?: string;
 }
 
 export type MatchStatusType = "Live" | "Upcoming" | "Completed";
@@ -45,8 +45,10 @@ export default function MatchDetailCard({
 }: MatchDetailCardProps) {
     const navigation = useNavigation();
     const handleMatchCardClick = () => {
-        // @ts-ignore
-        navigation.navigate("HomeTabScoreboardStack", { data: matchId, team_1: team1, team_2: team2, tossWinner: tosWinner, first: firstBat });
+        if (matchStatus !== "Upcoming") {
+            // @ts-ignore
+            navigation.navigate("HomeTabScoreboardStack", { data: matchId, team_1: team1, team_2: team2, tossWinner: tosWinner, first: firstBat });
+        }
     }
 
     return (

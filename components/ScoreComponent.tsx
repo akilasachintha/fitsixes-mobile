@@ -67,13 +67,13 @@ const ScoreComponent: React.FC<ScoreCardProps> = ({ details, teamName, details2 
 
             <View style={styles.otherDetailsContainer}>
                 <View style={styles.detailsContainer}>
-                    <Text>{'CRR: ' + calculateRunRate(details.marks, details.overs)}</Text>
+                    <Text style={styles.text2}>{'CRR: ' + calculateRunRate(details.marks, details.overs)}</Text>
                     {details.overs !== 10 && (
-                        <Text>{'RRR: ' + calculateRequiredRunRate(details2.marks, 10 - details.overs)}</Text>
+                        <Text style={styles.text2}>{'RRR: ' + calculateRequiredRunRate(details2.marks, 10 - details.overs)}</Text>
                     )}
                 </View>
                 <View style={styles.detailsContainer}>
-                    <Text>{'Extra: ' + details.extras}</Text>
+                    <Text style={styles.text2}>{'Extra: ' + details.extras}</Text>
                 </View>
             </View>
         </View>
@@ -89,13 +89,13 @@ const styles = StyleSheet.create({
         backgroundColor: THEME.COLORS.primary,
         elevation: 5,
         width: "90%",
-        height: 350,
+        height: 190,
         marginBottom: "5%"
     },
     scoreDetails: {
         flexDirection: 'row',
-        marginTop: 5,
-        justifyContent: 'space-evenly'
+        marginTop: 20,
+        justifyContent: 'space-around'
     },
     score: {
         flexDirection: 'column',
@@ -104,9 +104,9 @@ const styles = StyleSheet.create({
     },
     text1: {
         color: THEME.COLORS.white,
-        fontSize: 20,
+        fontSize: 25,
         fontWeight: '700',
-        textAlign: 'center'
+        textAlign: 'center',
     },
     text2: {
         color: THEME.COLORS.white,
@@ -116,14 +116,16 @@ const styles = StyleSheet.create({
     text3: {
         color: THEME.COLORS.white,
         fontSize: 17,
-        fontWeight: '700'
+        fontWeight: '700',
+        marginLeft: 25
     },
     teamNameContainer: {
-        marginTop: 5
+        marginTop: 10
     },
     otherDetailsContainer: {
         flexDirection: 'row',
-        marginTop: 5,
+        marginTop: 10,
+        marginLeft: 25
     },
     detailsContainer: {
         flexDirection: 'column',
