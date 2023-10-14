@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { THEME } from "@constants/THEME";
+import {StyleSheet, Text, View} from "react-native";
+import {THEME} from "@constants/THEME";
 import ImageHolder from "./ImageHolder";
-import { PATHS } from "@constants/PATHS";
+import {PATHS} from "@constants/PATHS";
 
 interface ScoreCardProps {
     details: {
@@ -38,8 +38,7 @@ const ScoreComponent: React.FC<ScoreCardProps> = ({ details, teamName, details2 
             return 0;
         }
         const runRate = totalRuns / totalOvers;
-        const roundedRunRate = Math.round(runRate * 100) / 100;
-        return roundedRunRate;
+        return Math.round(runRate * 100) / 100;
     };
 
     const calculateRequiredRunRate = (targetRuns: number, remainingOvers: number): number => {
@@ -47,24 +46,23 @@ const ScoreComponent: React.FC<ScoreCardProps> = ({ details, teamName, details2 
             return Number.POSITIVE_INFINITY;
         }
         const requiredRunRate = targetRuns / remainingOvers;
-        const roundedRequiredRunRate = Math.round(requiredRunRate * 100) / 100;
-        return roundedRequiredRunRate;
+        return Math.round(requiredRunRate * 100) / 100;
     };
 
     return (
         <View style={styles.container}>
             <View style={styles.scoreDetails}>
-                <ImageHolder source={PATHS.IMAGES.Team_1} size={80} />
+                <View style={styles.teamContainer}>
+                    <ImageHolder source={PATHS.IMAGES.Team_1} size={80}/>
+                    <View style={styles.teamNameContainer}>
+                        <Text style={styles.text3}>{teamName}</Text>
+                    </View>
+                </View>
                 <View style={styles.score}>
                     <Text style={styles.text1}>{details.marks + '/' + details.wickets}</Text>
                     <Text style={styles.text2}>{details.overs + '.' + details.balls + '/' + '10 Overs'}</Text>
                 </View>
             </View>
-
-            <View style={styles.teamNameContainer}>
-                <Text style={styles.text3}>{teamName}</Text>
-            </View>
-
             <View style={styles.otherDetailsContainer}>
                 <View style={styles.detailsContainer}>
                     <Text style={styles.text2}>{'CRR: ' + calculateRunRate(details.marks, details.overs)}</Text>
@@ -89,8 +87,7 @@ const styles = StyleSheet.create({
         backgroundColor: THEME.COLORS.primary,
         elevation: 5,
         width: "90%",
-        height: 190,
-        marginBottom: "5%"
+        marginBottom: "5%",
     },
     scoreDetails: {
         flexDirection: 'row',
@@ -117,18 +114,21 @@ const styles = StyleSheet.create({
         color: THEME.COLORS.white,
         fontSize: 17,
         fontWeight: '700',
-        marginLeft: 25
     },
     teamNameContainer: {
         marginTop: 10
     },
     otherDetailsContainer: {
         flexDirection: 'row',
-        marginTop: 10,
-        marginLeft: 25
+        justifyContent: "space-around",
+        alignItems: "center",
+        marginVertical: "6%"
     },
     detailsContainer: {
         flexDirection: 'column',
-        width: '50%'
+    },
+    teamContainer: {
+        justifyContent: "center",
+        alignItems: "center"
     }
 })

@@ -5,7 +5,6 @@ import {useEffect, useState} from "react";
 import {useAuth} from "@context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
 import ScoreComponent from "@components/ScoreComponent";
-import OversDetails from "@components/OversDetails";
 
 export default function ScoreboardScreen(props: any) {
     type MatchDetailsType = {
@@ -111,7 +110,6 @@ export default function ScoreboardScreen(props: any) {
         };
     }
 
-
     return (
         <SafeAreaView>
             <ScrollView showsVerticalScrollIndicator={false}
@@ -124,9 +122,9 @@ export default function ScoreboardScreen(props: any) {
             >
                 <TeamNamesCard teamName1={TEAM_1} teamName2={TEAM_2} />
                 {tossWinner === firstBat ? (
-                    <Text style={styles.description}>{`${tossWinner} won the toss and elected to bat`}</Text>
+                    <Text style={styles.description}>{`${tossWinner} Won the toss and elected to bat.`}</Text>
                 ) : (
-                    <Text style={styles.description}>{`${tossWinner} won the toss and elected to ball`}</Text>
+                    <Text style={styles.description}>{`${tossWinner} Won the toss and elected to ball.`}</Text>
                 )}
                 <View style={styles.mainContainer}>
                     <View style={styles.container}>
@@ -166,7 +164,7 @@ export default function ScoreboardScreen(props: any) {
                                     )}
                                 </>
                             )}
-                            <OversDetails details={[1, 2, 4, 6, 'W', 2]} />
+                            {/*<OversDetails details={[1, 2, 4, 6, 'W', 2]} />*/}
                         </View>
                     )
                 }
@@ -186,7 +184,7 @@ export default function ScoreboardScreen(props: any) {
                                     )}
                                 </>
                             )}
-                            <OversDetails details={[1, 2, 4, 6, 'W', 2]} />
+                            {/*<OversDetails details={[1, 2, 4, 6, 'W', 2]} />*/}
                         </View>
                     )
                 }
@@ -203,7 +201,9 @@ const styles = StyleSheet.create({
         margin: "2%"
     },
     mainContainer: {
-        marginHorizontal: "20%",
+        marginHorizontal: "14%",
+        marginTop: "3%",
+        marginBottom: "6%",
         borderRadius: 30,
         backgroundColor: THEME.COLORS.white,
         shadowColor: THEME.COLORS.primary,
@@ -214,7 +214,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.9,
         shadowRadius: 3.5,
         elevation: 10,
-        marginBottom: "5%",
     },
     leftContainerText: {
         width: "50%",

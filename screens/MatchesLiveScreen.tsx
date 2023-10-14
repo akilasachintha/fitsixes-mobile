@@ -126,7 +126,7 @@ export default function MatchesLiveScreen() {
             }
             >
                 {
-                    serverMessages && serverMessages.length > 0 ? (
+                    isConnected && serverMessages && serverMessages.length > 0 ? (
                         <View>
                             {serverMessages && serverMessages.length > 0 && serverMessages.map((item: TServerMatch) => {
                                 let team1_score = `${item.team1.marks}/${item.team1.wickets}`
