@@ -91,7 +91,7 @@ function MyDrawer() {
             </View>
             <View style={styles.drawerContentContainer}>
                 {
-                    drawerItems.map((item) => (
+                    drawerItems && drawerItems.map((item) => (
                         item.condition(isLoggedIn, role) &&
                         <View key={item.id}>
                             <TouchableOpacity key={item.id} style={styles.drawerItemButton}

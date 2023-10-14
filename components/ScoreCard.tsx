@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { THEME } from "@constants/THEME";
+import {StyleSheet, Text, View} from "react-native";
+import {THEME} from "@constants/THEME";
 
 const playerDetails = [
     {

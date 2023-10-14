@@ -1,10 +1,10 @@
-import { RefreshControl, SafeAreaView, ScrollView } from "react-native";
-import MatchDetailCard, { MatchStatus } from "../components/MatchDetailCard";
-import { PATHS } from "@constants/PATHS";
-import React, { useEffect, useState } from "react";
-import { useAuth } from "@context/AuthContext";
-import { BASE_URL, createAxiosInstance } from "@config/axiosConfig";
-import { TMatch } from "./MatchesLiveScreen";
+import {RefreshControl, SafeAreaView, ScrollView} from "react-native";
+import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
+import {PATHS} from "@constants/PATHS";
+import React, {useEffect, useState} from "react";
+import {useAuth} from "@context/AuthContext";
+import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
+import {TMatch} from "@screens/MatchesLiveScreen";
 
 export default function MatchesCompletedScreen() {
 

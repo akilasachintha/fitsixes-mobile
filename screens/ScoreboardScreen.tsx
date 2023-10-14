@@ -1,11 +1,9 @@
-import TeamNamesCard from "../components/TeamNamesCard";
-import { RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { THEME } from "@constants/THEME";
-import { useEffect, useState } from "react";
-import TeamScore from "@components/TeamScore";
-import ScoreCard from "@components/ScoreCard";
-import { useAuth } from "@context/AuthContext";
-import { BASE_URL, createAxiosInstance } from "@config/axiosConfig";
+import TeamNamesCard from "@components/TeamNamesCard";
+import {RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {THEME} from "@constants/THEME";
+import {useEffect, useState} from "react";
+import {useAuth} from "@context/AuthContext";
+import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
 import ScoreComponent from "@components/ScoreComponent";
 import OversDetails from "@components/OversDetails";
 
@@ -87,19 +85,19 @@ export default function ScoreboardScreen(props: any) {
     }
 
     useEffect(() => {
-        fetchMatchDetails();
+        fetchMatchDetails().catch((e) => console.error(e));
 
     }, []);
 
     const handleRefresh = () => {
-        fetchMatchDetails();
+        fetchMatchDetails().catch((e) => console.error(e));
     };
 
 
     function calculateRequiredRunsAndBalls(targetRuns: number, currentRuns: number, currentOvers: number, currentOverBalls: number) {
         const totalOvers = 10;
         const maxBallsPerOver = 6;
-        let totalBallsBowled = 0
+        let totalBallsBowled: number
         if (currentOvers === 0) {
             totalBallsBowled = 0;
         } else {
@@ -157,7 +155,7 @@ export default function ScoreboardScreen(props: any) {
                     selectedTab === 0 && (
                         <View>
                             <ScoreComponent details={matchDetails?.team1} teamName={TEAM_1} details2={matchDetails?.team2} />
-                            {matchDetails?.team1.marks === 0 && matchDetails?.team2.marks === 0 ? (
+                            {matchDetails && matchDetails?.team1.marks === 0 && matchDetails?.team2.marks === 0 ? (
                                 <Text style={styles.description}>Both teams have not scored any runs yet.</Text>
                             ) : (
                                 <>
