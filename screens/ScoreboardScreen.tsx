@@ -1,41 +1,11 @@
 import TeamNamesCard from "../components/TeamNamesCard";
-import { RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { THEME } from "../config/theme";
-import { useEffect, useState } from "react";
-import TeamScore from "../components/TeamScore";
-import ScoreCard from "../components/ScoreCard";
-import { useAuth } from "../context/AuthContext";
-import { BASE_URL, createAxiosInstance } from "../config/axiosConfig";
-import ScoreComponent from "../components/ScoreComponent";
-import OversDetails from "../components/OversDetails";
+import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { THEME } from "@constants/THEME";
+import { useState } from "react";
+import TeamScore from "@components/TeamScore";
+import ScoreCard from "@components/ScoreCard";
 
-export default function ScoreboardScreen(props: any) {
-    type MatchDetailsType = {
-        team1: {
-            balls: number;
-            extras: number;
-            fours: number;
-            marks: number;
-            ones: number;
-            overs: number;
-            sixes: number;
-            threes: number;
-            twos: number;
-            wickets: number;
-        };
-        team2: {
-            balls: number;
-            extras: number;
-            fours: number;
-            marks: number;
-            ones: number;
-            overs: number;
-            sixes: number;
-            threes: number;
-            twos: number;
-            wickets: number;
-        };
-    };
+export default function ScoreboardScreen() {
     const [selectedTab, setSelectedTab] = useState(0);
     const [matchDetails, setDetails] = useState<MatchDetailsType>({
         team1: {

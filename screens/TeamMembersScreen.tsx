@@ -1,8 +1,8 @@
-import PlayerDetailsCard from "../components/PlayerDetailsCard";
+import PlayerDetailsCard from "@components/PlayerDetailsCard";
 import ImageHolder from "../components/ImageHolder";
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
-import {THEME} from "../config/theme";
-import {PATHS} from "../config/paths";
+import {THEME} from "@constants/THEME";
+import {PATHS} from "@constants/PATHS";
 
 export default function TeamMembersScreen() {
     return (

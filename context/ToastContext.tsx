@@ -1,7 +1,7 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react';
 import {Animated, StyleSheet, Text, View} from 'react-native';
-import {THEME} from '../config/theme';
 import Constants from 'expo-constants';
+import {THEME} from '@constants/THEME';
 
 interface ToastContextType {
     showToast: (message: string) => void;

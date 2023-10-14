@@ -1,16 +1,15 @@
 import React, {createContext, ReactNode, useContext, useEffect, useState} from 'react';
-import {addDataToLocalStorage, getDataFromLocalStorage} from "../helpers/asyncStorage";
+import {addDataToLocalStorage, getDataFromLocalStorage} from "@helpers/asyncStorage";
 import {DrawerActions, useNavigation} from "@react-navigation/native";
-import {useLoadingContext} from "./LoadingContext";
-import {useToast} from "./ToastContext";
+import {useLoadingContext} from "@context/LoadingContext";
+import {useToast} from "@context/ToastContext";
 
 export interface AuthContextType {
     isLoggedIn: boolean;
     token: string | null;
-    deviceToken: string | null;
     role: string | null;
     id: string | null;
-    login: (role: string, id: string, token: string, deviceToken: string) => void;
+    login: (role: string, id: string, token: string) => void;
     logout: () => void;
 }
 
@@ -24,7 +23,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [token, setToken] = useState<string | null>(null);
     const [role, setRole] = useState<string | null>(null);
-    const [deviceToken, setDeviceToken] = useState<string | null>(null);
     const [id, setId] = useState<string | null>(null);
     const navigation = useNavigation();
     const {showLoading, hideLoading} = useLoadingContext();
@@ -36,7 +34,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
             const storedToken = await getDataFromLocalStorage("token");
             const storedRole = await getDataFromLocalStorage("role");
             const storedId = await getDataFromLocalStorage("id");
-            const storedDeviceToken = await getDataFromLocalStorage("deviceToken");
 
             if (storedIsLoggedIn !== null) {
                 setIsLoggedIn(JSON.parse(storedIsLoggedIn));
@@ -52,25 +49,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
             if (storedId !== null) {
                 setId(JSON.parse(storedId));
             }
-
-            if (storedDeviceToken !== null) {
-                setDeviceToken(JSON.parse(storedDeviceToken));
-            }
         };
 
         loadLoginStatus().catch((e) => console.error(e));
     }, []);
 
-    const login = async (role: string, id: string, token: string, deviceToken: string = "") => {
+    const login = async (role: string, id: string, token: string) => {
         navigation.dispatch(DrawerActions.closeDrawer());
         await addDataToLocalStorage("isLoggedIn", JSON.stringify(true));
         await addDataToLocalStorage("token", JSON.stringify(token));
         await addDataToLocalStorage("role", JSON.stringify(role));
         await addDataToLocalStorage("id", JSON.stringify(id));
-        await addDataToLocalStorage("deviceToken", JSON.stringify(deviceToken));
 
         setIsLoggedIn(true);
-        setDeviceToken(deviceToken);
         setRole(role);
         setToken(token);
         setId(id);
@@ -88,7 +79,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         await addDataToLocalStorage("deviceToken", JSON.stringify(null));
 
         setIsLoggedIn(false);
-        setDeviceToken(null);
         setRole(null);
         setToken(null);
         setId(null);
@@ -105,7 +95,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     };
 
     return (
-        <AuthContext.Provider value={{isLoggedIn, token, deviceToken, role, id, login, logout}}>
+        <AuthContext.Provider value={{isLoggedIn, token, role, id, login, logout}}>
             {children}
         </AuthContext.Provider>
     );

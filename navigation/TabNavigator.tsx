@@ -1,10 +1,10 @@
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import MatchesUpcomingScreen from "../screens/MatchesUpcomingScreen";
-import MatchesLiveScreen from "../screens/MatchesLiveScreen";
-import MatchesCompletedScreen from "../screens/MatchesCompletedScreen";
-import {getFocusedRouteNameFromRoute} from "@react-navigation/native";
 import {StyleProp, TextStyle} from "react-native";
-import {THEME} from "../config/theme";
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {getFocusedRouteNameFromRoute} from "@react-navigation/native";
+import MatchesUpcomingScreen from "@screens/MatchesUpcomingScreen";
+import MatchesLiveScreen from "@screens/MatchesLiveScreen";
+import MatchesCompletedScreen from "@screens/MatchesCompletedScreen";
+import {THEME} from "@constants/THEME";
 
 const Tab = createMaterialTopTabNavigator();
 

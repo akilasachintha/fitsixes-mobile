@@ -1,5 +1,5 @@
 import React from 'react';
-import FormField from './FormField';
+import FormField from '@components/FormField';
 import {KeyboardTypeOptions} from "react-native";
 
 export interface IFormField {
