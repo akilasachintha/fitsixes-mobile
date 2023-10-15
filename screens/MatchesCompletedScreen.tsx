@@ -1,10 +1,10 @@
 import {RefreshControl, SafeAreaView, ScrollView} from "react-native";
 import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
-import {PATHS} from "../config/paths";
+import {PATHS} from "@constants/PATHS";
 import React, {useEffect, useState} from "react";
-import {useAuth} from "../context/AuthContext";
-import {BASE_URL, createAxiosInstance} from "../config/axiosConfig";
-import {TMatch} from "./MatchesLiveScreen";
+import {useAuth} from "@context/AuthContext";
+import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
+import {TMatch} from "@screens/MatchesLiveScreen";
 
 export default function MatchesCompletedScreen() {
 
@@ -36,12 +36,12 @@ export default function MatchesCompletedScreen() {
     return (
         <SafeAreaView>
             <ScrollView showsVerticalScrollIndicator={false}
-                        refreshControl={
-                            <RefreshControl
-                                refreshing={false}
-                                onRefresh={handleRefresh}
-                            />
-                        }
+                refreshControl={
+                    <RefreshControl
+                        refreshing={false}
+                        onRefresh={handleRefresh}
+                    />
+                }
             >
                 {completedMatches && completedMatches.map((item: TMatch, index) => {
                     return (
@@ -53,6 +53,9 @@ export default function MatchesCompletedScreen() {
                             team1Image={PATHS.IMAGES.Team_1}
                             team2Image={PATHS.IMAGES.Team_2}
                             matchNo={item.match_no}
+                            matchId={item.id}
+                            tosWinner={item.tos_winner}
+                            firstBat={item.first_bat}
                         />
                     )
                 })}

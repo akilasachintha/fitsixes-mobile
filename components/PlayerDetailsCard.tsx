@@ -1,8 +1,8 @@
 import {Image, ImageSourcePropType, StyleSheet, Text, View} from 'react-native'
 import React from 'react'
 import ImageHolder from './ImageHolder'
-import {THEME} from "../config/theme";
-import {PATHS} from "../config/paths";
+import {THEME} from "@constants/THEME";
+import {PATHS} from "@constants/PATHS";
 
 interface PlayerDetailsCardProps {
     url: ImageSourcePropType;

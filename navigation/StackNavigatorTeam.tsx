@@ -1,6 +1,6 @@
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import TeamScreen from "../screens/TeamScreen";
-import TeamMembersScreen from "../screens/TeamMembersScreen";
+import TeamScreen from "@screens/TeamScreen";
+import TeamMembersScreen from "@screens/TeamMembersScreen";
 
 const Stack = createNativeStackNavigator();
 

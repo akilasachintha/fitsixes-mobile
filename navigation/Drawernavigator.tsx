@@ -1,15 +1,15 @@
 import {createDrawerNavigator} from "@react-navigation/drawer";
-import BottomTabNavigator from "./BottomTabBar";
+import BottomTabNavigator from "@navigation/BottomTabBar";
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {StatusBar} from "expo-status-bar";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {useNavigation} from "@react-navigation/native";
 import {Ionicons, MaterialCommunityIcons, MaterialIcons} from "@expo/vector-icons";
 import React from "react";
-import {useAuth} from "../context/AuthContext";
-import {THEME} from "../config/theme";
-import {PATHS} from "../config/paths";
-import {ROLES} from "../config/roles";
+import {useAuth} from "@context/AuthContext";
+import {THEME} from "@constants/THEME";
+import {PATHS} from "@constants/PATHS";
+import {ROLES} from "@constants/ROLES";
 
 const Drawer = createDrawerNavigator();
 export default function DrawerNavigator() {
@@ -91,7 +91,7 @@ function MyDrawer() {
             </View>
             <View style={styles.drawerContentContainer}>
                 {
-                    drawerItems.map((item) => (
+                    drawerItems && drawerItems.map((item) => (
                         item.condition(isLoggedIn, role) &&
                         <View key={item.id}>
                             <TouchableOpacity key={item.id} style={styles.drawerItemButton}
