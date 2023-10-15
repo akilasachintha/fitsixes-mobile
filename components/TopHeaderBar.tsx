@@ -1,8 +1,8 @@
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import ImageHolder from "@components/ImageHolder";
+import ImageHolder from "./ImageHolder";
 import {useNavigation} from "@react-navigation/native";
-import {THEME} from "@constants/THEME";
-import {PATHS} from "@constants/PATHS";
+import {THEME} from "../config/theme";
+import {PATHS} from "../config/paths";
 
 export default function TopHeaderBar() {
     const navigation = useNavigation();

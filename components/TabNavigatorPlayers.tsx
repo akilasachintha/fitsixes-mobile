@@ -1,14 +1,13 @@
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import MatchesUpcomingScreen from "../screens/MatchesUpcomingScreen";
-import MatchesLiveScreen from "../screens/MatchesLiveScreen";
-import MatchesCompletedScreen from "../screens/MatchesCompletedScreen";
 import {getFocusedRouteNameFromRoute} from "@react-navigation/native";
 import {StyleProp, TextStyle} from "react-native";
 import {THEME} from "../config/theme";
+import TeamOneCard from "./TeamOneCard";
+import TeamTwoCard from "./TeamTwoCard";
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function TabNavigator({route}: any) {
+export default function TabNavigatorPlayers({route}: any) {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'UpcomingTab';
 
     const getTabBarLabelStyle = (tabName: string): StyleProp<TextStyle> => {
@@ -48,17 +47,13 @@ export default function TabNavigator({route}: any) {
                 },
             }}
         >
-            <Tab.Screen name="UpcomingTab" component={MatchesUpcomingScreen} options={{
+            <Tab.Screen name="UpcomingTab" component={TeamOneCard} options={{
                 tabBarLabel: "Upcoming",
                 tabBarLabelStyle: getTabBarLabelStyle("UpcomingTab"),
             }}/>
-            <Tab.Screen name="LiveTab" component={MatchesLiveScreen} options={{
+            <Tab.Screen name="LiveTab" component={TeamTwoCard} options={{
                 tabBarLabel: "Live",
                 tabBarLabelStyle: getTabBarLabelStyle("LiveTab"),
-            }}/>
-            <Tab.Screen name="CompletedTab" component={MatchesCompletedScreen} options={{
-                tabBarLabel: "Completed",
-                tabBarLabelStyle: getTabBarLabelStyle("CompletedTab"),
             }}/>
         </Tab.Navigator>
     );

@@ -1,11 +1,11 @@
 import {SafeAreaView, StyleSheet, Text, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
-import ImageHolder from "@components/ImageHolder";
-import HeaderText from "@components/HeaderText";
-import TextInputField from "@components/TextInputField";
-import Button from "@components/Button";
-import {THEME} from "@constants/THEME";
-import {PATHS} from "@constants/PATHS";
+import ImageHolder from "../components/ImageHolder";
+import HeaderText from "../components/HeaderText";
+import TextInputField from "../components/TextInputField";
+import Button from "../components/Button";
+import {THEME} from "../config/theme";
+import {PATHS} from "../config/paths";
 
 export default function ForgetPasswordScreen() {
     const navigation = useNavigation();

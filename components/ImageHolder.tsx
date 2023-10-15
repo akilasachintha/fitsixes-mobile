@@ -1,6 +1,6 @@
 import React from "react";
 import {Image, ImageSourcePropType, StyleSheet, View} from "react-native";
-import {THEME} from "@constants/THEME";
+import {THEME} from "../config/theme";
 
 interface ImageHolderProps {
     source: ImageSourcePropType;
