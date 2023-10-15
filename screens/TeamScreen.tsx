@@ -2,61 +2,60 @@ import {FlatList, SafeAreaView, StyleSheet, TouchableOpacity, View} from "react-
 import React, {useEffect, useState} from 'react';
 import TeamCard from "@components/TeamCard";
 import {useNavigation} from "@react-navigation/native";
-import {PATHS} from "@constants/PATHS";
 import {UseTeamsService} from "@services/useTeamsService";
 
-const teamList = [
-    {
-        id: 1,
-        name: 'Creative Software',
-        src: PATHS.IMAGES.NO_IMAGE
-    },
-    {
-        id: 2,
-        name: 'WSO2',
-        src: PATHS.IMAGES.NO_IMAGE
-    },
-    {
-        id: 3,
-        name: 'MIT',
-        src: PATHS.IMAGES.NO_IMAGE
-    },
-    {
-        id: 4,
-        name: 'DirectFN',
-        src: PATHS.IMAGES.NO_IMAGE
-    },
-    {
-        id: 5,
-        name: 'Cambio Software',
-        src: PATHS.IMAGES.NO_IMAGE
-    },
-    {
-        id: 6,
-        name: 'IFS',
-        src: PATHS.IMAGES.NO_IMAGE
-    },
-    {
-        id: 7,
-        name: 'CodeGen',
-        src: PATHS.IMAGES.NO_IMAGE
-    },
-    {
-        id: 8,
-        name: 'Virtusa',
-        src: PATHS.IMAGES.NO_IMAGE
-    },
-    {
-        id: 9,
-        name: 'Sysco LABS',
-        src: PATHS.IMAGES.NO_IMAGE
-    },
-    {
-        id: 10,
-        name: '99X Technology',
-        src: PATHS.IMAGES.NO_IMAGE
-    }
-]
+// const teamList = [
+//     {
+//         id: 1,
+//         name: 'Creative Software',
+//         src: PATHS.IMAGES.NO_IMAGE
+//     },
+//     {
+//         id: 2,
+//         name: 'WSO2',
+//         src: PATHS.IMAGES.NO_IMAGE
+//     },
+//     {
+//         id: 3,
+//         name: 'MIT',
+//         src: PATHS.IMAGES.NO_IMAGE
+//     },
+//     {
+//         id: 4,
+//         name: 'DirectFN',
+//         src: PATHS.IMAGES.NO_IMAGE
+//     },
+//     {
+//         id: 5,
+//         name: 'Cambio Software',
+//         src: PATHS.IMAGES.NO_IMAGE
+//     },
+//     {
+//         id: 6,
+//         name: 'IFS',
+//         src: PATHS.IMAGES.NO_IMAGE
+//     },
+//     {
+//         id: 7,
+//         name: 'CodeGen',
+//         src: PATHS.IMAGES.NO_IMAGE
+//     },
+//     {
+//         id: 8,
+//         name: 'Virtusa',
+//         src: PATHS.IMAGES.NO_IMAGE
+//     },
+//     {
+//         id: 9,
+//         name: 'Sysco LABS',
+//         src: PATHS.IMAGES.NO_IMAGE
+//     },
+//     {
+//         id: 10,
+//         name: '99X Technology',
+//         src: PATHS.IMAGES.NO_IMAGE
+//     }
+// ]
 
 export default function TeamScreen() {
     const navigation = useNavigation();
@@ -115,7 +114,6 @@ export default function TeamScreen() {
         </SafeAreaView>
     );
 }
-
 
 const styles = StyleSheet.create({
     container: {
