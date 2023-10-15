@@ -7,7 +7,6 @@ import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
 import {TMatch} from "@screens/MatchesLiveScreen";
 
 export default function MatchesCompletedScreen() {
-
     const [completedMatches, setCompletedMatches] = useState<TMatch[]>([]);
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
@@ -47,7 +46,7 @@ export default function MatchesCompletedScreen() {
                     return (
                         <MatchDetailCard
                             key={index}
-                            matchStatus={MatchStatus.Upcoming}
+                            matchStatus={MatchStatus.Completed}
                             team1={item.team1}
                             team2={item.team2}
                             team1Image={PATHS.IMAGES.Team_1}

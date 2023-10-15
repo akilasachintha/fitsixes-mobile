@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {useAuth} from "@context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
 import ScoreComponentCoordinator from "@components/coordinator/ScoreComponentCoordinator";
+import ScoreUpdate from "@components/coordinator/ScoreUpdate";
 
 export default function ScoreboardCoordinatorScreen(props: any) {
     type MatchDetailsType = {
@@ -137,45 +138,7 @@ export default function ScoreboardCoordinatorScreen(props: any) {
                                                        matchId={props.route.params.data}
                                                        teamName={TEAM_1}
                                                        details2={matchDetails?.team2}/>
-                            <View>
-                                <Text style={styles.scoreUpdateText}>Score Update</Text>
-                                <View style={styles.marks}>
-                                    <View style={styles.marksSub}>
-                                        <TouchableOpacity style={styles.marksComponent}>
-                                            <Text style={styles.marksText}>1</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={styles.marksComponent}>
-                                            <Text style={styles.marksText}>2</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={styles.marksComponent}>
-                                            <Text style={styles.marksText}>3</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={styles.marksComponent}>
-                                            <Text style={styles.marksText}>4</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={styles.marksComponent}>
-                                            <Text style={styles.marksText}>5</Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                    <View style={styles.marksSub}>
-                                        <TouchableOpacity style={styles.marksComponent}>
-                                            <Text style={styles.marksText}>6</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={styles.marksComponent}>
-                                            <Text style={styles.marksText}>WD</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={styles.marksComponent}>
-                                            <Text style={styles.marksText}>NB</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={styles.marksComponent}>
-                                            <Text style={styles.marksText}>LB</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={styles.marksComponent}>
-                                            <Text style={styles.marksTextRed}>W</Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                            </View>
+                            <ScoreUpdate/>
                         </View>
                     )
                 }
@@ -254,63 +217,4 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 10
     },
-    scoreUpdateText: {
-        color: THEME.COLORS.primary,
-        textAlign: 'center',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-    marks: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-        marginVertical: "2%",
-        marginHorizontal: "7%",
-        padding: "2%",
-        backgroundColor: THEME.COLORS.white,
-        borderRadius: 30,
-        shadowColor: THEME.COLORS.primary,
-        shadowOffset: {
-            width: 0,
-            height: 10
-        },
-        shadowOpacity: 0.9,
-        shadowRadius: 3.5,
-        elevation: 10,
-    },
-    marksSub: {
-        width: "100%",
-        flexDirection: "row",
-        justifyContent: "space-evenly",
-        alignItems: "center",
-    },
-    marksComponent: {
-        height: 40,
-        width: 40,
-        borderRadius: 30,
-        backgroundColor: THEME.COLORS.white,
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-        margin: "1%",
-        shadowColor: THEME.COLORS.primary,
-        shadowOffset: {
-            width: 0,
-            height: 10
-        },
-        shadowOpacity: 0.9,
-        shadowRadius: 3.5,
-        elevation: 10,
-    },
-    marksText: {
-        color: THEME.COLORS.primary,
-        textAlign: 'center',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-    marksTextRed: {
-        color: THEME.COLORS.red,
-        textAlign: 'center',
-        fontSize: 18,
-        fontWeight: 'bold',
-    }
 });

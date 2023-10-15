@@ -5,19 +5,19 @@ import {THEME} from "@constants/THEME";
 import {PATHS} from "@constants/PATHS";
 
 interface PlayerDetailsCardProps {
+    key: number;
     url: ImageSourcePropType;
     playerName: String;
-    playerRole: String;
 }
 
 const PlayerDetailsCard: React.FC<PlayerDetailsCardProps> = ({
+                                                                 key,
     url,
     playerName,
-    playerRole,
 
 }) => {
     return (
-        <View style={styles.playerCardContainer}>
+        <View key={key} style={styles.playerCardContainer}>
             <View style={styles.playerCardSubContainer}>
                 <View style={styles.playerProfileContainer}>
                     <ImageHolder
@@ -30,9 +30,6 @@ const PlayerDetailsCard: React.FC<PlayerDetailsCardProps> = ({
                 <View style={styles.playerDetailsContainer}>
                     <Text numberOfLines={1} style={styles.playerName}>
                         {playerName}
-                    </Text>
-                    <Text numberOfLines={1} style={styles.playerName}>
-                        {playerRole}
                     </Text>
                 </View>
                 <View style={styles.logoContainer}>

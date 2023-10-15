@@ -12,7 +12,7 @@ interface TeamCardProps {
 
 const TeamCard: React.FC<TeamCardProps> = ({ teamName, source = require('../assets/no-image.jpg'), index }) => {
     return (
-        <View style={styles.cardContainer}>
+        <View key={index} style={styles.cardContainer}>
             <View>
                 <Image
                     source={PATHS.IMAGES.FIT_SIXES_LOGO}
