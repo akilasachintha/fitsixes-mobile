@@ -21,23 +21,31 @@ export const useAuthService = () => {
     const loginService = async (email: string, password: string) => {
         try {
             const deviceToken = await storeToken();
-            const data: LoginData = {
-                email,
-                password,
-                project_code: PROJECT_CODE,
-                device_token: deviceToken,
-            }
-
-            const {data: responseData} = await axiosInstanceForI2Auth.post('/userLogin', data);
-            const {data: {type, id, token, response}} = responseData;
-
-            console.log('Login success:', responseData.data);
-
-            if (response) {
-                showToast(response);
+            if (deviceToken === undefined) {
+                showToast("Failed to get device token");
+                return;
             } else {
-                login(type, id, token);
+                console.log('deviceToken:', deviceToken);
+                const data: LoginData = {
+                    email,
+                    password,
+                    project_code: PROJECT_CODE,
+                    device_token: deviceToken.toString(),
+                }
+
+                const {data: responseData} = await axiosInstanceForI2Auth.post('/userLogin', data);
+                const {data: {type, id, token, response}} = responseData;
+
+                showToast("Token" + deviceToken.toString());
+                console.log('Login success:', responseData.data);
+
+                if (response) {
+                    showToast(response);
+                } else {
+                    login(type, id, token);
+                }
             }
+
         } catch (error) {
             console.error('Login failed:', error);
         }

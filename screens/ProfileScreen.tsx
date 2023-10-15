@@ -1,4 +1,4 @@
-import {Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
 import ImageHolder from "@components/ImageHolder";
 import {PATHS} from "@constants/PATHS";
@@ -40,58 +40,60 @@ const ProfileScreen = () => {
 
     return (
         <SafeAreaView>
-            <View style={styles.profileImageView}>
-                <ImageHolder
-                    source={PATHS.IMAGES.NO_IMAGE}
-                    size={150}
-                    borderColor="#13FAF8"
-                    borderWidth={2}
-                />
-            </View>
-            <Text style={styles.teameNameText}>
-                Team Name
-            </Text>
-            <View style={styles.profileDetailsContent}>
-                <View style={styles.profileDetailsSubContent}>
-                    <View style={styles.iconView}>
-                        <View style={styles.iconContent}>
-                            <Image source={PATHS.IMAGES.EMAIL_ICON} style={styles.image}/>
-                        </View>
-                    </View>
-                    <View style={styles.inputFieldContent}>
-                        <Text style={styles.textView}>Email</Text>
-                        <Text style={styles.inputField}>{"abc@gmail.com"}</Text>
-                    </View>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.profileImageView}>
+                    <ImageHolder
+                        source={PATHS.IMAGES.NO_IMAGE}
+                        size={150}
+                        borderColor="#13FAF8"
+                        borderWidth={2}
+                    />
                 </View>
-                <View style={styles.profileDetailsSubContent}>
-                    <View style={styles.iconView}>
-                        <View style={styles.iconContent}>
-                            <Image source={PATHS.IMAGES.PASSWORD_ICON} style={styles.image}/>
+                <Text style={styles.teameNameText}>
+                    Team Name
+                </Text>
+                <View style={styles.profileDetailsContent}>
+                    <View style={styles.profileDetailsSubContent}>
+                        <View style={styles.iconView}>
+                            <View style={styles.iconContent}>
+                                <Image source={PATHS.IMAGES.EMAIL_ICON} style={styles.image}/>
+                            </View>
+                        </View>
+                        <View style={styles.inputFieldContent}>
+                            <Text style={styles.textView}>Email</Text>
+                            <Text style={styles.inputField}>{"abc@gmail.com"}</Text>
                         </View>
                     </View>
-                    <View style={styles.inputFieldContent}>
-                        <Text style={styles.textView}>Password</Text>
-                        <View style={styles.inputView}>
-                            <Text style={styles.inputField}>{"password"}</Text>
+                    <View style={styles.profileDetailsSubContent}>
+                        <View style={styles.iconView}>
+                            <View style={styles.iconContent}>
+                                <Image source={PATHS.IMAGES.PASSWORD_ICON} style={styles.image}/>
+                            </View>
+                        </View>
+                        <View style={styles.inputFieldContent}>
+                            <Text style={styles.textView}>Password</Text>
+                            <View style={styles.inputView}>
+                                <Text style={styles.inputField}>{"password"}</Text>
                                 <EyeIcon
                                     onPress={() => setIsPasswordVisible(!isPasswordVisible)}
                                     visible={isPasswordVisible}
                                 />
+                            </View>
                         </View>
                     </View>
-                </View>
-                <View style={styles.profileDetailsSubContent}>
-                    <View style={styles.iconView}>
-                        <View style={styles.iconContent}>
-                            <Image source={PATHS.IMAGES.LOGOUT_ICON} style={styles.image}/>
+                    <View style={styles.profileDetailsSubContent}>
+                        <View style={styles.iconView}>
+                            <View style={styles.iconContent}>
+                                <Image source={PATHS.IMAGES.LOGOUT_ICON} style={styles.image}/>
+                            </View>
                         </View>
+                        <TouchableOpacity style={styles.inputFieldContent}
+                                          onPress={handleLogout}>
+                            <Text style={styles.textView}>Logout</Text>
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.inputFieldContent}
-                                      onPress={handleLogout}>
-                        <Text style={styles.textView}>Logout</Text>
-                    </TouchableOpacity>
                 </View>
-            </View>
+            </ScrollView>
         </SafeAreaView>
     );
 }
@@ -100,8 +102,6 @@ export default ProfileScreen
 
 const styles = StyleSheet.create({
     profileImageView: {
-        height: 200,
-        width: 200,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20,

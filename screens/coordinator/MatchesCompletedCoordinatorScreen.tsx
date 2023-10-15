@@ -6,6 +6,7 @@ import {useAuth} from "@context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
 import {TMatch} from "@screens/MatchesLiveScreen";
 import MatchDetailCoordinatorCard from "@components/coordinator/MatchDetailCoordinatorCard";
+import {useFocusEffect} from "@react-navigation/native";
 
 export default function MatchesCompletedCoordinatorScreen() {
 
@@ -30,6 +31,11 @@ export default function MatchesCompletedCoordinatorScreen() {
         fetchCompletedMatches();
     }, []);
 
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchCompletedMatches();
+        }, []))
+
     const handleRefresh = () => {
         fetchCompletedMatches();
     };
@@ -48,7 +54,7 @@ export default function MatchesCompletedCoordinatorScreen() {
                     return (
                         <MatchDetailCoordinatorCard
                             key={index}
-                            matchStatus={MatchStatus.Upcoming}
+                            matchStatus={MatchStatus.Completed}
                             team1={item.team1}
                             team2={item.team2}
                             team1Image={PATHS.IMAGES.Team_1}

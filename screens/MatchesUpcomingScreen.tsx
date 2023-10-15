@@ -4,6 +4,7 @@ import MatchDetailCard, {MatchStatus} from "@components/MatchDetailCard";
 import {PATHS} from "@constants/PATHS";
 import {useAuth} from "@context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
+import {useFocusEffect} from "@react-navigation/native";
 
 interface Match {
     team1: string;
@@ -32,6 +33,11 @@ export default function MatchesUpcomingScreen() {
     useEffect(() => {
         fetchUpcomingMatches();
     }, []);
+
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchUpcomingMatches();
+        }, []));
 
     const handleRefresh = () => {
         fetchUpcomingMatches();

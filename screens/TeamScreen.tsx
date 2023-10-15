@@ -1,4 +1,4 @@
-import {FlatList, SafeAreaView, StyleSheet, TouchableOpacity, View} from "react-native";
+import {FlatList, RefreshControl, SafeAreaView, StyleSheet, TouchableOpacity, View} from "react-native";
 import React, {useEffect, useState} from 'react';
 import TeamCard from "@components/TeamCard";
 import {useNavigation} from "@react-navigation/native";
@@ -10,7 +10,6 @@ export default function TeamScreen() {
     const {getTeams} = UseTeamsService()
 
     useEffect(() => {
-        // Call the API function when the component mounts
         getTeams()
             .then((response) => {
                 setApiData(response.companies);
@@ -38,11 +37,28 @@ export default function TeamScreen() {
         )
     };
 
+    const handleRefresh = () => {
+        getTeams()
+            .then((response) => {
+                setApiData(response.companies);
+
+            })
+            .catch((error) => {
+                console.error('Error fetching response:', error);
+            });
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
                 showsVerticalScrollIndicator={false}
                 style={styles.flatList}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={false}
+                        onRefresh={handleRefresh}
+                    />
+                }
                 centerContent={true}
                 numColumns={2}
                 columnWrapperStyle={styles.columnWrapperStyle}

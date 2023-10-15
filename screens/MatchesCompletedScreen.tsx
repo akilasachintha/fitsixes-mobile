@@ -5,6 +5,7 @@ import React, {useEffect, useState} from "react";
 import {useAuth} from "@context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
 import {TMatch} from "@screens/MatchesLiveScreen";
+import {useFocusEffect} from "@react-navigation/native";
 
 export default function MatchesCompletedScreen() {
     const [completedMatches, setCompletedMatches] = useState<TMatch[]>([]);
@@ -27,6 +28,11 @@ export default function MatchesCompletedScreen() {
     useEffect(() => {
         fetchCompletedMatches();
     }, []);
+
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchCompletedMatches();
+        }, []));
 
     const handleRefresh = () => {
         fetchCompletedMatches();

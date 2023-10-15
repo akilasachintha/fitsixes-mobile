@@ -1,4 +1,3 @@
-import TeamNamesCard from "@components/TeamNamesCard";
 import {RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {THEME} from "@constants/THEME";
 import {useEffect, useState} from "react";
@@ -6,6 +5,8 @@ import {useAuth} from "@context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
 import ScoreComponentCoordinator from "@components/coordinator/ScoreComponentCoordinator";
 import ScoreUpdate from "@components/coordinator/ScoreUpdate";
+import {MatchStatus} from "@components/MatchDetailCard";
+import TeamNamesCardCoordinator from "@components/coordinator/TeamNamesCardCoordinator";
 
 export default function ScoreboardCoordinatorScreen(props: any) {
     type MatchDetailsType = {
@@ -67,6 +68,7 @@ export default function ScoreboardCoordinatorScreen(props: any) {
     const TEAM_2 = props.route.params.team_2;
     const tossWinner = props.route.params.tossWinner;
     const firstBat = props.route.params.first;
+    const matchStatus = props.route.params.matchStatus;
 
     const fetchMatchDetails = async () => {
         let url = `match/${props.route.params.data}`;
@@ -102,7 +104,14 @@ export default function ScoreboardCoordinatorScreen(props: any) {
                             />
                         }
             >
-                <TeamNamesCard teamName1={TEAM_1} teamName2={TEAM_2}/>
+                {
+                    matchStatus === MatchStatus.Live && (
+                        <View style={styles.titleContainer}>
+                            <Text style={styles.titleText}>{matchStatus}</Text>
+                        </View>
+                    )
+                }
+                <TeamNamesCardCoordinator teamName1={TEAM_1} teamName2={TEAM_2}/>
                 {tossWinner === firstBat ? (
                     <Text style={styles.description}>{`${tossWinner} Won the toss and elected to bat.`}</Text>
                 ) : (
@@ -134,21 +143,45 @@ export default function ScoreboardCoordinatorScreen(props: any) {
                 {
                     selectedTab === 0 && (
                         <View>
-                            <ScoreComponentCoordinator details={matchDetails?.team1}
-                                                       matchId={props.route.params.data}
-                                                       teamName={TEAM_1}
-                                                       details2={matchDetails?.team2}/>
-                            <ScoreUpdate/>
+                            {
+                                matchStatus === MatchStatus.Live && (
+                                    <ScoreUpdate matchId={props.route.params.data}
+                                                 team1Name={TEAM_1}
+                                                 team2Name={TEAM_2}
+                                    />
+                                )
+                            }
+                            {
+                                matchStatus === MatchStatus.Completed && (
+                                    <ScoreComponentCoordinator details={matchDetails?.team1}
+                                                               matchId={props.route.params.data}
+                                                               teamName={TEAM_1}
+                                                               details2={matchDetails?.team2}/>
+                                )
+
+                            }
                         </View>
                     )
                 }
                 {
                     selectedTab === 1 && (
                         <View>
-                            <ScoreComponentCoordinator details={matchDetails.team2}
-                                                       matchId={props.route.params.data}
-                                                       teamName={TEAM_2}
-                                                       details2={matchDetails.team1}/>
+                            {
+                                matchStatus === MatchStatus.Live && (
+                                    <ScoreUpdate matchId={props.route.params.data}
+                                                 team1Name={TEAM_1}
+                                                 team2Name={TEAM_2}
+                                    />
+                                )
+                            }
+                            {
+                                matchStatus === MatchStatus.Completed && (
+                                    <ScoreComponentCoordinator details={matchDetails.team2}
+                                                               matchId={props.route.params.data}
+                                                               teamName={TEAM_2}
+                                                               details2={matchDetails.team1}/>
+                                )
+                            }
                         </View>
                     )
                 }
@@ -162,7 +195,19 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        margin: "2%"
+    },
+    titleContainer: {
+        backgroundColor: THEME.COLORS.green,
+        borderRadius: 30,
+        marginHorizontal: "8%",
+        marginBottom: "4%",
+    },
+    titleText: {
+        fontSize: 14,
+        fontWeight: "bold",
+        color: THEME.COLORS.white,
+        textAlign: "center",
+        paddingVertical: "2%",
     },
     mainContainer: {
         marginHorizontal: "14%",
@@ -170,7 +215,7 @@ const styles = StyleSheet.create({
         marginBottom: "6%",
         borderRadius: 30,
         backgroundColor: THEME.COLORS.white,
-        shadowColor: THEME.COLORS.primary,
+        shadowColor: THEME.COLORS.green,
         shadowOffset: {
             width: 0,
             height: 10
@@ -183,13 +228,13 @@ const styles = StyleSheet.create({
         width: "50%",
         paddingVertical: "4%",
         borderRadius: 30,
-        backgroundColor: THEME.COLORS.primary,
+        backgroundColor: THEME.COLORS.green,
     },
     rightContainerText: {
         width: "50%",
         paddingVertical: "4%",
         borderRadius: 30,
-        backgroundColor: THEME.COLORS.primary,
+        backgroundColor: THEME.COLORS.green,
     },
     leftContainerNotText: {
         width: "50%",
@@ -202,7 +247,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     leftNotText: {
-        color: THEME.COLORS.primary,
+        color: THEME.COLORS.green,
         textAlign: "center",
         fontWeight: "bold",
     },
@@ -213,7 +258,7 @@ const styles = StyleSheet.create({
     },
     description: {
         fontSize: 15,
-        color: THEME.COLORS.primary,
+        color: THEME.COLORS.green,
         textAlign: 'center',
         marginBottom: 10
     },

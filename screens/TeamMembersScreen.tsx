@@ -40,7 +40,5 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginVertical: 4,
     },
-    flatList: {
-        // Add any specific styling for your FlatList here
-    },
+    flatList: {},
 });

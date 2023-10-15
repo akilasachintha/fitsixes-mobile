@@ -31,13 +31,12 @@ interface ScoreCardProps {
     };
 }
 
-const ScoreComponentCoordinator: React.FC<ScoreCardProps> = ({matchId, details, teamName, details2}) => {
+const ScoreComponentCoordinator: React.FC<ScoreCardProps> = ({details, teamName, details2}) => {
     const calculateRunRate = (totalRuns: number, totalOvers: number): number => {
         if (totalOvers === 0) {
             return 0;
         }
         const runRate = totalRuns / totalOvers;
-        console.log(matchId, runRate);
         return Math.round(runRate * 100) / 100;
     };
 
@@ -84,10 +83,10 @@ const styles = StyleSheet.create({
     container: {
         alignSelf: 'center',
         borderRadius: 32,
-        backgroundColor: THEME.COLORS.primary,
+        backgroundColor: THEME.COLORS.green,
         elevation: 5,
         width: "90%",
-        marginBottom: "5%",
+        marginBottom: "10%",
     },
     scoreDetails: {
         flexDirection: 'row',

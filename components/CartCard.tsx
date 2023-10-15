@@ -4,22 +4,48 @@ import {THEME} from "@constants/THEME";
 import ImageHolder from "@components/ImageHolder";
 import {PATHS} from "@constants/PATHS";
 import {Ionicons} from "@expo/vector-icons";
-
+import {useAuth} from "@context/AuthContext";
+import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
+import {useToast} from "@context/ToastContext";
 
 interface CartCardProps {
     url: ImageSourcePropType;
     text: string
 }
 
-
 const CartCard: React.FC<CartCardProps> = ({
     url,
     text,
 }) => {
     const [quantity, setQuantity] = useState<number>(1);
+    const authContext = useAuth();
+    const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
+    const {showToast} = useToast();
 
-    const handleConfirmButton = () => {
-        console.log('======================Confirm Order===================')
+    const handleConfirmButton = async () => {
+        try {
+            console.log("Confirm Button Pressed " + text);
+
+            let url = `request`;
+            const data = {
+                type: text.toLowerCase(),
+                amount: quantity,
+            }
+
+            console.log("Data: ", data);
+
+            const response = await axiosInstanceForFitSixes.post(`${url}`, data);
+            if (response && response.data && response.data.state) {
+                console.log("Order Placed Successfully");
+                showToast("Order Placed Successfully");
+            } else {
+                console.log("Order Placed Failed");
+                showToast("Foods are not available. Please try again later");
+            }
+        } catch (e) {
+            console.log(e);
+            showToast("Foods are not available. Please try again later");
+        }
     }
 
     const handleQuantityChangeIcon = (iconName: String) => {
@@ -82,19 +108,17 @@ export default CartCard
 
 const styles = StyleSheet.create({
     mainContainer: {
-        width: 373,
-        height: 221,
         backgroundColor: THEME.COLORS.primary,
         borderTopLeftRadius: 50,
         borderBottomRightRadius: 50,
         alignSelf: 'center',
-        marginBottom: 35,
+        marginHorizontal: "5%",
+        marginBottom: "5%",
         elevation: 10,
         marginTop: 5
     },
     subContainer: {
         width: '100%',
-        height: '60%',
         borderTopLeftRadius: 50,
         flexDirection: 'row'
     },
@@ -152,7 +176,8 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         marginVertical: "5%",
-        height: 38,
+        paddingVertical: "2%",
+        paddingHorizontal: "10%"
     },
     buttonText: {
         color: THEME.COLORS.primary,

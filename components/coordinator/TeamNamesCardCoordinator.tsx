@@ -11,12 +11,12 @@ interface TeamNamesProps {
     teamSource2?: ImageSourcePropType;
 }
 
-const TeamNamesCard: React.FC<TeamNamesProps> = ({teamName1, teamName2, teamSource1 = PATHS.IMAGES.NO_IMAGE, teamSource2 = PATHS.IMAGES.NO_IMAGE}) => {
+const TeamNamesCardCoordinator: React.FC<TeamNamesProps> = ({teamName1, teamName2, teamSource1 = PATHS.IMAGES.NO_IMAGE, teamSource2 = PATHS.IMAGES.NO_IMAGE}) => {
     return (
         <View style={styles.cardContainer}>
             <View style={styles.cardSecondContainer}>
                 <View style={styles.teamDetails}>
-                    <ImageHolder source={teamSource1} size={70} />
+                    <ImageHolder source={teamSource1} size={70}/>
                     <View style={styles.teamNameContainer}>
                         <Text style={styles.teamName} numberOfLines={3} ellipsizeMode="tail">
                             {teamName1.length > 20 ? `${teamName1.slice(0, 30)}...` : teamName1}
@@ -28,7 +28,7 @@ const TeamNamesCard: React.FC<TeamNamesProps> = ({teamName1, teamName2, teamSour
                     <Image source={PATHS.IMAGES.FIT_SIXES_LOGO} style={styles.image}/>
                 </View>
                 <View style={styles.teamDetails}>
-                    <ImageHolder source={teamSource2} size={70} />
+                    <ImageHolder source={teamSource2} size={70}/>
                     <View style={styles.teamNameContainer}>
                         <Text style={styles.teamName} numberOfLines={3} ellipsizeMode="tail">
                             {teamName2.length > 20 ? `${teamName2.slice(0, 30)}...` : teamName2}
@@ -41,13 +41,13 @@ const TeamNamesCard: React.FC<TeamNamesProps> = ({teamName1, teamName2, teamSour
     )
 }
 
-export default TeamNamesCard;
+export default TeamNamesCardCoordinator;
 
 const styles = StyleSheet.create({
     cardContainer: {
         alignSelf: 'center',
         borderRadius: 32,
-        backgroundColor: THEME.COLORS.primary,
+        backgroundColor: THEME.COLORS.green,
         elevation: 5,
         width: "90%",
         height: 150,

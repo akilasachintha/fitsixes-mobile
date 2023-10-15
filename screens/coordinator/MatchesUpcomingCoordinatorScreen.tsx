@@ -5,11 +5,13 @@ import {PATHS} from "@constants/PATHS";
 import {useAuth} from "@context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
 import MatchDetailCoordinatorCard from "@components/coordinator/MatchDetailCoordinatorCard";
+import {useFocusEffect} from "@react-navigation/native";
 
 interface Match {
     team1: string;
     team2: string;
     match_no: number;
+    id: string;
 }
 
 export default function MatchesUpcomingCoordinatorScreen() {
@@ -38,6 +40,11 @@ export default function MatchesUpcomingCoordinatorScreen() {
         fetchUpcomingMatches();
     };
 
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchUpcomingMatches();
+        }, []));
+
     return (
         <SafeAreaView>
             <ScrollView
@@ -58,6 +65,7 @@ export default function MatchesUpcomingCoordinatorScreen() {
                         team1Image={PATHS.IMAGES.Team_1}
                         team2Image={PATHS.IMAGES.Team_2}
                         matchNo={item.match_no}
+                        matchId={item.id}
                     />
                 ))}
             </ScrollView>

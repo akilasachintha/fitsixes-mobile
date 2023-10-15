@@ -5,5 +5,6 @@ export const THEME = {
         border: 'rgba(19, 250, 248, 1)',
         gray: '#838181',
         red: '#FF0000',
+        green: '#133f02',
     }
 }

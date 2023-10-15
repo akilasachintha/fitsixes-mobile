@@ -13,7 +13,7 @@ export default function TabNavigatorCoordinator({route}: any) {
 
     const getTabBarLabelStyle = (tabName: string): StyleProp<TextStyle> => {
         return {
-            color: routeName === tabName ? THEME.COLORS.white : THEME.COLORS.primary,
+            color: routeName === tabName ? THEME.COLORS.white : THEME.COLORS.green,
             fontSize: 12,
             fontWeight: "bold",
         };
@@ -29,7 +29,7 @@ export default function TabNavigatorCoordinator({route}: any) {
                     backgroundColor: THEME.COLORS.white,
                     marginHorizontal: "8%",
                     borderRadius: 30,
-                    shadowColor: THEME.COLORS.primary,
+                    shadowColor: THEME.COLORS.green,
                     shadowOffset: {
                         width: 0,
                         height: 10
@@ -40,7 +40,7 @@ export default function TabNavigatorCoordinator({route}: any) {
                     paddingVertical: "0.5%",
                 },
                 tabBarIndicatorStyle: {
-                    backgroundColor: THEME.COLORS.primary,
+                    backgroundColor: THEME.COLORS.green,
                     height: "100%",
                     borderRadius: 30,
                     borderWidth: 5,
