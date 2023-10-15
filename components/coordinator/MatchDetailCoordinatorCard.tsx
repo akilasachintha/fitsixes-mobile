@@ -1,5 +1,5 @@
 import {Image, ImageBackground, ImageProps, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import ImageHolder from "./ImageHolder";
+import ImageHolder from "../ImageHolder";
 import {useNavigation} from "@react-navigation/native";
 import {THEME} from "@constants/THEME";
 import {PATHS} from "@constants/PATHS";

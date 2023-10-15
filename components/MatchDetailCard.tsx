@@ -1,8 +1,8 @@
-import { Image, ImageBackground, ImageProps, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {Image, ImageBackground, ImageProps, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import ImageHolder from "./ImageHolder";
-import { useNavigation } from "@react-navigation/native";
-import { THEME } from "@constants/THEME";
-import { PATHS } from "@constants/PATHS";
+import {useNavigation} from "@react-navigation/native";
+import {THEME} from "@constants/THEME";
+import {PATHS} from "@constants/PATHS";
 
 interface MatchDetailCardProps {
     matchNo: number;
@@ -47,7 +47,7 @@ export default function MatchDetailCard({
     const handleMatchCardClick = () => {
         if (matchStatus !== "Upcoming") {
             // @ts-ignore
-            navigation.navigate("HomeTabScoreboardStack", { data: matchId, team_1: team1, team_2: team2, tossWinner: tosWinner, first: firstBat });
+            navigation.navigate("HomeTabScoreboardStack", {data: matchId, team_1: team1, team_2: team2, tossWinner: tosWinner, first: firstBat});
         }
     }
 

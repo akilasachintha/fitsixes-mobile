@@ -1,9 +1,9 @@
 import {FlatList, SafeAreaView, StyleSheet, TouchableOpacity, View} from "react-native";
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import TeamCard from "@components/TeamCard";
 import {useNavigation} from "@react-navigation/native";
 import {PATHS} from "@constants/PATHS";
-import { Teams } from "../services/Teams";
+import {UseTeamsService} from "@services/useTeamsService";
 
 const teamList = [
     {
@@ -63,7 +63,7 @@ export default function TeamScreen() {
 
     const [apiData, setApiData] = useState<any>(null);
 
-    const {getTeams} = Teams()
+    const {getTeams} = UseTeamsService()
 
   useEffect(() => {
     // Call the API function when the component mounts

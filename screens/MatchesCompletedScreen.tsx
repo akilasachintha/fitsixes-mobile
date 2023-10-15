@@ -1,5 +1,5 @@
 import {RefreshControl, SafeAreaView, ScrollView} from "react-native";
-import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
+import MatchDetailCard, {MatchStatus} from "@components/MatchDetailCard";
 import {PATHS} from "@constants/PATHS";
 import React, {useEffect, useState} from "react";
 import {useAuth} from "@context/AuthContext";

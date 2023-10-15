@@ -13,13 +13,13 @@ import StackNavigatorHome from "@navigation/StackNavigatorHome";
 import StackNavigatorTeam from "@navigation/StackNavigatorTeam";
 
 import HandleMatchesScreen from "@screens/HandleMatchesScreen";
-import HandleMatchDetailsScreen from "@screens/HandleMatchDetailsScreen";
 import HandleTeamCoordinatorScreen from "@screens/HandleTeamCoordinatorScreen";
 import ProfileScreen from "@screens/ProfileScreen";
 import MainScreen from "@screens/MainScreen";
 import CartScreen from "@screens/CartScreen";
 
 import TopHeaderBar from "@components/TopHeaderBar";
+import StackNavigatorCoordinator from "@navigation/StackNavigatorCoordinator";
 
 const Tab = createBottomTabNavigator();
 
@@ -222,7 +222,7 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
             }
             {
                 isLoggedIn && role === ROLES.PITCH_COORDINATOR &&
-                <Tab.Screen name="HandleMatchDetailsTab" component={HandleMatchDetailsScreen}/>
+                <Tab.Screen name="HandleMatchDetailsTab" component={StackNavigatorCoordinator}/>
             }
             {
                 isLoggedIn && role === ROLES.PITCH_COORDINATOR &&

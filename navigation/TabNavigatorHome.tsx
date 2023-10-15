@@ -8,7 +8,7 @@ import {THEME} from "@constants/THEME";
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function TabNavigator({route}: any) {
+export default function TabNavigatorHome({route}: any) {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'UpcomingTab';
 
     const getTabBarLabelStyle = (tabName: string): StyleProp<TextStyle> => {
