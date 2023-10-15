@@ -1,6 +1,6 @@
+import ScoreboardScreen from "../screens/ScoreboardScreen";
+import TabNavigator from "./TabNavigator";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import ScoreboardScreen from "@screens/ScoreboardScreen";
-import TabNavigator from "@navigation/TabNavigator";
 
 const Stack = createNativeStackNavigator();
 

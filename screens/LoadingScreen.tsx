@@ -1,7 +1,7 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
-import {useLoadingContext} from '@context/LoadingContext';
-import {THEME} from "@constants/THEME";
+import {useLoadingContext} from '../context/LoadingContext';
+import {THEME} from "../config/theme";
 
 const LoadingScreen: React.FC = () => {
     const {loading} = useLoadingContext();

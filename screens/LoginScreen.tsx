@@ -4,13 +4,13 @@ import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 
-import ImageHolder from '@components/ImageHolder';
-import HeaderText from '@components/HeaderText';
-import Button from '@components/Button';
-import {THEME} from '@constants/THEME';
-import {PATHS} from '@constants/PATHS';
-import FormFields, {IFormField} from "@components/FormFields";
-import {useAuthService} from "@services/useAuthService";
+import ImageHolder from '../components/ImageHolder';
+import HeaderText from '../components/HeaderText';
+import Button from '../components/Button';
+import {THEME} from '../config/theme';
+import {PATHS} from '../config/paths';
+import FormFields, {IFormField} from "../components/FormFields";
+import {useAuthService} from "../services/useAuthService";
 
 export interface ILoginFormValues {
     email: string;

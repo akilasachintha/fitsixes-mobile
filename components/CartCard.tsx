@@ -1,9 +1,10 @@
-import {ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import React, {useState} from "react";
-import {THEME} from "@constants/THEME";
-import ImageHolder from "@components/ImageHolder";
-import {PATHS} from "@constants/PATHS";
-import {Ionicons} from "@expo/vector-icons";
+import { SafeAreaView, Text, View, StyleSheet, TouchableOpacity, ImageSourcePropType } from "react-native";
+import React, { useState } from "react";
+import { THEME } from "../config/theme";
+import ImageHolder from "./ImageHolder";
+import { PATHS } from "../config/paths";
+import { Ionicons } from "@expo/vector-icons";
+import Button from "./Button";
 
 
 interface CartCardProps {
@@ -32,7 +33,7 @@ const CartCard: React.FC<CartCardProps> = ({
         }
     }
     return (
-        <View style={styles.mainContainer}>
+        <View style={styles.maincontainer}>
             <View style={styles.subContainer}>
                 <View style={styles.imageContainer}>
                     <ImageHolder
@@ -49,7 +50,7 @@ const CartCard: React.FC<CartCardProps> = ({
                             onPress={() => handleQuantityChangeIcon('remove-circle-outline')}>
                             <Ionicons
                                 name={'remove-circle-outline'}
-                                size={32}
+                                size={30}
                                 color={THEME.COLORS.white}
                             />
                         </TouchableOpacity>
@@ -60,7 +61,7 @@ const CartCard: React.FC<CartCardProps> = ({
                             onPress={() => handleQuantityChangeIcon('add-circle-outline')}>
                             <Ionicons
                                 name={'add-circle-outline'}
-                                size={32}
+                                size={30}
                                 color={THEME.COLORS.white}
                             />
                         </TouchableOpacity>
@@ -81,7 +82,8 @@ const CartCard: React.FC<CartCardProps> = ({
 export default CartCard
 
 const styles = StyleSheet.create({
-    mainContainer: {
+
+    maincontainer: {
         width: 373,
         height: 221,
         backgroundColor: THEME.COLORS.primary,
@@ -108,27 +110,25 @@ const styles = StyleSheet.create({
         marginRight: 25,
         marginTop: 32,
         flexDirection: 'column',
-        width: '50%'
+        width: '52%'
     },
     textView: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: '700',
         textAlign: 'center',
         color: THEME.COLORS.white
     },
     quantityView: {
         flexDirection: 'row',
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: "8%"
+        alignSelf: 'center',
+        marginTop: 15
     },
     plusIcon: {
         flexDirection: 'column',
         margin: 5
     },
     quantity: {
-        flexDirection: 'column',
-        paddingHorizontal: "10%"
+        flexDirection: 'column'
     },
     amount: {
         color: THEME.COLORS.white,
@@ -150,13 +150,14 @@ const styles = StyleSheet.create({
         borderRadius: 112,
         alignItems: 'center',
         width: '100%',
+        padding: 2,
         justifyContent: 'center',
         marginVertical: "5%",
-        height: 38,
+        height: 45,
     },
     buttonText: {
         color: THEME.COLORS.primary,
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: "700",
     },
 })

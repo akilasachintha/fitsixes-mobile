@@ -1,9 +1,7 @@
 import {FlatList, SafeAreaView, StyleSheet, TouchableOpacity, View} from "react-native";
-import React, { useEffect, useState } from 'react';
-import TeamCard from "@components/TeamCard";
+import TeamCard from "../components/TeamCard";
 import {useNavigation} from "@react-navigation/native";
-import {PATHS} from "@constants/PATHS";
-import { Teams } from "../services/Teams";
+import {PATHS} from "../config/paths";
 
 const teamList = [
     {
@@ -60,35 +58,15 @@ const teamList = [
 
 export default function TeamScreen() {
     const navigation = useNavigation();
-
-    const [apiData, setApiData] = useState<any>(null);
-
-    const {getTeams} = Teams()
-
-  useEffect(() => {
-    // Call the API function when the component mounts
-    getTeams()
-        .then((response) => {
-            setApiData(response.companies);
-            console.log("teams screen",response.companies[0].name);
-            console.log("teams screen",response.companies[0].players);
-            
-        })
-        .catch((error) => {
-            console.error('Error fetching response:', error);
-        });
-  }, []);
-
-    const handleTeamCardClick = (players: string[]) => {
+    const handleTeamCardClick = () => {
         // @ts-ignore
-        // navigation.navigate("TeamTabTeamMembersStack");
-        navigation.navigate("TeamTabTeamMembersStack", {players:players});
+        navigation.navigate("TeamTabTeamMembersStack");
     }
 
     const renderItem = ({ item, index }: { item: any; index: number }) => {
         return (
             <View style={[styles.itemContainer, { padding: 0, marginTop: index % 2 !== 0 ? 30 : 0 }]}>
-                <TouchableOpacity onPress={() => handleTeamCardClick(item.players)}
+                <TouchableOpacity onPress={handleTeamCardClick}
                                   style={styles.touchableHighlight}
                                   activeOpacity={0.9}>
                     <TeamCard teamName={item.name} index={index} source={item.src !== '' || item.src.length !== 0 ? item.src : require('../assets/no-image.jpg')} />
@@ -105,9 +83,8 @@ export default function TeamScreen() {
                 centerContent={true}
                 numColumns={2}
                 columnWrapperStyle={styles.columnWrapperStyle}
-                data={apiData}
-                // keyExtractor={(item: any) => item.id}
-                keyExtractor={(item, index) => index.toString()}
+                data={teamList}
+                keyExtractor={(item: any) => item.id}
                 renderItem={({item, index}: { item: any; index: number }) =>
                     renderItem({item, index})
                 }

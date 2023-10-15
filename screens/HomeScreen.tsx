@@ -2,8 +2,8 @@ import {SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from
 import {useNavigation} from "@react-navigation/native";
 import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
 import React from "react";
-import {THEME} from "@constants/THEME";
-import {PATHS} from "@constants/PATHS";
+import {THEME} from "../config/theme";
+import {PATHS} from "../config/paths";
 
 export default function HomeScreen() {
     const navigation = useNavigation();

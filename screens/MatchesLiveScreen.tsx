@@ -1,15 +1,12 @@
-import {RefreshControl, SafeAreaView, ScrollView, View} from "react-native";
-import MatchDetailCard, {MatchStatus} from "@components/MatchDetailCard";
-import {PATHS} from "@constants/PATHS";
+import {RefreshControl, SafeAreaView, ScrollView, Text, View} from "react-native";
+import MatchDetailCard, {MatchStatus} from "../components/MatchDetailCard";
+import {PATHS} from "../config/paths";
 import React, {useEffect, useRef, useState} from "react";
-import {useAuth} from "@context/AuthContext";
-import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
+import {useAuth} from "../context/AuthContext";
+import {BASE_URL, createAxiosInstance} from "../config/axiosConfig";
 
 type TServerMatch = {
     match_id: number;
-    id: string;
-    tos_winner: string;
-    first_bat: string;
     team1: {
         teamName: string;
         marks: number;
@@ -30,9 +27,6 @@ export type TMatch = {
     team1: string;
     team2: string;
     match_no: number;
-    id: string;
-    tos_winner: string;
-    first_bat: string;
     scorecard: {
         team1: {
             marks: number;
@@ -118,15 +112,16 @@ export default function MatchesLiveScreen() {
 
     return (
         <SafeAreaView>
+            <Text>{JSON.stringify(isConnected)}</Text>
             <ScrollView showsVerticalScrollIndicator={false} refreshControl={
-                <RefreshControl
-                    refreshing={false}
-                    onRefresh={handleRefresh}
-                />
-            }
+                            <RefreshControl
+                                refreshing={false}
+                                onRefresh={handleRefresh}
+                            />
+                        }
             >
                 {
-                    isConnected && serverMessages && serverMessages.length > 0 ? (
+                    serverMessages && serverMessages.length > 0 ? (
                         <View>
                             {serverMessages && serverMessages.length > 0 && serverMessages.map((item: TServerMatch) => {
                                 let team1_score = `${item.team1.marks}/${item.team1.wickets}`
@@ -146,9 +141,6 @@ export default function MatchesLiveScreen() {
                                         matchNo={item.match_id}
                                         overs_T1={overs_T1}
                                         overs_T2={overs_T2}
-                                        matchId={item.id}
-                                        tosWinner={item.tos_winner}
-                                        firstBat={item.first_bat}
                                     />
                                 )
                             })}
@@ -173,9 +165,6 @@ export default function MatchesLiveScreen() {
                                         matchNo={item.match_no}
                                         overs_T1={overs_T1}
                                         overs_T2={overs_T2}
-                                        matchId={item.id}
-                                        tosWinner={item.tos_winner}
-                                        firstBat={item.first_bat}
                                     />
                                 )
                             })}
