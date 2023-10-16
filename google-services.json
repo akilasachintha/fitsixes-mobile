@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "305743690150",
+    "project_id": "fitsixes-notification",
+    "storage_bucket": "fitsixes-notification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305743690150:android:5aae4390d29aadc73d7767",
+        "android_client_info": {
+          "package_name": "com.fitsixes.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU_ENN7HExzqkpCiu08_dZiuBa_N4uyI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
