@@ -35,7 +35,6 @@
       },
       "package": "com.fitsixes.mobile",
       "googleServicesFile": "./google-services.json",
-      "useNextNotificationsApi": true,
       "versionCode": 1
     },
     "web": {
