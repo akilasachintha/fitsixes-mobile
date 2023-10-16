@@ -3,40 +3,35 @@ import {useNavigation} from "@react-navigation/native";
 import ImageHolder from "@components/ImageHolder";
 import {PATHS} from "@constants/PATHS";
 import {THEME} from "@constants/THEME";
-import {Ionicons} from "@expo/vector-icons";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useAuth} from "@context/AuthContext";
-
-interface EyeIconProps {
-    onPress: () => void;
-    visible: boolean;
-    error?: boolean;
-    onBlur?: () => void;
-}
-
-const EyeIcon: React.FC<EyeIconProps> = ({onPress, visible}) => {
-    return (
-        <TouchableOpacity onPress={onPress}>
-            <View style={styles.eyeIcon}>
-                <Ionicons
-                    name={visible ? 'eye' : 'eye-off'}
-                    size={20}
-                    color={THEME.COLORS.white}
-                    style={styles.icon}
-                />
-            </View>
-        </TouchableOpacity>
-    );
-};
+import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
 
 const ProfileScreen = () => {
     useNavigation();
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [profileDetails, setProfileDetails] = useState<any>({});
     const {logout} = useAuth();
+    const authContext = useAuth();
+    const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
 
     const handleLogout = () => {
         logout();
     }
+
+    const getProfileDetails = async () => {
+        try {
+            const response = await axiosInstanceForFitSixes.get('teamprofile');
+            console.log("API call", response.data.data);
+            setProfileDetails(response.data.data);
+            return response.data.data;
+        } catch (error) {
+            console.log('Get users failed:', error);
+        }
+    }
+
+    useEffect(() => {
+        getProfileDetails().catch((e) => console.error(e));
+    }, []);
 
     return (
         <SafeAreaView>
@@ -50,7 +45,7 @@ const ProfileScreen = () => {
                     />
                 </View>
                 <Text style={styles.teameNameText}>
-                    Team Name
+                    {profileDetails && profileDetails.team && profileDetails.team.name}
                 </Text>
                 <View style={styles.profileDetailsContent}>
                     <View style={styles.profileDetailsSubContent}>
@@ -61,24 +56,32 @@ const ProfileScreen = () => {
                         </View>
                         <View style={styles.inputFieldContent}>
                             <Text style={styles.textView}>Email</Text>
-                            <Text style={styles.inputField}>{"abc@gmail.com"}</Text>
+                            <Text
+                                style={styles.inputField}>{profileDetails && profileDetails.team && profileDetails.team.email}</Text>
                         </View>
                     </View>
                     <View style={styles.profileDetailsSubContent}>
                         <View style={styles.iconView}>
                             <View style={styles.iconContent}>
-                                <Image source={PATHS.IMAGES.PASSWORD_ICON} style={styles.image}/>
+                                <Image source={PATHS.IMAGES.EMAIL_ICON} style={styles.image}/>
                             </View>
                         </View>
                         <View style={styles.inputFieldContent}>
-                            <Text style={styles.textView}>Password</Text>
-                            <View style={styles.inputView}>
-                                <Text style={styles.inputField}>{"password"}</Text>
-                                <EyeIcon
-                                    onPress={() => setIsPasswordVisible(!isPasswordVisible)}
-                                    visible={isPasswordVisible}
-                                />
+                            <Text style={styles.textView}>Contact No</Text>
+                            <Text
+                                style={styles.inputField}>{profileDetails && profileDetails.team && profileDetails.team.company && profileDetails.team.company.contact}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.profileDetailsSubContent}>
+                        <View style={styles.iconView}>
+                            <View style={styles.iconContent}>
+                                <Image source={PATHS.IMAGES.EMAIL_ICON} style={styles.image}/>
                             </View>
+                        </View>
+                        <View style={styles.inputFieldContent}>
+                            <Text style={styles.textView}>Company Code</Text>
+                            <Text
+                                style={styles.inputField}>{profileDetails && profileDetails.team && profileDetails.team.company && profileDetails.team.company.company_code}</Text>
                         </View>
                     </View>
                     <View style={styles.profileDetailsSubContent}>

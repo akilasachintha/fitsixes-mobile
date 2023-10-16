@@ -10,9 +10,10 @@ type ScoreUpdateProps = {
     matchId: number;
     team1Name: string;
     team2Name: string;
+    selectedTab: string;
 }
 
-export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdateProps) {
+export default function ScoreUpdate({matchId, team1Name, team2Name, selectedTab}: ScoreUpdateProps) {
     const [selectedButton, setSelectedButton] = useState<string | null>(null);
     const [selectedTeam, setSelectedTeam] = useState<string | null>(null);
     const {showToast} = useToast();
@@ -43,6 +44,8 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
                             key: selectedButton.toString(),
                         }
                     }
+
+                    console.log("Data:", data);
 
                     const response = await axiosInstanceForFitSixes.post('update_score', data);
                     console.log("API call", response.data.data);
@@ -96,6 +99,8 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
         {value: '6', text: 'sixes',},
         {value: '7', text: 'sevens',},
         {value: 'W1', text: 'wicket_ones',},
+        {value: 'W2', text: 'wicket_twos',},
+        {value: 'W3', text: 'wicket_threes',},
         {value: 'LB', text: 'lb',},
         {value: 'E0', text: 'extras_zero',},
         {value: 'E1', text: 'extras_one',},
@@ -109,7 +114,7 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
 
     return (
         <View style={styles.container}>
-            <Text style={styles.scoreUpdateText}>Score Update</Text>
+            <Text style={styles.scoreUpdateText}>{selectedTab} Score Update</Text>
             <View style={styles.marks}>
                 <View style={styles.marksSub}>
                     {data.slice(0, 8).map((button) => (
@@ -128,7 +133,7 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
                     ))}
                 </View>
                 <View style={styles.marksSub}>
-                    {data.slice(8, 10).map((button) => (
+                    {data.slice(8, 12).map((button) => (
                         <TouchableOpacity
                             key={button.value}
                             style={[
@@ -144,7 +149,7 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
                     ))}
                 </View>
                 <View style={styles.marksSub}>
-                    {data.slice(10, 18).map((button) => (
+                    {data.slice(12, 20).map((button) => (
                         <TouchableOpacity
                             key={button.value}
                             style={[

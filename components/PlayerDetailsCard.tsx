@@ -12,8 +12,8 @@ interface PlayerDetailsCardProps {
 
 const PlayerDetailsCard: React.FC<PlayerDetailsCardProps> = ({
                                                                  key,
-    url,
-    playerName,
+                                                                 url,
+                                                                 playerName,
 
 }) => {
     return (

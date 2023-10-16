@@ -114,9 +114,10 @@ const styles = StyleSheet.create({
         color: THEME.COLORS.white,
         fontSize: 17,
         fontWeight: '700',
+        textAlign: 'center',
     },
     teamNameContainer: {
-        marginTop: 10
+        marginTop: 10,
     },
     otherDetailsContainer: {
         flexDirection: 'row',
@@ -129,6 +130,7 @@ const styles = StyleSheet.create({
     },
     teamContainer: {
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        width: "40%",
     }
 })

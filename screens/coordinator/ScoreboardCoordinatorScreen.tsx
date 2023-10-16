@@ -146,6 +146,7 @@ export default function ScoreboardCoordinatorScreen(props: any) {
                             {
                                 matchStatus === MatchStatus.Live && (
                                     <ScoreUpdate matchId={props.route.params.data}
+                                                 selectedTab={selectedTab === 0 ? TEAM_1 : TEAM_2}
                                                  team1Name={TEAM_1}
                                                  team2Name={TEAM_2}
                                     />
@@ -169,6 +170,7 @@ export default function ScoreboardCoordinatorScreen(props: any) {
                             {
                                 matchStatus === MatchStatus.Live && (
                                     <ScoreUpdate matchId={props.route.params.data}
+                                                 selectedTab={selectedTab === 1 ? TEAM_2 : TEAM_2}
                                                  team1Name={TEAM_1}
                                                  team2Name={TEAM_2}
                                     />

@@ -1,10 +1,43 @@
 import TeamNamesCard from "@components/TeamNamesCard";
 import {RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {THEME} from "@constants/THEME";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useAuth} from "@context/AuthContext";
-import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
+import {BASE_URL, createAxiosInstance, WEB_SOCKET_URL} from "@config/axiosConfig";
 import ScoreComponent from "@components/ScoreComponent";
+
+const reconnectDelay = 3000;
+
+type TServerMatch = {
+    match_id: number;
+    id: string;
+    tos_winner: string;
+    first_bat: string;
+    team1: {
+        balls: number,
+        extras: number,
+        fours: number,
+        marks: number,
+        ones: number,
+        overs: number,
+        sixes: number,
+        threes: number,
+        twos: number,
+        wickets: number,
+    },
+    team2: {
+        balls: number,
+        extras: number,
+        fours: number,
+        marks: number,
+        ones: number,
+        overs: number,
+        sixes: number,
+        threes: number,
+        twos: number,
+        wickets: number,
+    },
+}
 
 export default function ScoreboardScreen(props: any) {
     type MatchDetailsType = {
@@ -60,6 +93,9 @@ export default function ScoreboardScreen(props: any) {
             wickets: 0,
         }
     });
+    const [serverMessages, setServerMessages] = useState<TServerMatch | null>(null);
+    const [isConnected, setIsConnected] = useState<boolean>(false);
+    const ws = useRef<WebSocket | null>(null);
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
     const TEAM_1 = props.route.params.team_1;
@@ -83,15 +119,48 @@ export default function ScoreboardScreen(props: any) {
             });
     }
 
-    useEffect(() => {
-        fetchMatchDetails().catch((e) => console.error(e));
-
-    }, []);
-
     const handleRefresh = () => {
         fetchMatchDetails().catch((e) => console.error(e));
     };
 
+    const connectToWebSocket = () => {
+        ws.current = new WebSocket(WEB_SOCKET_URL);
+
+        ws.current.onopen = () => {
+            console.log('connected');
+            setIsConnected(true);
+        };
+
+        ws.current.onclose = () => {
+            console.log('disconnected');
+            setIsConnected(false);
+
+            setTimeout(connectToWebSocket, reconnectDelay);
+        };
+
+        ws.current.onerror = (e) => {
+            // @ts-ignore
+            console.log('error:', e.message);
+        };
+
+        ws.current.onmessage = (e) => {
+            const incomingMessage = e.data;
+            console.log(incomingMessage);
+            setServerMessages(JSON.parse(incomingMessage));
+        };
+    };
+
+    useEffect(() => {
+        fetchMatchDetails().catch((e) => console.error(e));
+        connectToWebSocket();
+        console.log("IsConnected", isConnected);
+
+        return () => {
+            if (ws.current && ws.current.readyState === WebSocket.OPEN) {
+                ws.current.close();
+            }
+        };
+    }, []);
 
     function calculateRequiredRunsAndBalls(targetRuns: number, currentRuns: number, currentOvers: number, currentOverBalls: number) {
         const totalOvers = 10;
@@ -152,19 +221,34 @@ export default function ScoreboardScreen(props: any) {
                 {
                     selectedTab === 0 && (
                         <View>
-                            <ScoreComponent details={matchDetails?.team1} teamName={TEAM_1} details2={matchDetails?.team2} />
-                            {matchDetails && matchDetails?.team1.marks === 0 && matchDetails?.team2.marks === 0 ? (
+                            <ScoreComponent
+                                details={serverMessages && serverMessages.team1 ? serverMessages.team1 : matchDetails.team1}
+                                teamName={TEAM_1}
+                                details2={serverMessages && serverMessages.team2 ? serverMessages.team2 : matchDetails.team2}/>
+
+                            {
+                                (matchDetails && matchDetails?.team1.marks === 0 && matchDetails?.team2.marks === 0) || (
+                                    serverMessages && serverMessages.team1.marks === 0 && serverMessages.team2.marks === 0) ? (
                                 <Text style={styles.description}>Both teams have not scored any runs yet.</Text>
                             ) : (
                                 <>
                                     {firstBat !== TEAM_1 && (
                                         <Text style={styles.description}>
-                                            {`${TEAM_1} require ${calculateRequiredRunsAndBalls(matchDetails.team2.marks, matchDetails.team1.marks, matchDetails.team1.overs, matchDetails.team1.balls).requiredRuns} runs from ${calculateRequiredRunsAndBalls(matchDetails.team2.marks, matchDetails.team1.marks, matchDetails.team1.overs, matchDetails.team1.balls).remainingBalls} balls`}
+                                            {`${TEAM_1} require ${
+                                                calculateRequiredRunsAndBalls(
+                                                    serverMessages && serverMessages.team2 && serverMessages.team2.marks ? serverMessages.team2.marks : matchDetails.team2.marks,
+                                                    serverMessages && serverMessages.team1 && serverMessages.team1.marks ? serverMessages.team1.marks : matchDetails.team1.marks,
+                                                    serverMessages && serverMessages.team1 && serverMessages.team1.overs ? serverMessages.team1.overs : matchDetails.team1.overs,
+                                                    serverMessages && serverMessages.team1 && serverMessages.team1.balls ? serverMessages.team1.balls : matchDetails.team1.balls
+                                                ).requiredRuns} runs from ${
+                                                calculateRequiredRunsAndBalls(serverMessages && serverMessages.team2 && serverMessages.team2.marks ? serverMessages.team2.marks : matchDetails.team2.marks,
+                                                    serverMessages && serverMessages.team1 && serverMessages.team1.marks ? serverMessages.team1.marks : matchDetails.team1.marks,
+                                                    serverMessages && serverMessages.team1 && serverMessages.team1.overs ? serverMessages.team1.overs : matchDetails.team1.overs,
+                                                    serverMessages && serverMessages.team1 && serverMessages.team1.balls ? serverMessages.team1.balls : matchDetails.team1.balls).remainingBalls} balls`}
                                         </Text>
                                     )}
                                 </>
                             )}
-                            {/*<OversDetails details={[1, 2, 4, 6, 'W', 2]} />*/}
                         </View>
                     )
                 }
@@ -184,7 +268,6 @@ export default function ScoreboardScreen(props: any) {
                                     )}
                                 </>
                             )}
-                            {/*<OversDetails details={[1, 2, 4, 6, 'W', 2]} />*/}
                         </View>
                     )
                 }
@@ -251,6 +334,8 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: THEME.COLORS.primary,
         textAlign: 'center',
-        marginBottom: 10
+        marginBottom: 10,
+        paddingHorizontal: "8%",
+
     }
 });
