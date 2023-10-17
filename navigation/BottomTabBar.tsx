@@ -57,7 +57,6 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
             header: () => <TopHeaderBar/>,
             tabBarShowLabel: false,
             tabBarStyle: {
-                height: 60,
                 backgroundColor: THEME.COLORS.white,
                 ...styles.shadow,
             },
