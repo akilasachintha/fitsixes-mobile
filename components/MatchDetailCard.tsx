@@ -30,8 +30,8 @@ export const MatchStatus: Record<MatchStatusType, MatchStatusType> = {
 
 export default function MatchDetailCard({
     matchNo,
-    team1 = "Team 1",
-    team2 = "Team 2",
+                                            team1,
+                                            team2,
     team1Score,
     team2Score,
     team1Image,
@@ -47,7 +47,18 @@ export default function MatchDetailCard({
     const handleMatchCardClick = () => {
         if (matchStatus !== "Upcoming") {
             // @ts-ignore
-            navigation.navigate("HomeTabScoreboardStack", {data: matchId, team_1: team1, team_2: team2, tossWinner: tosWinner, first: firstBat});
+            navigation.navigate("HomeTabScoreboardStack", {
+                    data: matchId,
+                    team_1: team1,
+                    team_2: team2,
+                    tossWinner: tosWinner,
+                    first: firstBat,
+                    team1Score,
+                    team2Score,
+                    overs_T1,
+                    overs_T2
+                }
+            );
         }
     }
 

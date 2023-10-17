@@ -6,48 +6,16 @@ import {PATHS} from "@constants/PATHS";
 
 interface ScoreCardProps {
     details: {
+        marks: number;
+        wickets: number;
+        overs: number;
         balls: number;
         extras: number;
-        fours: number;
-        marks: number;
-        ones: number;
-        overs: number;
-        sixes: number;
-        threes: number;
-        twos: number;
-        wickets: number;
     };
     teamName?: string;
-    details2: {
-        balls: number;
-        extras: number;
-        fours: number;
-        marks: number;
-        ones: number;
-        overs: number;
-        sixes: number;
-        threes: number;
-        twos: number;
-        wickets: number;
-    };
 }
 
-const ScoreComponent: React.FC<ScoreCardProps> = ({ details, teamName, details2 }) => {
-    const calculateRunRate = (totalRuns: number, totalOvers: number): number => {
-        if (totalOvers === 0) {
-            return 0;
-        }
-        const runRate = totalRuns / totalOvers;
-        return Math.round(runRate * 100) / 100;
-    };
-
-    const calculateRequiredRunRate = (targetRuns: number, remainingOvers: number): number => {
-        if (remainingOvers === 0) {
-            return Number.POSITIVE_INFINITY;
-        }
-        const requiredRunRate = targetRuns / remainingOvers;
-        return Math.round(requiredRunRate * 100) / 100;
-    };
+const ScoreComponent: React.FC<ScoreCardProps> = ({details, teamName}) => {
 
     return (
         <View style={styles.container}>
@@ -65,10 +33,6 @@ const ScoreComponent: React.FC<ScoreCardProps> = ({ details, teamName, details2 
             </View>
             <View style={styles.otherDetailsContainer}>
                 <View style={styles.detailsContainer}>
-                    <Text style={styles.text2}>{'CRR: ' + calculateRunRate(details.marks, details.overs)}</Text>
-                    {details.overs !== 10 && (
-                        <Text style={styles.text2}>{'RRR: ' + calculateRequiredRunRate(details2.marks, 10 - details.overs)}</Text>
-                    )}
                 </View>
                 <View style={styles.detailsContainer}>
                     <Text style={styles.text2}>{'Extra: ' + details.extras}</Text>
