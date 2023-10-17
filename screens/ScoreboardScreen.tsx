@@ -1,5 +1,5 @@
 import TeamNamesCard from "@components/TeamNamesCard";
-import {RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Alert, RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {THEME} from "@constants/THEME";
 import {useEffect, useRef, useState} from "react";
 import {useAuth} from "@context/AuthContext";
@@ -128,6 +128,7 @@ export default function ScoreboardScreen(props: any) {
 
         ws.current.onopen = () => {
             console.log('connected');
+            Alert.alert("Connected to WebSocket");
             setIsConnected(true);
         };
 
