@@ -134,17 +134,19 @@ export default function useLiverScoreUpdateService() {
         }
     };
 
-    const fetchCompletedMatches = () => {
+    const fetchCompletedMatches = async () => {
         let url = "matches/finish";
-        axiosInstanceForFitSixes.get(`${url}`).then((response) => {
-            if (response && response.data && response.data.data && response.data.data.matches && response.data.data.matches.matches) {
-                setCompletedMatches(response.data.data.matches.matches);
-            } else {
-                console.error("Error");
-            }
-        }).catch((e) => {
+        try {
+            axiosInstanceForFitSixes.get(`${url}`).then((response) => {
+                if (response && response.data && response.data.data && response.data.data.matches && response.data.data.matches.matches) {
+                    setCompletedMatches(response.data.data.matches.matches);
+                } else {
+                    console.error("Error");
+                }
+            });
+        } catch (e) {
             console.log(e);
-        });
+        }
     }
 
     const connectToWebSocket = () => {
@@ -180,7 +182,7 @@ export default function useLiverScoreUpdateService() {
     useEffect(() => {
         connectToWebSocket();
         fetchLiveMatches().catch((e) => console.log(e));
-        fetchCompletedMatches();
+        fetchCompletedMatches().catch((e) => console.log(e));
 
         return () => {
             if (ws.current && ws.current.readyState === WebSocket.OPEN) {

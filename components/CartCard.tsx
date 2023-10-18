@@ -32,19 +32,20 @@ const CartCard: React.FC<CartCardProps> = ({
                 amount: quantity,
             }
 
-            console.log("Data: ", data);
-
             const response = await axiosInstanceForFitSixes.post(`${url}`, data);
             if (response && response.data && response.data.state) {
                 console.log("Order Placed Successfully");
                 showToast("Order Placed Successfully");
+                setQuantity(1);
             } else {
                 console.log("Order Placed Failed");
                 showToast("Foods are not available. Please try again later");
+                setQuantity(1);
             }
         } catch (e) {
             console.log(e);
             showToast("Foods are not available. Please try again later");
+            setQuantity(1);
         }
     }
 
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginHorizontal: "5%",
         marginBottom: "5%",
-        elevation: 10,
+        elevation: 2,
         marginTop: 5
     },
     subContainer: {

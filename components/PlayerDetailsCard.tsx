@@ -33,7 +33,7 @@ const PlayerDetailsCard: React.FC<PlayerDetailsCardProps> = ({
                     </Text>
                 </View>
                 <View style={styles.logoContainer}>
-                    <Image style={styles.logoView} resizeMode='center' source={PATHS.IMAGES.FIT_SIXES_LOGO} />
+                    <Image style={styles.logoView} resizeMode='contain' source={PATHS.IMAGES.FIT_SIXES_LOGO}/>
                 </View>
             </View>
         </View>
