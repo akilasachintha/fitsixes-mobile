@@ -32,11 +32,11 @@ export default function TabNavigatorHome({route}: any) {
                     shadowColor: THEME.COLORS.primary,
                     shadowOffset: {
                         width: 0,
-                        height: 10
+                        height: 2
                     },
                     shadowOpacity: 0.25,
-                    shadowRadius: 10,
-                    elevation: 20,
+                    shadowRadius: 1,
+                    elevation: 5,
                     paddingVertical: "0.5%",
                 },
                 tabBarIndicatorStyle: {

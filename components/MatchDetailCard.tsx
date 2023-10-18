@@ -6,6 +6,8 @@ import {PATHS} from "@constants/PATHS";
 
 interface MatchDetailCardProps {
     matchNo: number;
+    matchLevel: string;
+    pitchNo: number;
     team1: string;
     team2: string;
     team1Score?: string;
@@ -29,19 +31,21 @@ export const MatchStatus: Record<MatchStatusType, MatchStatusType> = {
 }
 
 export default function MatchDetailCard({
-    matchNo,
+                                            matchNo,
                                             team1,
                                             team2,
-    team1Score,
-    team2Score,
-    team1Image,
-    team2Image,
-    matchStatus,
-    overs_T1,
-    overs_T2,
-    matchId,
-    tosWinner,
-    firstBat
+                                            matchLevel,
+                                            pitchNo,
+                                            team1Score,
+                                            team2Score,
+                                            team1Image,
+                                            team2Image,
+                                            matchStatus,
+                                            overs_T1,
+                                            overs_T2,
+                                            matchId,
+                                            tosWinner,
+                                            firstBat
 }: MatchDetailCardProps) {
     const navigation = useNavigation();
     const handleMatchCardClick = () => {
@@ -70,7 +74,7 @@ export default function MatchDetailCard({
                 imageStyle={matchStatus === "Live" ? { display: "flex" } : { display: "none" }}
                 style={styles.container}>
                 <View style={styles.titleContainer}>
-                    <Text style={styles.titleText}>Match No : {matchNo}</Text>
+                    <Text style={styles.titleText}>Match {matchNo} {matchLevel} | Pitch {pitchNo}</Text>
                     <View style={{ flexDirection: "row" }}>
                         <Text style={styles.titleText}>{matchStatus}</Text>
                         {

@@ -6,6 +6,7 @@ import {PATHS} from "@constants/PATHS";
 
 interface MatchDetailCardProps {
     matchNo: number;
+    matchLevel: string;
     team1: string;
     team2: string;
     team1Score?: string;
@@ -13,6 +14,7 @@ interface MatchDetailCardProps {
     team1Image: ImageProps;
     team2Image: ImageProps;
     matchStatus: MatchStatusType;
+    pitchNo: number;
     overs_T1?: string;
     overs_T2?: string;
     matchId?: string;
@@ -30,6 +32,7 @@ export const MatchStatus: Record<MatchStatusType, MatchStatusType> = {
 
 export default function MatchDetailCoordinatorCard({
                                                        matchNo,
+                                                       matchLevel, pitchNo,
                                                        team1 = "Team 1",
                                                        team2 = "Team 2",
                                                        team1Score,
@@ -64,7 +67,7 @@ export default function MatchDetailCoordinatorCard({
                 imageStyle={matchStatus === "Live" ? {display: "flex"} : {display: "none"}}
                 style={styles.container}>
                 <View style={styles.titleContainer}>
-                    <Text style={styles.titleText}>Match No : {matchNo}</Text>
+                    <Text style={styles.titleText}>Match {matchNo} {matchLevel} | Pitch {pitchNo}</Text>
                     <View style={{flexDirection: "row"}}>
                         <Text style={styles.titleText}>{matchStatus}</Text>
                         {

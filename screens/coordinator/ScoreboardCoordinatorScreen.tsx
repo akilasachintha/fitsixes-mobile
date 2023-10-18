@@ -104,54 +104,54 @@ export default function ScoreboardCoordinatorScreen(props: any) {
                             />
                         }
             >
-                {
-                    matchStatus === MatchStatus.Live && (
-                        <View style={styles.titleContainer}>
-                            <Text style={styles.titleText}>{matchStatus}</Text>
-                        </View>
-                    )
-                }
                 <TeamNamesCardCoordinator teamName1={TEAM_1} teamName2={TEAM_2}/>
-                {tossWinner === firstBat ? (
+                {tossWinner === (firstBat === "team2" ? TEAM_2 : TEAM_1) ? (
                     <Text style={styles.description}>{`${tossWinner} Won the toss and elected to bat.`}</Text>
                 ) : (
                     <Text style={styles.description}>{`${tossWinner} Won the toss and elected to ball.`}</Text>
                 )}
                 <View style={styles.mainContainer}>
-                    <View style={styles.container}>
-                        {
-                            selectedTab === 0 ?
-                                <TouchableOpacity style={styles.leftContainerText} onPress={() => setSelectedTab(0)}>
-                                    <Text style={styles.leftText}>{TEAM_1}</Text>
-                                </TouchableOpacity> :
-                                <TouchableOpacity style={styles.leftContainerNotText} onPress={() => setSelectedTab(0)}>
-                                    <Text style={styles.leftNotText}>{TEAM_1}</Text>
-                                </TouchableOpacity>
-                        }
-                        {
-                            selectedTab === 1 ?
-                                <TouchableOpacity style={styles.rightContainerText} onPress={() => setSelectedTab(0)}>
-                                    <Text style={styles.leftText}>{TEAM_2}</Text>
-                                </TouchableOpacity> :
-                                <TouchableOpacity style={styles.rightContainerNotText}
-                                                  onPress={() => setSelectedTab(1)}>
-                                    <Text style={styles.leftNotText}>{TEAM_2}</Text>
-                                </TouchableOpacity>
-                        }
-                    </View>
+                    {
+                        matchStatus !== MatchStatus.Live && (
+                            <View style={styles.container}>
+                                {
+                                    selectedTab === 0 ?
+                                        <TouchableOpacity style={styles.leftContainerText}
+                                                          onPress={() => setSelectedTab(0)}>
+                                            <Text style={styles.leftText}>{TEAM_1}</Text>
+                                        </TouchableOpacity> :
+                                        <TouchableOpacity style={styles.leftContainerNotText}
+                                                          onPress={() => setSelectedTab(0)}>
+                                            <Text style={styles.leftNotText}>{TEAM_1}</Text>
+                                        </TouchableOpacity>
+                                }
+                                {
+                                    selectedTab === 1 ?
+                                        <TouchableOpacity style={styles.rightContainerText}
+                                                          onPress={() => setSelectedTab(0)}>
+                                            <Text style={styles.leftText}>{TEAM_2}</Text>
+                                        </TouchableOpacity> :
+                                        <TouchableOpacity style={styles.rightContainerNotText}
+                                                          onPress={() => setSelectedTab(1)}>
+                                            <Text style={styles.leftNotText}>{TEAM_2}</Text>
+                                        </TouchableOpacity>
+                                }
+                            </View>
+                        )
+                    }
                 </View>
+                {
+                    matchStatus === MatchStatus.Live && (
+                        <ScoreUpdate matchId={props.route.params.data}
+                                     selectedTab={selectedTab === 0 ? TEAM_1 : TEAM_2}
+                                     team1Name={TEAM_1}
+                                     team2Name={TEAM_2}
+                        />
+                    )
+                }
                 {
                     selectedTab === 0 && (
                         <View>
-                            {
-                                matchStatus === MatchStatus.Live && (
-                                    <ScoreUpdate matchId={props.route.params.data}
-                                                 selectedTab={selectedTab === 0 ? TEAM_1 : TEAM_2}
-                                                 team1Name={TEAM_1}
-                                                 team2Name={TEAM_2}
-                                    />
-                                )
-                            }
                             {
                                 matchStatus === MatchStatus.Completed && (
                                     <ScoreComponentCoordinator details={matchDetails?.team1}
@@ -167,15 +167,6 @@ export default function ScoreboardCoordinatorScreen(props: any) {
                 {
                     selectedTab === 1 && (
                         <View>
-                            {
-                                matchStatus === MatchStatus.Live && (
-                                    <ScoreUpdate matchId={props.route.params.data}
-                                                 selectedTab={selectedTab === 1 ? TEAM_2 : TEAM_2}
-                                                 team1Name={TEAM_1}
-                                                 team2Name={TEAM_2}
-                                    />
-                                )
-                            }
                             {
                                 matchStatus === MatchStatus.Completed && (
                                     <ScoreComponentCoordinator details={matchDetails.team2}
@@ -214,17 +205,16 @@ const styles = StyleSheet.create({
     mainContainer: {
         marginHorizontal: "14%",
         marginTop: "3%",
-        marginBottom: "6%",
         borderRadius: 30,
         backgroundColor: THEME.COLORS.white,
         shadowColor: THEME.COLORS.green,
         shadowOffset: {
             width: 0,
-            height: 10
+            height: 2
         },
-        shadowOpacity: 0.9,
-        shadowRadius: 3.5,
-        elevation: 10,
+        shadowOpacity: 0.4,
+        shadowRadius: 1,
+        elevation: 5,
     },
     leftContainerText: {
         width: "50%",

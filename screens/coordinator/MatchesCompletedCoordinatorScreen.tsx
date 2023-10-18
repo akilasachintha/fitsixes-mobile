@@ -4,9 +4,9 @@ import {PATHS} from "@constants/PATHS";
 import React, {useEffect, useState} from "react";
 import {useAuth} from "@context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
-import {TMatch} from "@screens/MatchesLiveScreen";
 import MatchDetailCoordinatorCard from "@components/coordinator/MatchDetailCoordinatorCard";
 import {useFocusEffect} from "@react-navigation/native";
+import {TMatch} from "@services/useLiverScoreUpdateService";
 
 export default function MatchesCompletedCoordinatorScreen() {
 
@@ -15,10 +15,10 @@ export default function MatchesCompletedCoordinatorScreen() {
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
 
     const fetchCompletedMatches = () => {
-        let url = "matches/finish";
+        let url = "matches_pitch_coordinator";
         axiosInstanceForFitSixes.get(`${url}`).then((response) => {
-            if (response && response.data && response.data.data && response.data.data.matches && response.data.data.matches.matches) {
-                setCompletedMatches(response.data.data.matches.matches);
+            if (response && response.data && response.data.data && response.data.data.matches && response.data.data.matches.finish && response.data.data.matches.finish.matches) {
+                setCompletedMatches(response.data.data.matches.finish.matches);
             } else {
                 console.error("Error");
             }
@@ -54,7 +54,9 @@ export default function MatchesCompletedCoordinatorScreen() {
                     return (
                         <MatchDetailCoordinatorCard
                             key={index}
+                            matchLevel={item.match_level}
                             matchStatus={MatchStatus.Completed}
+                            pitchNo={item.pitch_no}
                             team1={item.team1}
                             team2={item.team2}
                             team1Image={PATHS.IMAGES.Team_1}

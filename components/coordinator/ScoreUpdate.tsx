@@ -13,7 +13,7 @@ type ScoreUpdateProps = {
     selectedTab: string;
 }
 
-export default function ScoreUpdate({matchId, team1Name, team2Name, selectedTab}: ScoreUpdateProps) {
+export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdateProps) {
     const [selectedButton, setSelectedButton] = useState<string | null>(null);
     const [selectedTeam, setSelectedTeam] = useState<string | null>(null);
     const {showToast} = useToast();
@@ -74,8 +74,6 @@ export default function ScoreUpdate({matchId, team1Name, team2Name, selectedTab}
                 const response = await axiosInstanceForFitSixes.put(`${url}`, data);
                 if (response.data.state) {
                     showToast("Updated Successfully");
-                    // @ts-ignore
-                    // navigation.navigate("CoordinatorTabMatchesStack", {screen: "LiveCoordinatorTab",});
                 }
             } catch (e) {
                 console.log(e);
@@ -114,7 +112,7 @@ export default function ScoreUpdate({matchId, team1Name, team2Name, selectedTab}
 
     return (
         <View style={styles.container}>
-            <Text style={styles.scoreUpdateText}>{selectedTab} Score Update</Text>
+            <Text style={styles.scoreUpdateText}>Score Update</Text>
             <View style={styles.marks}>
                 <View style={styles.marksSub}>
                     {data.slice(0, 8).map((button) => (
@@ -165,8 +163,9 @@ export default function ScoreUpdate({matchId, team1Name, team2Name, selectedTab}
                     ))}
                 </View>
                 <View style={styles.marksSub}>
-                    <TouchableOpacity style={styles.marksTextComponent} onPress={handleSubmit}>
-                        <Text style={styles.marksText}>Submit</Text>
+                    <TouchableOpacity style={[styles.marksTextComponent, {backgroundColor: THEME.COLORS.primary}]}
+                                      onPress={handleSubmit}>
+                        <Text style={[styles.marksText, {color: THEME.COLORS.white}]}>Submit</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.marksTextComponent} onPress={handleCancel}>
                         <Text style={styles.marksText}>Cancel</Text>
@@ -251,11 +250,11 @@ const styles = StyleSheet.create({
         shadowColor: THEME.COLORS.primary,
         shadowOffset: {
             width: 0,
-            height: 10,
+            height: 2,
         },
         shadowOpacity: 0.9,
-        shadowRadius: 3.5,
-        elevation: 10,
+        shadowRadius: 1,
+        elevation: 2,
     },
     marksSub: {
         flexDirection: 'row',
@@ -269,11 +268,11 @@ const styles = StyleSheet.create({
         shadowColor: THEME.COLORS.primary,
         shadowOffset: {
             width: 0,
-            height: 10,
+            height: 2,
         },
         shadowOpacity: 0.9,
-        shadowRadius: 3.5,
-        elevation: 10,
+        shadowRadius: 1,
+        elevation: 2,
         marginVertical: 10,
         width: '90%',
     },
@@ -284,11 +283,11 @@ const styles = StyleSheet.create({
         shadowColor: THEME.COLORS.primary,
         shadowOffset: {
             width: 0,
-            height: 10,
+            height: 2,
         },
         shadowOpacity: 0.9,
-        shadowRadius: 3.5,
-        elevation: 10,
+        shadowRadius: 1,
+        elevation: 2,
         marginVertical: 10,
         width: '90%',
     },
@@ -304,11 +303,11 @@ const styles = StyleSheet.create({
         shadowColor: THEME.COLORS.primary,
         shadowOffset: {
             width: 0,
-            height: 10,
+            height: 2,
         },
         shadowOpacity: 0.9,
-        shadowRadius: 3.5,
-        elevation: 10,
+        shadowRadius: 1,
+        elevation: 2,
     },
     marksText: {
         color: THEME.COLORS.primary,
@@ -340,11 +339,11 @@ const styles = StyleSheet.create({
         shadowColor: THEME.COLORS.primary,
         shadowOffset: {
             width: 0,
-            height: 10,
+            height: 2,
         },
         shadowOpacity: 0.9,
-        shadowRadius: 3.5,
-        elevation: 10,
+        shadowRadius: 1,
+        elevation: 2,
     },
     marksTextComponentFinish: {
         height: 40,
@@ -358,11 +357,11 @@ const styles = StyleSheet.create({
         shadowColor: THEME.COLORS.primary,
         shadowOffset: {
             width: 0,
-            height: 10,
+            height: 2,
         },
         shadowOpacity: 0.9,
-        shadowRadius: 3.5,
-        elevation: 10,
+        shadowRadius: 1,
+        elevation: 2,
     },
     marksTextComponentFinishCancel: {
         height: 40,
@@ -383,7 +382,7 @@ const styles = StyleSheet.create({
         elevation: 10,
     },
     titleText: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: "bold",
         color: THEME.COLORS.primary,
         textAlign: "center",

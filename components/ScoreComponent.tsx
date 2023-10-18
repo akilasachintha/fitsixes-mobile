@@ -29,12 +29,6 @@ const ScoreComponent: React.FC<ScoreCardProps> = ({details, teamName}) => {
                 <View style={styles.score}>
                     <Text style={styles.text1}>{details.marks + '/' + details.wickets}</Text>
                     <Text style={styles.text2}>{details.overs + '.' + details.balls + '/' + '10 Overs'}</Text>
-                </View>
-            </View>
-            <View style={styles.otherDetailsContainer}>
-                <View style={styles.detailsContainer}>
-                </View>
-                <View style={styles.detailsContainer}>
                     <Text style={styles.text2}>{'Extra: ' + details.extras}</Text>
                 </View>
             </View>
@@ -52,10 +46,10 @@ const styles = StyleSheet.create({
         elevation: 5,
         width: "90%",
         marginBottom: "5%",
+        paddingVertical: "6%",
     },
     scoreDetails: {
         flexDirection: 'row',
-        marginTop: 20,
         justifyContent: 'space-around'
     },
     score: {

@@ -31,23 +31,7 @@ interface ScoreCardProps {
     };
 }
 
-const ScoreComponentCoordinator: React.FC<ScoreCardProps> = ({details, teamName, details2}) => {
-    const calculateRunRate = (totalRuns: number, totalOvers: number): number => {
-        if (totalOvers === 0) {
-            return 0;
-        }
-        const runRate = totalRuns / totalOvers;
-        return Math.round(runRate * 100) / 100;
-    };
-
-    const calculateRequiredRunRate = (targetRuns: number, remainingOvers: number): number => {
-        if (remainingOvers === 0) {
-            return Number.POSITIVE_INFINITY;
-        }
-        const requiredRunRate = targetRuns / remainingOvers;
-        return Math.round(requiredRunRate * 100) / 100;
-    };
-
+const ScoreComponentCoordinator: React.FC<ScoreCardProps> = ({details, teamName}) => {
     return (
         <View style={styles.container}>
             <View style={styles.scoreDetails}>
@@ -59,17 +43,6 @@ const ScoreComponentCoordinator: React.FC<ScoreCardProps> = ({details, teamName,
                 <View style={styles.score}>
                     <Text style={styles.text1}>{details.marks + '/' + details.wickets}</Text>
                     <Text style={styles.text2}>{details.overs + '.' + details.balls + '/' + '10 Overs'}</Text>
-                </View>
-            </View>
-            <View style={styles.otherDetailsContainer}>
-                <View style={styles.detailsContainer}>
-                    <Text style={styles.text2}>{'CRR: ' + calculateRunRate(details.marks, details.overs)}</Text>
-                    {details.overs !== 10 && (
-                        <Text
-                            style={styles.text2}>{'RRR: ' + calculateRequiredRunRate(details2.marks, 10 - details.overs)}</Text>
-                    )}
-                </View>
-                <View style={styles.detailsContainer}>
                     <Text style={styles.text2}>{'Extra: ' + details.extras}</Text>
                 </View>
             </View>
@@ -86,11 +59,11 @@ const styles = StyleSheet.create({
         backgroundColor: THEME.COLORS.green,
         elevation: 5,
         width: "90%",
-        marginBottom: "10%",
+        marginVertical: "5%",
+        paddingVertical: "6%",
     },
     scoreDetails: {
         flexDirection: 'row',
-        marginTop: "5%",
         justifyContent: 'space-around'
     },
     score: {

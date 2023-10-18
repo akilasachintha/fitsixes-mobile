@@ -1,36 +1,18 @@
 import {RefreshControl, SafeAreaView, ScrollView, View} from "react-native";
 import {MatchStatus} from "@components/MatchDetailCard";
 import {PATHS} from "@constants/PATHS";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useAuth} from "@context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
 import MatchDetailCoordinatorCard from "@components/coordinator/MatchDetailCoordinatorCard";
-
-type TServerMatch = {
-    match_id: number;
-    id: string;
-    tos_winner: string;
-    first_bat: string;
-    team1: {
-        teamName: string;
-        marks: number;
-        wickets: number;
-        overs: number;
-        balls: number;
-    },
-    team2: {
-        teamName: string;
-        marks: number;
-        wickets: number;
-        overs: number;
-        balls: number;
-    },
-}
+import {useFocusEffect} from "@react-navigation/native";
 
 export type TMatch = {
     team1: string;
     team2: string;
     match_no: number;
+    match_level: string;
+    pitch_no: number;
     id: string;
     tos_winner: string;
     first_bat: string;
@@ -49,14 +31,8 @@ export type TMatch = {
         }
     }
 }
-
-const reconnectDelay = 3000;
-
 export default function MatchesLiveCoordinatorScreen() {
     const [liveMatches, setLiveMatches] = useState<TMatch[]>([]);
-    const [serverMessages, setServerMessages] = useState<TServerMatch[]>([]);
-    const [isConnected, setIsConnected] = useState<boolean>(false);
-    const ws = useRef<WebSocket | null>(null);
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
 
@@ -77,45 +53,15 @@ export default function MatchesLiveCoordinatorScreen() {
         fetchLiveMatches();
     };
 
-    const connectToWebSocket = () => {
-        ws.current = new WebSocket(
-            'ws://ec2-43-205-124-127.ap-south-1.compute.amazonaws.com:8080/socket.io/?EIO=4&transport=websocket',
-        );
-
-        ws.current.onopen = () => {
-            console.log('connected');
-            setIsConnected(true);
-        };
-
-        ws.current.onclose = () => {
-            console.log('disconnected');
-            setIsConnected(false);
-
-            setTimeout(connectToWebSocket, reconnectDelay);
-        };
-
-        ws.current.onerror = (e) => {
-            // @ts-ignore
-            console.log('error:', e.message);
-        };
-
-        ws.current.onmessage = (e) => {
-            const incomingMessage = e.data;
-            console.log(incomingMessage);
-            setServerMessages(JSON.parse(incomingMessage));
-        };
-    };
-
     useEffect(() => {
-        connectToWebSocket();
         fetchLiveMatches();
-
-        return () => {
-            if (ws.current && ws.current.readyState === WebSocket.OPEN) {
-                ws.current.close();
-            }
-        };
     }, []);
+
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchLiveMatches();
+        }, [])
+    )
 
     return (
         <SafeAreaView>
@@ -126,63 +72,34 @@ export default function MatchesLiveCoordinatorScreen() {
                 />
             }
             >
-                {
-                    isConnected && serverMessages && serverMessages.length > 0 ? (
-                        <View>
-                            {serverMessages && serverMessages.length > 0 && serverMessages.map((item: TServerMatch) => {
-                                let team1_score = `${item.team1.marks}/${item.team1.wickets}`
-                                let team2_score = `${item.team2.marks}/${item.team2.wickets}`
-                                let overs_T1 = `${item.team1.overs}.${item.team1.balls}`
-                                let overs_T2 = `${item.team2.overs}.${item.team2.balls}`
-                                return (
-                                    <MatchDetailCoordinatorCard
-                                        key={item.match_id}
-                                        matchStatus={MatchStatus.Live}
-                                        team1={item.team1.teamName}
-                                        team2={item.team2.teamName}
-                                        team1Score={team1_score}
-                                        team2Score={team2_score}
-                                        team1Image={PATHS.IMAGES.Team_1}
-                                        team2Image={PATHS.IMAGES.Team_2}
-                                        matchNo={item.match_id}
-                                        overs_T1={overs_T1}
-                                        overs_T2={overs_T2}
-                                        matchId={item.id}
-                                        tosWinner={item.tos_winner}
-                                        firstBat={item.first_bat}
-                                    />
+                <View>
+                    {liveMatches && liveMatches.map((item: TMatch, index) => {
+                        let team1_score = `${item.scorecard?.team1.marks}/${item.scorecard?.team1.wickets}`
+                        let team2_score = `${item.scorecard?.team2.marks}/${item.scorecard?.team2.wickets}`
+                        let overs_T1 = `${item.scorecard?.team1.overs}.${item.scorecard?.team1.balls}`
+                        let overs_T2 = `${item.scorecard?.team2.overs}.${item.scorecard?.team2.balls}`
+                        return (
+                            <MatchDetailCoordinatorCard
+                                key={index}
+                                matchStatus={MatchStatus.Live}
+                                matchLevel={item.match_level}
+                                pitchNo={item.pitch_no}
+                                team1={item.team1}
+                                team2={item.team2}
+                                team1Score={team1_score}
+                                team2Score={team2_score}
+                                team1Image={PATHS.IMAGES.Team_1}
+                                team2Image={PATHS.IMAGES.Team_2}
+                                matchNo={item.match_no}
+                                overs_T1={overs_T1}
+                                overs_T2={overs_T2}
+                                matchId={item.id}
+                                tosWinner={item.tos_winner}
+                                firstBat={item.first_bat}
+                            />
                                 )
                             })}
                         </View>
-                    ) : (
-                        <View>
-                            {liveMatches && liveMatches.map((item: TMatch, index) => {
-                                let team1_score = `${item.scorecard?.team1.marks}/${item.scorecard?.team1.wickets}`
-                                let team2_score = `${item.scorecard?.team2.marks}/${item.scorecard?.team2.wickets}`
-                                let overs_T1 = `${item.scorecard?.team1.overs}.${item.scorecard?.team1.balls}`
-                                let overs_T2 = `${item.scorecard?.team2.overs}.${item.scorecard?.team2.balls}`
-                                return (
-                                    <MatchDetailCoordinatorCard
-                                        key={index}
-                                        matchStatus={MatchStatus.Live}
-                                        team1={item.team1}
-                                        team2={item.team2}
-                                        team1Score={team1_score}
-                                        team2Score={team2_score}
-                                        team1Image={PATHS.IMAGES.Team_1}
-                                        team2Image={PATHS.IMAGES.Team_2}
-                                        matchNo={item.match_no}
-                                        overs_T1={overs_T1}
-                                        overs_T2={overs_T2}
-                                        matchId={item.id}
-                                        tosWinner={item.tos_winner}
-                                        firstBat={item.first_bat}
-                                    />
-                                )
-                            })}
-                        </View>
-                    )
-                }
             </ScrollView>
         </SafeAreaView>
     )

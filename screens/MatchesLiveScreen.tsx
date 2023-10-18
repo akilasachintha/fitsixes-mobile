@@ -4,7 +4,6 @@ import MatchDetailCard, {MatchStatus} from "@components/MatchDetailCard";
 import {PATHS} from "@constants/PATHS";
 import useLiverScoreUpdateService from "@services/useLiverScoreUpdateService";
 
-
 export default function MatchesLiveScreen() {
     const {outputArr, fetchLiveMatches} = useLiverScoreUpdateService();
 
@@ -35,7 +34,9 @@ export default function MatchesLiveScreen() {
                             return (
                                 <MatchDetailCard
                                     key={index}
+                                    matchLevel={item.match_level}
                                     matchStatus={MatchStatus.Live}
+                                    pitchNo={item.pitch_no}
                                     team1={item.team1}
                                     team2={item.team2}
                                     team1Score={team1_score}

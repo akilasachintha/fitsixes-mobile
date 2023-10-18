@@ -4,8 +4,8 @@ import {PATHS} from "@constants/PATHS";
 import React, {useEffect, useState} from "react";
 import {useAuth} from "@context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
-import {TMatch} from "@screens/MatchesLiveScreen";
 import {useFocusEffect} from "@react-navigation/native";
+import {TMatch} from "@services/useLiverScoreUpdateService";
 
 export default function MatchesCompletedScreen() {
     const [completedMatches, setCompletedMatches] = useState<TMatch[]>([]);
@@ -58,6 +58,8 @@ export default function MatchesCompletedScreen() {
                             team1Image={PATHS.IMAGES.Team_1}
                             team2Image={PATHS.IMAGES.Team_2}
                             matchNo={item.match_no}
+                            matchLevel={item.match_level}
+                            pitchNo={item.pitch_no}
                             matchId={item.id}
                             tosWinner={item.tos_winner}
                             firstBat={item.first_bat}

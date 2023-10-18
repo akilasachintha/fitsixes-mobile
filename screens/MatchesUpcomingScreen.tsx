@@ -10,6 +10,8 @@ interface Match {
     team1: string;
     team2: string;
     match_no: number;
+    match_level: string;
+    pitch_no: number;
 }
 
 export default function MatchesUpcomingScreen() {
@@ -57,7 +59,9 @@ export default function MatchesUpcomingScreen() {
                 {upcomingMatches && upcomingMatches.map((item, index) => (
                     <MatchDetailCard
                         key={index}
+                        matchLevel={item.match_level}
                         matchStatus={MatchStatus.Upcoming}
+                        pitchNo={item.pitch_no}
                         team1={item.team1}
                         team2={item.team2}
                         team1Image={PATHS.IMAGES.Team_1}

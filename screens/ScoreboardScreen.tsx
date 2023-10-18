@@ -100,11 +100,11 @@ const styles = StyleSheet.create({
         shadowColor: THEME.COLORS.primary,
         shadowOffset: {
             width: 0,
-            height: 10
+            height: 2
         },
         shadowOpacity: 0.9,
-        shadowRadius: 3.5,
-        elevation: 10,
+        shadowRadius: 1,
+        elevation: 5,
     },
     leftContainerText: {
         width: "50%",
