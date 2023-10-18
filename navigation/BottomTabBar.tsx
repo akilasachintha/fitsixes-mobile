@@ -294,10 +294,12 @@ const styles = StyleSheet.create({
     tabIcon: {
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: "5%",
     },
     tabIconText: {
         color: THEME.COLORS.primary,
         fontSize: 11,
+        flex: 1,
     },
     icon: {
         backgroundColor: THEME.COLORS.primary,
