@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { THEME } from "@constants/THEME";
+import {StyleSheet, Text, View} from "react-native";
+import {THEME} from "@constants/THEME";
 import ImageHolder from "@components/ImageHolder";
-import { PATHS } from "@constants/PATHS";
+import {PATHS} from "@constants/PATHS";
 
 interface ScoreCardProps {
     details: {
@@ -14,9 +14,10 @@ interface ScoreCardProps {
     };
     teamName?: string;
     teamNo: number;
+    totalOvers: number;
 }
 
-const ScoreComponent: React.FC<ScoreCardProps> = ({ details, teamName, teamNo }) => {
+const ScoreComponent: React.FC<ScoreCardProps> = ({details, teamName, teamNo, totalOvers}) => {
 
     return (
         <View style={styles.container}>
@@ -29,7 +30,8 @@ const ScoreComponent: React.FC<ScoreCardProps> = ({ details, teamName, teamNo })
                 </View>
                 <View style={styles.score}>
                     <Text style={styles.text1}>{details.marks + '/' + details.wickets}</Text>
-                    <Text style={styles.text2}>{details.overs + '.' + details.balls + '/' + '10 Overs'}</Text>
+                    <Text
+                        style={styles.text2}>{details.overs + '.' + details.balls + ' / ' + totalOvers + ' Overs'}</Text>
                     <Text style={styles.text2}>{'Extra: ' + details.extras}</Text>
                 </View>
             </View>

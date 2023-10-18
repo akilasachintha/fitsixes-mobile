@@ -1,24 +1,24 @@
-import { RefreshControl, SafeAreaView, ScrollView } from "react-native";
-import MatchDetailCard, { MatchStatus } from "@components/MatchDetailCard";
-import { PATHS } from "@constants/PATHS";
-import React, { useEffect } from "react";
-import { useFocusEffect } from "@react-navigation/native";
-import useLiverScoreUpdateService, { TMatch } from "@services/useLiverScoreUpdateService";
+import {RefreshControl, SafeAreaView, ScrollView} from "react-native";
+import MatchDetailCard, {MatchStatus} from "@components/MatchDetailCard";
+import {PATHS} from "@constants/PATHS";
+import React, {useEffect} from "react";
+import {useFocusEffect} from "@react-navigation/native";
+import useLiverScoreUpdateService, {TMatch} from "@services/useLiverScoreUpdateService";
 
 export default function MatchesCompletedScreen() {
     const { completedMatches, fetchCompletedMatches } = useLiverScoreUpdateService();
 
     useEffect(() => {
-        fetchCompletedMatches();
+        fetchCompletedMatches().catch((err) => console.error(err));
     }, []);
 
     useFocusEffect(
         React.useCallback(() => {
-            fetchCompletedMatches();
+            fetchCompletedMatches().catch((err) => console.error(err));
         }, []));
 
     const handleRefresh = () => {
-        fetchCompletedMatches();
+        fetchCompletedMatches().catch((err) => console.error(err));
     };
 
     return (

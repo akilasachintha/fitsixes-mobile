@@ -1,10 +1,10 @@
 import TeamNamesCard from "@components/TeamNamesCard";
-import { RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { THEME } from "@constants/THEME";
-import { useState } from "react";
+import {RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {THEME} from "@constants/THEME";
+import {useState} from "react";
 import ScoreComponent from "@components/ScoreComponent";
 import useLiverScoreUpdateService from "@services/useLiverScoreUpdateService";
-import { MatchStatus } from "@components/MatchDetailCard";
+import {MatchStatus} from "@components/MatchDetailCard";
 
 export default function ScoreboardScreen(props: any) {
     const [selectedTab, setSelectedTab] = useState(0);
@@ -69,11 +69,13 @@ export default function ScoreboardScreen(props: any) {
                                 teamName={TEAM_1}
                                 details={getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1}
                                 teamNo={1}
+                                totalOvers={getMatchDetails && getMatchDetails.overs}
                             />}
                             {matchStatus === MatchStatus.Completed && getCompletedMatchDetails && <ScoreComponent
                                 teamName={TEAM_1}
                                 details={getCompletedMatchDetails && getCompletedMatchDetails.scorecard && getCompletedMatchDetails.scorecard.team1}
                                 teamNo={1}
+                                totalOvers={getCompletedMatchDetails && getCompletedMatchDetails.overs}
                             />}
                         </View>
                     )
@@ -85,13 +87,21 @@ export default function ScoreboardScreen(props: any) {
                                 teamName={TEAM_2}
                                 details={getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2}
                                 teamNo={2}
+                                totalOvers={getMatchDetails && getMatchDetails.overs}
                             />}
                             {matchStatus === MatchStatus.Completed && getCompletedMatchDetails && <ScoreComponent
                                 teamName={TEAM_2}
                                 details={getCompletedMatchDetails && getCompletedMatchDetails && getCompletedMatchDetails.scorecard && getCompletedMatchDetails.scorecard.team2}
                                 teamNo={2}
+                                totalOvers={getCompletedMatchDetails && getCompletedMatchDetails.overs}
                             />}
                         </View>
+                    )
+                }
+                {
+                    matchStatus === MatchStatus.Completed && getCompletedMatchDetails && (
+                        <Text
+                            style={styles.vsText}>{`${getCompletedMatchDetails && getCompletedMatchDetails.winner} Won the match.`}</Text>
                     )
                 }
             </ScrollView>
@@ -159,6 +169,12 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 10,
         paddingHorizontal: "8%",
-
-    }
+    },
+    vsText: {
+        color: THEME.COLORS.primary,
+        fontSize: 14,
+        textAlign: "center",
+        marginVertical: "2%",
+        paddingHorizontal: "4%",
+    },
 });

@@ -123,12 +123,11 @@ export default function MatchDetailCard({
                                     </View>
                                 )
                             }
-
                         </View>
                         <View style={{ marginTop: 5 }}>
                             {
                                 matchStatus === MatchStatus.Completed && (
-                                    <Text style={styles.vsText}>{`${winner} Won the match`}</Text>
+                                    <Text style={styles.vsText}>{`${winner} Won the match.`}</Text>
                                 )
                             }
                         </View>

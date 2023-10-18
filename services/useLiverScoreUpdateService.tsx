@@ -41,6 +41,7 @@ export type TMatch = {
     team1: string;
     team2: string;
     match_no: number;
+    overs: number;
     match_level: string;
     pitch_no: number;
     id: string;
@@ -85,6 +86,7 @@ export default function useLiverScoreUpdateService() {
                 matchId: matchingItem2.match_id,
                 match_no: item1.match_no,
                 match_level: item1.match_level,
+                overs: item1.overs,
                 pitch_no: item1.pitch_no,
                 id: item1.id,
                 team1: item1.team1,
