@@ -1,8 +1,9 @@
 import React from "react";
-import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
+import { Image, ImageSourcePropType, StyleSheet, Text, View } from "react-native";
 import ImageHolder from "@components/ImageHolder";
-import {THEME} from "@constants/THEME";
-import {PATHS} from "@constants/PATHS";
+import { THEME } from "@constants/THEME";
+import { PATHS } from "@constants/PATHS";
+import { getrandomNoImage } from "@constants/PATHS";
 
 interface TeamNamesProps {
     teamName1: string;
@@ -11,7 +12,8 @@ interface TeamNamesProps {
     teamSource2?: ImageSourcePropType;
 }
 
-const TeamNamesCard: React.FC<TeamNamesProps> = ({teamName1, teamName2, teamSource1 = PATHS.IMAGES.NO_IMAGE, teamSource2 = PATHS.IMAGES.NO_IMAGE}) => {
+
+const TeamNamesCard: React.FC<TeamNamesProps> = ({ teamName1, teamName2, teamSource1 = getrandomNoImage(), teamSource2 = getrandomNoImage() }) => {
     return (
         <View style={styles.cardContainer}>
             <View style={styles.cardSecondContainer}>
@@ -25,7 +27,7 @@ const TeamNamesCard: React.FC<TeamNamesProps> = ({teamName1, teamName2, teamSour
                 </View>
 
                 <View style={styles.imageContainer}>
-                    <Image source={PATHS.IMAGES.FIT_SIXES_LOGO} style={styles.image}/>
+                    <Image source={PATHS.IMAGES.FIT_SIXES_LOGO} style={styles.image} />
                 </View>
                 <View style={styles.teamDetails}>
                     <ImageHolder source={teamSource2} size={70} />

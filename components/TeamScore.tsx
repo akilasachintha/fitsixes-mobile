@@ -1,8 +1,9 @@
 import React from "react";
-import {ImageSourcePropType, StyleSheet, Text, View} from "react-native";
+import { ImageSourcePropType, StyleSheet, Text, View } from "react-native";
 import ImageHolder from '@components/ImageHolder'
-import {THEME} from "@constants/THEME";
-import {PATHS} from "@constants/PATHS";
+import { THEME } from "@constants/THEME";
+import { PATHS } from "@constants/PATHS";
+import { getrandomNoImage } from "@constants/PATHS";
 
 interface TeamScoreProps {
     teamName: String;
@@ -12,10 +13,11 @@ interface TeamScoreProps {
     src?: ImageSourcePropType
 }
 
-const TeamScore: React.FC<TeamScoreProps> = ({teamName, score = 0, wickets = 0, overs = 0.0, src = PATHS.IMAGES.NO_IMAGE}) => {
+
+const TeamScore: React.FC<TeamScoreProps> = ({ teamName, score = 0, wickets = 0, overs = 0.0, src = getrandomNoImage() }) => {
     return (
         <View style={styles.container}>
-            <ImageHolder source={src} size={100} borderColor={THEME.COLORS.primary} borderWidth={1}/>
+            <ImageHolder source={src} size={100} borderColor={THEME.COLORS.primary} borderWidth={1} />
             <View style={styles.teamDetails}>
                 <Text style={styles.teamName} numberOfLines={2} ellipsizeMode="tail">{teamName.length > 20 ? `${teamName.slice(0, 30)}...` : teamName}</Text>
                 <Text style={styles.teamDetailsText}>{score + ' - ' + wickets}</Text>

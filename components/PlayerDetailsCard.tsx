@@ -1,8 +1,9 @@
-import {Image, ImageSourcePropType, StyleSheet, Text, View} from 'react-native'
+import { Image, ImageSourcePropType, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import ImageHolder from './ImageHolder'
-import {THEME} from "@constants/THEME";
-import {PATHS} from "@constants/PATHS";
+import { THEME } from "@constants/THEME";
+import { PATHS } from "@constants/PATHS";
+import { getrandomNoImage } from "@constants/PATHS";
 
 interface PlayerDetailsCardProps {
     key: number;
@@ -11,9 +12,9 @@ interface PlayerDetailsCardProps {
 }
 
 const PlayerDetailsCard: React.FC<PlayerDetailsCardProps> = ({
-                                                                 key,
-                                                                 url,
-                                                                 playerName,
+    key,
+    url,
+    playerName,
 
 }) => {
     return (
@@ -21,7 +22,7 @@ const PlayerDetailsCard: React.FC<PlayerDetailsCardProps> = ({
             <View style={styles.playerCardSubContainer}>
                 <View style={styles.playerProfileContainer}>
                     <ImageHolder
-                        source={url ? url : PATHS.IMAGES.NO_IMAGE}
+                        source={url ? url : getrandomNoImage()}
                         size={60}
                         borderColor="#13FAF8"
                         borderWidth={3}
@@ -33,7 +34,7 @@ const PlayerDetailsCard: React.FC<PlayerDetailsCardProps> = ({
                     </Text>
                 </View>
                 <View style={styles.logoContainer}>
-                    <Image style={styles.logoView} resizeMode='contain' source={PATHS.IMAGES.FIT_SIXES_LOGO}/>
+                    <Image style={styles.logoView} resizeMode='contain' source={PATHS.IMAGES.FIT_SIXES_LOGO} />
                 </View>
             </View>
         </View>
