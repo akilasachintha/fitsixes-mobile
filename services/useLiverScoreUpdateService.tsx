@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { useAuth } from "@context/AuthContext";
-import { BASE_URL, createAxiosInstance, WEB_SOCKET_URL } from "@config/axiosConfig";
+import {useEffect, useRef, useState} from "react";
+import {useAuth} from "@context/AuthContext";
+import {BASE_URL, createAxiosInstance, WEB_SOCKET_URL} from "@config/axiosConfig";
 
 type TServerMatch = {
     score: {
