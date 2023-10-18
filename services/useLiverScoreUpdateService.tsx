@@ -1,6 +1,6 @@
-import {useEffect, useRef, useState} from "react";
-import {useAuth} from "@context/AuthContext";
-import {BASE_URL, createAxiosInstance, WEB_SOCKET_URL} from "@config/axiosConfig";
+import { useEffect, useRef, useState } from "react";
+import { useAuth } from "@context/AuthContext";
+import { BASE_URL, createAxiosInstance, WEB_SOCKET_URL } from "@config/axiosConfig";
 
 type TServerMatch = {
     score: {
@@ -46,6 +46,7 @@ export type TMatch = {
     id: string;
     tos_winner: string;
     first_bat: string;
+    winner: string;
     scorecard: {
         team1: {
             marks: number;
@@ -90,6 +91,7 @@ export default function useLiverScoreUpdateService() {
                 team2: item1.team2,
                 tos_winner: item1.tos_winner,
                 first_bat: item1.first_bat,
+                winner: item1.winner,
                 scorecard: {
                     team1: {
                         balls: matchingItem2.team1.balls,
@@ -155,7 +157,7 @@ export default function useLiverScoreUpdateService() {
         ws.current.onopen = () => {
             console.log("connected");
             setIsConnected(true);
-            const data = {action: "sendMessage", message: "hello server"};
+            const data = { action: "sendMessage", message: "hello server" };
             // @ts-ignore
             ws.current.send(JSON.stringify(data));
         };

@@ -1,8 +1,8 @@
 import React from "react"
-import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
+import { Image, ImageSourcePropType, StyleSheet, Text, View } from "react-native";
 import ImageHolder from "@components/ImageHolder";
-import {THEME} from "@constants/THEME";
-import {PATHS} from "@constants/PATHS";
+import { THEME } from "@constants/THEME";
+import { PATHS } from "@constants/PATHS";
 
 interface TeamCardProps {
     teamName: string;

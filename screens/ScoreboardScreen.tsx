@@ -1,14 +1,14 @@
 import TeamNamesCard from "@components/TeamNamesCard";
-import {RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {THEME} from "@constants/THEME";
-import {useState} from "react";
+import { RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { THEME } from "@constants/THEME";
+import { useState } from "react";
 import ScoreComponent from "@components/ScoreComponent";
 import useLiverScoreUpdateService from "@services/useLiverScoreUpdateService";
-import {MatchStatus} from "@components/MatchDetailCard";
+import { MatchStatus } from "@components/MatchDetailCard";
 
 export default function ScoreboardScreen(props: any) {
     const [selectedTab, setSelectedTab] = useState(0);
-    const {outputArr, completedMatches, fetchLiveMatches} = useLiverScoreUpdateService();
+    const { outputArr, completedMatches, fetchLiveMatches } = useLiverScoreUpdateService();
     const id = props.route.params.data;
     const TEAM_1 = props.route.params.team_1;
     const TEAM_2 = props.route.params.team_2;
@@ -68,10 +68,12 @@ export default function ScoreboardScreen(props: any) {
                             {matchStatus === MatchStatus.Live && getMatchDetails && <ScoreComponent
                                 teamName={TEAM_1}
                                 details={getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1}
+                                teamNo={1}
                             />}
                             {matchStatus === MatchStatus.Completed && getCompletedMatchDetails && <ScoreComponent
                                 teamName={TEAM_1}
                                 details={getCompletedMatchDetails && getCompletedMatchDetails.scorecard && getCompletedMatchDetails.scorecard.team1}
+                                teamNo={1}
                             />}
                         </View>
                     )
@@ -82,10 +84,12 @@ export default function ScoreboardScreen(props: any) {
                             {matchStatus === MatchStatus.Live && getMatchDetails && <ScoreComponent
                                 teamName={TEAM_2}
                                 details={getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2}
+                                teamNo={2}
                             />}
                             {matchStatus === MatchStatus.Completed && getCompletedMatchDetails && <ScoreComponent
                                 teamName={TEAM_2}
                                 details={getCompletedMatchDetails && getCompletedMatchDetails && getCompletedMatchDetails.scorecard && getCompletedMatchDetails.scorecard.team2}
+                                teamNo={2}
                             />}
                         </View>
                     )
