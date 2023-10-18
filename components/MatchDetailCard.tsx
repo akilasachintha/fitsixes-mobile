@@ -1,8 +1,8 @@
-import {Image, ImageBackground, ImageProps, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import { Image, ImageBackground, ImageProps, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ImageHolder from "./ImageHolder";
-import {useNavigation} from "@react-navigation/native";
-import {THEME} from "@constants/THEME";
-import {PATHS} from "@constants/PATHS";
+import { useNavigation } from "@react-navigation/native";
+import { THEME } from "@constants/THEME";
+import { PATHS } from "@constants/PATHS";
 
 interface MatchDetailCardProps {
     matchNo: number;
@@ -20,6 +20,7 @@ interface MatchDetailCardProps {
     matchId?: string;
     tosWinner?: string;
     firstBat?: string;
+    winner?: string;
 }
 
 export type MatchStatusType = "Live" | "Upcoming" | "Completed";
@@ -31,21 +32,22 @@ export const MatchStatus: Record<MatchStatusType, MatchStatusType> = {
 }
 
 export default function MatchDetailCard({
-                                            matchNo,
-                                            team1,
-                                            team2,
-                                            matchLevel,
-                                            pitchNo,
-                                            team1Score,
-                                            team2Score,
-                                            team1Image,
-                                            team2Image,
-                                            matchStatus,
-                                            overs_T1,
-                                            overs_T2,
-                                            matchId,
-                                            tosWinner,
-                                            firstBat
+    matchNo,
+    team1,
+    team2,
+    matchLevel,
+    pitchNo,
+    team1Score,
+    team2Score,
+    team1Image,
+    team2Image,
+    matchStatus,
+    overs_T1,
+    overs_T2,
+    matchId,
+    tosWinner,
+    firstBat,
+    winner
 }: MatchDetailCardProps) {
     const navigation = useNavigation();
     const handleMatchCardClick = () => {
@@ -53,16 +55,16 @@ export default function MatchDetailCard({
             // @ts-ignore
             navigation.navigate("HomeTabScoreboardStack", {
                 matchStatus: matchStatus,
-                    data: matchId,
-                    team_1: team1,
-                    team_2: team2,
-                    tossWinner: tosWinner,
-                    first: firstBat,
-                    team1Score,
-                    team2Score,
-                    overs_T1,
-                    overs_T2
-                }
+                data: matchId,
+                team_1: team1,
+                team_2: team2,
+                tossWinner: tosWinner,
+                first: firstBat,
+                team1Score,
+                team2Score,
+                overs_T1,
+                overs_T2
+            }
             );
         }
     }
@@ -72,7 +74,7 @@ export default function MatchDetailCard({
             <ImageBackground
                 source={PATHS.IMAGES.FIT_SIXES_LOGO}
                 resizeMode="contain"
-                imageStyle={matchStatus === "Live" ? { display: "flex" } : { display: "none" }}
+                imageStyle={[matchStatus === "Live" ? { display: "flex" } : { display: "none" }, { opacity: 0.5 }]}
                 style={styles.container}>
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText}>Match {matchNo} {matchLevel} | Pitch {pitchNo}</Text>
@@ -96,7 +98,7 @@ export default function MatchDetailCard({
                         <View style={styles.teamContainer}>
                             <View style={styles.teamImageContainer}>
                                 <ImageHolder source={team1Image} size={40} />
-                                <Text style={styles.teamImageText}>{team1}</Text>
+                                <Text style={styles.teamImageText} numberOfLines={2} ellipsizeMode="tail">{team1.length > 20 ? `${team1.slice(0, 25)}...` : team1}</Text>
                             </View>
                             {
                                 matchStatus === MatchStatus.Live && (
@@ -111,7 +113,7 @@ export default function MatchDetailCard({
                         <View style={styles.teamContainer}>
                             <View style={styles.teamImageContainer}>
                                 <ImageHolder source={team2Image} size={40} />
-                                <Text style={styles.teamImageText}>{team2}</Text>
+                                <Text style={styles.teamImageText} numberOfLines={2} ellipsizeMode="tail">{team2.length > 20 ? `${team2.slice(0, 25)}...` : team2}</Text>
                             </View>
                             {
                                 matchStatus === MatchStatus.Live && (
@@ -121,11 +123,19 @@ export default function MatchDetailCard({
                                     </View>
                                 )
                             }
+
+                        </View>
+                        <View style={{ marginTop: 5 }}>
+                            {
+                                matchStatus === MatchStatus.Completed && (
+                                    <Text style={styles.vsText}>{`${winner} Won the match`}</Text>
+                                )
+                            }
                         </View>
                     </View>
                     {
                         matchStatus !== MatchStatus.Live && (
-                            <Image source={PATHS.IMAGES.FIT_SIXES_LOGO} style={{ width: 140, height: 100 }} />
+                            <Image source={PATHS.IMAGES.FIT_SIXES_LOGO} style={{ width: 140, height: 100, opacity: 0.5, position: 'absolute', right: 0 }} />
                         )
                     }
                 </View>
@@ -169,8 +179,9 @@ const styles = StyleSheet.create({
     teamImageText: {
         color: THEME.COLORS.white,
         fontSize: 14,
-        marginLeft: "8%",
         fontWeight: "bold",
+        textAlign: 'justify',
+        marginLeft: 15
     },
     teamScoreText: {
         color: THEME.COLORS.white,

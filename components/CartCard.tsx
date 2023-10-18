@@ -1,12 +1,13 @@
-import {ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import React, {useState} from "react";
-import {THEME} from "@constants/THEME";
+import { ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { THEME } from "@constants/THEME";
 import ImageHolder from "@components/ImageHolder";
-import {PATHS} from "@constants/PATHS";
-import {Ionicons} from "@expo/vector-icons";
-import {useAuth} from "@context/AuthContext";
-import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
-import {useToast} from "@context/ToastContext";
+import { PATHS } from "@constants/PATHS";
+import { Ionicons } from "@expo/vector-icons";
+import { useAuth } from "@context/AuthContext";
+import { BASE_URL, createAxiosInstance } from "@config/axiosConfig";
+import { useToast } from "@context/ToastContext";
+import { getrandomNoImage } from "@constants/PATHS";
 
 interface CartCardProps {
     url: ImageSourcePropType;
@@ -20,8 +21,7 @@ const CartCard: React.FC<CartCardProps> = ({
     const [quantity, setQuantity] = useState<number>(1);
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
-    const {showToast} = useToast();
-
+    const { showToast } = useToast();
     const handleConfirmButton = async () => {
         try {
             console.log("Confirm Button Pressed " + text);
@@ -63,7 +63,7 @@ const CartCard: React.FC<CartCardProps> = ({
             <View style={styles.subContainer}>
                 <View style={styles.imageContainer}>
                     <ImageHolder
-                        source={url ? url : PATHS.IMAGES.NO_IMAGE}
+                        source={url ? url : getrandomNoImage()}
                         size={100}
                         borderColor="#13FAF8"
                         borderWidth={3}
