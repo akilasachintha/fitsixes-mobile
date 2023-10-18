@@ -20,6 +20,7 @@ import CartScreen from "@screens/CartScreen";
 
 import TopHeaderBar from "@components/TopHeaderBar";
 import StackNavigatorCoordinator from "@navigation/StackNavigatorCoordinator";
+import TeamCoordinatorProfile from "@screens/teamCoordinator/TeamCoordinatorProfile";
 
 const Tab = createBottomTabNavigator();
 
@@ -141,6 +142,10 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                                                         color={THEME.COLORS.border}/>
 
                             }
+                            {
+                                routeName === "TeamCoordinatorProfileTab" &&
+                                <Ionicons name="person" size={22} color={THEME.COLORS.border}/>
+                            }
                         </View>
                     )
                 } else if (route.name === "HandleMatchTab") {
@@ -179,7 +184,18 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                                     <MaterialCommunityIcons name="tooltip-edit-outline" size={24}
                                                             color={THEME.COLORS.primary}/>
                             }
-                            <Text style={styles.tabIconText}>Edit</Text>
+                            <Text style={styles.tabIconText}>Attendance</Text>
+                        </View>
+                    )
+                } else if (route.name === "TeamCoordinatorProfileTab") {
+                    return (
+                        <View style={styles.tabIcon}>
+                            {
+                                focused ?
+                                    <Ionicons name="person" size={22} color={THEME.COLORS.primary}/> :
+                                    <Ionicons name="person-outline" size={22} color={THEME.COLORS.primary}/>
+                            }
+                            <Text style={styles.tabIconText}>Profile</Text>
                         </View>
                     )
                 }
@@ -195,7 +211,7 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
                         }}
             />
             {
-                isLoggedIn && (role === ROLES.PLAYER || role === ROLES.PITCH_COORDINATOR) && (
+                isLoggedIn && (
                     <Tab.Screen name="TeamTab" component={StackNavigatorTeam}
                                 listeners={{
                                     tabPress: (e: any) => {
@@ -244,6 +260,20 @@ export default function BottomTabNavigator({route}: BottomTabNavigatorProps) {
             {
                 isLoggedIn && role === ROLES.TEAM_COORDINATOR && (
                     <Tab.Screen name="TeamCoordinatorTab" component={HandleTeamCoordinatorScreen}
+                                listeners={{
+                                    tabPress: (e: any) => {
+                                        if (e.tabPress) {
+                                            handleTeamTabPress();
+                                        }
+                                    },
+                                }
+                                }
+                    />
+                )
+            }
+            {
+                isLoggedIn && role === ROLES.TEAM_COORDINATOR && (
+                    <Tab.Screen name="TeamCoordinatorProfileTab" component={TeamCoordinatorProfile}
                                 listeners={{
                                     tabPress: (e: any) => {
                                         if (e.tabPress) {

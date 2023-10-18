@@ -1,8 +1,8 @@
 import React from "react"
-import { Image, ImageSourcePropType, StyleSheet, Text, View } from "react-native";
+import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import ImageHolder from "@components/ImageHolder";
-import { THEME } from "@constants/THEME";
-import { PATHS } from "@constants/PATHS";
+import {THEME} from "@constants/THEME";
+import {PATHS} from "@constants/PATHS";
 
 interface TeamCardProps {
     teamName: string;
@@ -56,10 +56,11 @@ const styles = StyleSheet.create({
         marginTop: -8,
     },
     teamName: {
-        marginTop: 15,
+        marginTop: "5%",
         color: THEME.COLORS.white,
         fontSize: 14,
         fontWeight: '700',
-        textAlign: 'center'
+        textAlign: 'center',
+        paddingHorizontal: "5%"
     }
 })

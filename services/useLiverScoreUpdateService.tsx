@@ -55,6 +55,11 @@ export type TMatch = {
             overs: number;
             balls: number;
             extras: number;
+            sixes: number;
+            fours: number;
+            ones: number;
+            twos: number;
+            threes: number;
         };
         team2: {
             marks: number;
@@ -62,6 +67,11 @@ export type TMatch = {
             overs: number;
             balls: number;
             extras: number;
+            sixes: number;
+            fours: number;
+            ones: number;
+            twos: number;
+            threes: number;
         };
     };
 };
@@ -101,6 +111,11 @@ export default function useLiverScoreUpdateService() {
                         overs: matchingItem2.team1.overs,
                         wickets: matchingItem2.team1.wickets,
                         extras: matchingItem2.team1.extras,
+                        sixes: matchingItem2.team1.sixes,
+                        fours: matchingItem2.team1.fours,
+                        ones: matchingItem2.team1.ones,
+                        twos: matchingItem2.team1.twos,
+                        threes: matchingItem2.team1.threes,
                     },
                     team2: {
                         balls: matchingItem2.team2.balls,
@@ -108,6 +123,11 @@ export default function useLiverScoreUpdateService() {
                         overs: matchingItem2.team2.overs,
                         wickets: matchingItem2.team2.wickets,
                         extras: matchingItem2.team2.extras,
+                        sixes: matchingItem2.team2.sixes,
+                        fours: matchingItem2.team2.fours,
+                        ones: matchingItem2.team2.ones,
+                        twos: matchingItem2.team2.twos,
+                        threes: matchingItem2.team2.threes,
                     },
                 },
             };

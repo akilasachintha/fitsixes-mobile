@@ -3,6 +3,7 @@ import {useAuth} from "@context/AuthContext";
 import {useToast} from "@context/ToastContext";
 import useExpoPushNotificationConfig from "@config/useExpoPushNotificationConfig";
 import {useNavigation} from "@react-navigation/native";
+import {useLoadingContext} from "@context/LoadingContext";
 
 type LoginData = {
     email: string;
@@ -13,6 +14,7 @@ type LoginData = {
 
 export const useAuthService = () => {
     const authContext = useAuth();
+    const {showLoading, hideLoading} = useLoadingContext();
     const navigation = useNavigation();
     const axiosInstanceForI2Auth = createAxiosInstance(authContext, BASE_URL.I2_AUTH);
     createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
@@ -43,7 +45,9 @@ export const useAuthService = () => {
                 if (response) {
                     showToast(response);
                 } else {
+                    showLoading();
                     login(type, id, token);
+                    hideLoading();
                 }
             }
 

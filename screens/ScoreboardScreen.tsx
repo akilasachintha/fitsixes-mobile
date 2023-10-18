@@ -77,6 +77,32 @@ export default function ScoreboardScreen(props: any) {
                                 teamNo={1}
                                 totalOvers={getCompletedMatchDetails && getCompletedMatchDetails.overs}
                             />}
+                            {
+                                matchStatus === MatchStatus.Live && getMatchDetails && (
+                                    <View style={styles.scoreContainer}>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Sixes</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.sixes}</Text>
+                                        </View>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Fours</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.fours}</Text>
+                                        </View>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Twos</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.twos}</Text>
+                                        </View>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Ones</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.ones}</Text>
+                                        </View>
+                                    </View>
+                                )
+                            }
                         </View>
                     )
                 }
@@ -95,6 +121,32 @@ export default function ScoreboardScreen(props: any) {
                                 teamNo={2}
                                 totalOvers={getCompletedMatchDetails && getCompletedMatchDetails.overs}
                             />}
+                            {
+                                matchStatus === MatchStatus.Live && getMatchDetails && (
+                                    <View style={styles.scoreContainer}>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Sixes</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.sixes}</Text>
+                                        </View>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Fours</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.fours}</Text>
+                                        </View>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Twos</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.twos}</Text>
+                                        </View>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Ones</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.ones}</Text>
+                                        </View>
+                                    </View>
+                                )
+                            }
                         </View>
                     )
                 }
@@ -134,17 +186,20 @@ const styles = StyleSheet.create({
     leftContainerText: {
         width: "50%",
         paddingVertical: "4%",
+        paddingHorizontal: "2%",
         borderRadius: 30,
         backgroundColor: THEME.COLORS.primary,
     },
     rightContainerText: {
         width: "50%",
         paddingVertical: "4%",
+        paddingHorizontal: "2%",
         borderRadius: 30,
         backgroundColor: THEME.COLORS.primary,
     },
     leftContainerNotText: {
         width: "50%",
+        paddingHorizontal: "4%",
         textAlign: "center",
         fontWeight: "bold",
     },
@@ -161,6 +216,7 @@ const styles = StyleSheet.create({
     rightContainerNotText: {
         width: "50%",
         textAlign: "center",
+        paddingHorizontal: "4%",
         fontWeight: "bold",
     },
     description: {
@@ -177,4 +233,19 @@ const styles = StyleSheet.create({
         marginVertical: "2%",
         paddingHorizontal: "4%",
     },
+    scoreContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        paddingHorizontal: "4%",
+    },
+    scoreCard: {
+        backgroundColor: THEME.COLORS.white,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    scoreRound: {
+        color: THEME.COLORS.primary,
+        fontSize: 18,
+        fontWeight: "bold",
+    }
 });

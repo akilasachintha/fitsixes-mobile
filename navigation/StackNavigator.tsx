@@ -1,4 +1,4 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import DrawerNavigator from "@navigation/Drawernavigator";
 import LoginScreen from "@screens/LoginScreen";
 import ForgetPasswordScreen from "@screens/ForgetPasswordScreen";
@@ -10,9 +10,23 @@ export default function StackNavigator() {
             headerShown: false,
             animation: "slide_from_right",
         }}>
-            <Stack.Screen name="HomeStack" component={DrawerNavigator} />
-            <Stack.Screen name="LoginStack" component={LoginScreen} />
-            <Stack.Screen name="ForgetPasswordStack" component={ForgetPasswordScreen} />
+            <Stack.Screen name="HomeStack"
+                          options={{
+                              animation: "none",
+                          }}
+                          component={DrawerNavigator}/>
+            <Stack.Screen name="LoginStack"
+                          options={{
+                              animation: "none",
+                          }}
+                          component={LoginScreen}/>
+            <Stack.Screen name="ForgetPasswordStack"
+                          component={ForgetPasswordScreen}/>
+            <Stack.Screen name="ArrivedStack"
+                          options={{
+                              animation: "none",
+                          }}
+                          component={LoginScreen}/>
         </Stack.Navigator>
     );
 }

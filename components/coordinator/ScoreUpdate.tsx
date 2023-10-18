@@ -90,6 +90,26 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
         }
     }
 
+    const handleUndo = async () => {
+        try {
+            const data = {
+                score: {
+                    match_id: matchId.toString(),
+                }
+            }
+
+            console.log("Data:", data);
+
+            const response = await axiosInstanceForFitSixes.get(`recap_score/${matchId.toString()}`);
+            console.log("API call", response.data.data);
+            showToast("Undo Score successfully");
+            setSelectedButton(null);
+        } catch (error) {
+            console.log('Score update failed:', error);
+            showToast("Score update failed");
+        }
+    };
+
     const data = [
         {value: '0', text: 'zero',},
         {value: '1', text: 'ones',},
@@ -169,6 +189,10 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
                     <TouchableOpacity style={[styles.marksTextComponent, {backgroundColor: THEME.COLORS.primary}]}
                                       onPress={handleSubmit}>
                         <Text style={[styles.marksText, {color: THEME.COLORS.white}]}>Submit</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.marksTextComponent, {backgroundColor: THEME.COLORS.white}]}
+                                      onPress={handleUndo}>
+                        <Text style={[styles.marksText, {color: THEME.COLORS.border}]}>Undo</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.marksTextComponent} onPress={handleCancel}>
                         <Text style={styles.marksText}>Cancel</Text>

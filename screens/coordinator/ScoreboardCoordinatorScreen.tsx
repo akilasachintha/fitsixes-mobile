@@ -64,6 +64,7 @@ export default function ScoreboardCoordinatorScreen(props: any) {
     });
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
+    const id = props.route.params.data;
     const TEAM_1 = props.route.params.team_1;
     const TEAM_2 = props.route.params.team_2;
     const tossWinner = props.route.params.tossWinner;
@@ -104,7 +105,7 @@ export default function ScoreboardCoordinatorScreen(props: any) {
                             />
                         }
             >
-                <TeamNamesCardCoordinator teamName1={TEAM_1} teamName2={TEAM_2}/>
+                <TeamNamesCardCoordinator teamName1={TEAM_1} teamName2={TEAM_2} matchId={id}/>
                 {tossWinner === (firstBat === "team2" ? TEAM_2 : TEAM_1) ? (
                     <Text style={styles.description}>{`${tossWinner} Won the toss and elected to bat.`}</Text>
                 ) : (

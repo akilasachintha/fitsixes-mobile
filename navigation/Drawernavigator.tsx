@@ -10,6 +10,7 @@ import {useAuth} from "@context/AuthContext";
 import {THEME} from "@constants/THEME";
 import {PATHS} from "@constants/PATHS";
 import {ROLES} from "@constants/ROLES";
+import {useLoadingContext} from "@context/LoadingContext";
 
 const Drawer = createDrawerNavigator();
 export default function DrawerNavigator() {
@@ -27,6 +28,7 @@ export default function DrawerNavigator() {
 function MyDrawer() {
     const navigation = useNavigation();
     const {isLoggedIn, logout, role} = useAuth();
+    const {showLoading, hideLoading} = useLoadingContext();
 
     const drawerItems = [
         {
@@ -75,7 +77,16 @@ function MyDrawer() {
             icon: <MaterialIcons name="logout" size={24} color={THEME.COLORS.white}/>,
             navigationAction: () => {
                 // @ts-ignore
-                !isLoggedIn ? navigation.navigate("LoginStack") : logout();
+                if (!isLoggedIn) {
+                    // @ts-ignore
+                    navigation.navigate("LoginStack");
+                    return;
+                } else {
+                    showLoading();
+                    logout();
+                    hideLoading();
+                    return;
+                }
             },
             condition: (_isLoggedIn: boolean, _role: string | null) => {
                 return true;

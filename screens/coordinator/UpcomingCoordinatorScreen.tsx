@@ -1,4 +1,4 @@
-import {Alert, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {THEME} from "@constants/THEME";
 import {Picker} from "@react-native-picker/picker";
 import React from "react";
@@ -6,6 +6,7 @@ import {useAuth} from "@context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
 import {useToast} from "@context/ToastContext";
 import {useNavigation} from "@react-navigation/native";
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 export default function UpcomingCoordinatorScreen(props: any) {
     const TEAM_1 = props.route.params.team_1;
@@ -62,47 +63,67 @@ export default function UpcomingCoordinatorScreen(props: any) {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
             <View>
-                <Text style={styles.titleText}>Update Toss Winner</Text>
-                <Picker
-                    selectedValue={selectedTeam}
-                    style={styles.picker}
-                    onValueChange={(itemValue) =>
-                        setSelectedTeam(itemValue)
-                    }>
-                    <Picker.Item label="Select a team" value={null}/>
-                    <Picker.Item label={TEAM_1} value={TEAM_1}/>
-                    <Picker.Item label={TEAM_2} value={TEAM_2}/>
-                </Picker>
+                <Text style={styles.titleText}>Select Toss Winner</Text>
+                <View style={{
+                    borderColor: THEME.COLORS.primary,
+                    borderWidth: 3,
+                    borderRadius: 10,
+                    marginVertical: 4,
+                    justifyContent: "center",
+                }}>
+                    <Picker
+                        selectedValue={selectedTeam}
+                        style={styles.picker}
+                        onValueChange={(itemValue) =>
+                            setSelectedTeam(itemValue)
+                        }>
+                        <Picker.Item label="Select a team" value={null}/>
+                        <Picker.Item label={TEAM_1} value={TEAM_1}/>
+                        <Picker.Item label={TEAM_2} value={TEAM_2}/>
+                    </Picker>
+                </View>
             </View>
             <View>
-                <Text style={styles.titleText}>First Batting Team</Text>
-                <Picker
-                    selectedValue={selectedBattingTeam}
-                    style={styles.picker}
-                    onValueChange={(itemValue) =>
-                        setSelectedBattingTeam(itemValue)
-                    }>
-                    <Picker.Item label="Select a team" value={null}/>
-                    <Picker.Item label={TEAM_1} value={TEAM_1}/>
-                    <Picker.Item label={TEAM_2} value={TEAM_2}/>
-                </Picker>
+                <Text style={styles.titleText}>Select First Batting Team</Text>
+                <View style={{
+                    borderColor: THEME.COLORS.primary,
+                    borderWidth: 3,
+                    borderRadius: 10,
+                    marginVertical: 4,
+                    justifyContent: "center",
+                }}>
+                    <Picker
+                        selectedValue={selectedBattingTeam}
+                        style={styles.picker}
+                        onValueChange={(itemValue) =>
+                            setSelectedBattingTeam(itemValue)
+                        }>
+                        <Picker.Item label="Select a team" value={null}/>
+                        <Picker.Item label={TEAM_1} value={TEAM_1}/>
+                        <Picker.Item label={TEAM_2} value={TEAM_2}/>
+                    </Picker>
+                </View>
             </View>
             <TouchableOpacity onPress={handleSubmit} style={styles.submitButton}>
                 <Text style={styles.submitText}>
                     Submit
                 </Text>
             </TouchableOpacity>
+
+            <View style={{height: 5, backgroundColor: THEME.COLORS.primary, marginVertical: 10, borderRadius: 30}}/>
+
             <View>
-                <Text style={styles.titleText}>Press when starts the Match</Text>
+                <Text style={styles.titleText}>Press start now when starts the Match</Text>
                 <TouchableOpacity onPress={handleMatchStart} style={styles.submitButton}>
                     <Text style={styles.submitText}>
-                        Match Started.
+                        Start Now
                     </Text>
+                    <MaterialCommunityIcons name="ray-start-arrow" size={24} color={THEME.COLORS.white}/>
                 </TouchableOpacity>
             </View>
-        </View>
+        </ScrollView>
     );
 }
 
@@ -124,18 +145,20 @@ const styles = StyleSheet.create({
         height: 40,
         borderWidth: 10,
         borderColor: THEME.COLORS.primary,
-        backgroundColor: THEME.COLORS.white,
     },
     submitButton: {
         backgroundColor: THEME.COLORS.primary,
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
         padding: "3%",
         borderRadius: 10,
-        alignItems: "center",
         marginVertical: "5%",
     },
     submitText: {
         color: THEME.COLORS.white,
         fontSize: 16,
         fontWeight: "bold",
+        marginRight: "5%",
     }
 });
