@@ -13,9 +13,21 @@ export default function StackNavigatorCoordinator() {
                 headerShown: false,
                 animation: "slide_from_right",
             }}>
-            <Stack.Screen name="CoordinatorTabMatchesStack" component={TabNavigatorCoordinator}/>
-            <Stack.Screen name="CoordinatorTabScoreboardCoordinatorStack" component={ScoreboardCoordinatorScreen}/>
-            <Stack.Screen name="CoordinatorTabUpcomingCoordinatorStack" component={UpcomingCoordinatorScreen}/>
+            <Stack.Screen name="CoordinatorTabMatchesStack" component={TabNavigatorCoordinator}
+                          options={{
+                              animation: "none"
+                          }}
+            />
+            <Stack.Screen name="CoordinatorTabScoreboardCoordinatorStack" component={ScoreboardCoordinatorScreen}
+                          options={{
+                              animation: "none"
+                          }}
+            />
+            <Stack.Screen name="CoordinatorTabUpcomingCoordinatorStack" component={UpcomingCoordinatorScreen}
+                          options={{
+                              animation: "none"
+                          }}
+            />
         </Stack.Navigator>
     );
 }

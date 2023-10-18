@@ -75,7 +75,7 @@ export default function useLiverScoreUpdateService() {
     const [, setIsConnected] = useState<boolean>(false);
     const ws = useRef<WebSocket | null>(null);
 
-    const outputArr: TMatch[] = liveMatches.map((item1) => {
+    const outputArr: TMatch[] = liveMatches && liveMatches.map((item1) => {
         const matchingItem2 = serverMessages && serverMessages.score && serverMessages.score.find(
             (item2) => item2.match_id.toString() === item1.id
         );
@@ -175,6 +175,7 @@ export default function useLiverScoreUpdateService() {
         ws.current.onmessage = (e) => {
             const incomingMessage = e.data;
             console.log("Incoming Data");
+            console.log(incomingMessage);
             setServerMessages(JSON.parse(incomingMessage));
         };
     };

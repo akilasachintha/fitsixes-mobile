@@ -50,14 +50,17 @@ export default function TabNavigatorCoordinator({route}: any) {
         >
             <Tab.Screen name="UpcomingCoordinatorTab" component={MatchesUpcomingCoordinatorScreen} options={{
                 tabBarLabel: "Upcoming",
+                animationEnabled: true,
                 tabBarLabelStyle: getTabBarLabelStyle("UpcomingCoordinatorTab"),
             }}/>
             <Tab.Screen name="LiveCoordinatorTab" component={MatchesLiveCoordinatorScreen} options={{
                 tabBarLabel: "Live",
+                animationEnabled: true,
                 tabBarLabelStyle: getTabBarLabelStyle("LiveCoordinatorTab"),
             }}/>
             <Tab.Screen name="CompletedCoordinatorTab" component={MatchesCompletedCoordinatorScreen} options={{
                 tabBarLabel: "Completed",
+                animationEnabled: true,
                 tabBarLabelStyle: getTabBarLabelStyle("CompletedCoordinatorTab"),
             }}/>
         </Tab.Navigator>

@@ -5,6 +5,7 @@ import {useToast} from "@context/ToastContext";
 import {useAuth} from "@context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
 import {Picker} from "@react-native-picker/picker";
+import {useNavigation} from "@react-navigation/native";
 
 type ScoreUpdateProps = {
     matchId: number;
@@ -19,6 +20,7 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
     const {showToast} = useToast();
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
+    const navigation = useNavigation();
 
     const handleButtonPress = (text: string) => {
         setSelectedButton(text);
@@ -73,10 +75,12 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
                 const response = await axiosInstanceForFitSixes.put(`${url}`, data);
                 if (response.data.state) {
                     showToast("Updated Successfully");
+                    // @ts-ignore
+                    navigation.push("CoordinatorTabMatchesStack", {screen: "CompletedCoordinatorTab",});
                 }
             } catch (e) {
                 console.log(e);
-                showToast("Match Start Failed");
+                showToast("Match Finish Failed");
             }
             setSelectedButton(null);
             return;
