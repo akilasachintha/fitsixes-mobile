@@ -94,7 +94,7 @@ export default function MatchDetailCard({
                 </View>
                 <View
                     style={[styles.contentContainer, matchStatus !== MatchStatus.Live ? { flexDirection: "row" } : { flexDirection: "column" }]}>
-                    <View>
+                    <View style={{ flex: 1 }}>
                         <View style={styles.teamContainer}>
                             <View style={styles.teamImageContainer}>
                                 <ImageHolder source={team1Image} size={40} />
@@ -135,7 +135,10 @@ export default function MatchDetailCard({
                     </View>
                     {
                         matchStatus !== MatchStatus.Live && (
-                            <Image source={PATHS.IMAGES.FIT_SIXES_LOGO} style={{ width: 140, height: 100, opacity: 0.5, position: 'absolute', right: 0 }} />
+                            <Image
+                                source={PATHS.IMAGES.FIT_SIXES_LOGO}
+                                resizeMode="cover"
+                                style={{ width: 150, height: 100, opacity: 0.5, position: 'absolute', right: 0 }} />
                         )
                     }
                 </View>
@@ -167,7 +170,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     teamContainer: {
-        width: "100%",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
