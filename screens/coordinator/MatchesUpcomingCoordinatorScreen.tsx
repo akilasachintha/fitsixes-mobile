@@ -16,6 +16,18 @@ interface Match {
     id: string;
 }
 
+type ResponseType = {
+    data: {
+        data: {
+            matches: {
+                upcoming: {
+                    matches: Match[]
+                }
+            }
+        }
+    }
+}
+
 export default function MatchesUpcomingCoordinatorScreen() {
     const [upcomingMatches, setUpcomingMatches] = useState<Match[]>([]);
     const authContext = useAuth();
@@ -23,7 +35,7 @@ export default function MatchesUpcomingCoordinatorScreen() {
 
     const fetchUpcomingMatches = () => {
         let url = "matches_pitch_coordinator";
-        axiosInstanceForFitSixes.get(`${url}`).then((response) => {
+        axiosInstanceForFitSixes.get(`${url}`).then((response: ResponseType) => {
             if (response && response.data && response.data.data && response.data.data.matches && response.data.data.matches.upcoming && response.data.data.matches.upcoming.matches && response.data.data.matches.upcoming.matches) {
                 setUpcomingMatches(response.data.data.matches.upcoming.matches);
             } else {
@@ -34,13 +46,13 @@ export default function MatchesUpcomingCoordinatorScreen() {
         });
     };
 
-    useEffect(() => {
-        fetchUpcomingMatches();
-    }, []);
-
     const handleRefresh = () => {
         fetchUpcomingMatches();
     };
+
+    useEffect(() => {
+        fetchUpcomingMatches();
+    }, []);
 
     useFocusEffect(
         React.useCallback(() => {

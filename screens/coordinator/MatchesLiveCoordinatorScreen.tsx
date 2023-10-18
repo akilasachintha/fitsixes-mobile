@@ -31,6 +31,21 @@ export type TMatch = {
         }
     }
 }
+
+
+type ResponseType = {
+    data: {
+        data: {
+            matches: {
+                ongoing: {
+                    matches: TMatch[]
+                }
+            }
+        }
+    }
+}
+
+
 export default function MatchesLiveCoordinatorScreen() {
     const [liveMatches, setLiveMatches] = useState<TMatch[]>([]);
     const authContext = useAuth();
@@ -38,7 +53,7 @@ export default function MatchesLiveCoordinatorScreen() {
 
     const fetchLiveMatches = () => {
         let url = "matches_pitch_coordinator";
-        axiosInstanceForFitSixes.get(`${url}`).then((response) => {
+        axiosInstanceForFitSixes.get(`${url}`).then((response: ResponseType) => {
             if (response && response.data && response.data.data && response.data.data.matches && response.data.data.matches.ongoing && response.data.data.matches.ongoing.matches) {
                 setLiveMatches(response.data.data.matches.ongoing.matches);
             } else {
@@ -97,9 +112,9 @@ export default function MatchesLiveCoordinatorScreen() {
                                 tosWinner={item.tos_winner}
                                 firstBat={item.first_bat}
                             />
-                                )
-                            })}
-                        </View>
+                        )
+                    })}
+                </View>
             </ScrollView>
         </SafeAreaView>
     )

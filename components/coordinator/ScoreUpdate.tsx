@@ -33,7 +33,6 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
             console.log(`Selected button: ${selectedButton}`);
 
             if (selectedButton === 'finish') {
-                console.log("Match Finish");
                 handleMatchFinish().catch((e) => console.log(e));
                 return;
             } else {
@@ -96,10 +95,10 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
         {value: '5', text: 'fives',},
         {value: '6', text: 'sixes',},
         {value: '7', text: 'sevens',},
+        {value: 'W', text: 'wicket',},
         {value: 'W1', text: 'wicket_ones',},
         {value: 'W2', text: 'wicket_twos',},
         {value: 'W3', text: 'wicket_threes',},
-        {value: 'LB', text: 'lb',},
         {value: 'E0', text: 'extras_zero',},
         {value: 'E1', text: 'extras_one',},
         {value: 'E2', text: 'extras_two',},
@@ -185,7 +184,7 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
                                         setSelectedTeam(itemValue)
                                     }>
                                     <Picker.Item label="Select a team" value={null}/>
-                                    <Picker.Item label={team1Name} value={team2Name}/>
+                                    <Picker.Item label={team1Name} value={team1Name}/>
                                     <Picker.Item label={team2Name} value={team2Name}/>
                                 </Picker>
                             </View>
@@ -375,11 +374,11 @@ const styles = StyleSheet.create({
         shadowColor: THEME.COLORS.primary,
         shadowOffset: {
             width: 0,
-            height: 10,
+            height: 2,
         },
         shadowOpacity: 0.9,
-        shadowRadius: 3.5,
-        elevation: 10,
+        shadowRadius: 1,
+        elevation: 2,
     },
     titleText: {
         fontSize: 18,

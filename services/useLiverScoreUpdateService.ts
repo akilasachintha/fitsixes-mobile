@@ -68,6 +68,7 @@ const reconnectDelay = 3000;
 
 export default function useLiverScoreUpdateService() {
     const [liveMatches, setLiveMatches] = useState<TMatch[]>([]);
+    const [completedMatches, setCompletedMatches] = useState<TMatch[]>([]);
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
     const [serverMessages, setServerMessages] = useState<TServerMatch | null>(null);
@@ -120,6 +121,7 @@ export default function useLiverScoreUpdateService() {
                 .then((response) => {
                     if (response?.data?.data?.matches?.matches) {
                         setLiveMatches(response.data.data.matches.matches);
+                        console.log("API Data Live");
                     } else {
                         console.error("Error");
                     }
@@ -131,6 +133,19 @@ export default function useLiverScoreUpdateService() {
             console.log(e);
         }
     };
+
+    const fetchCompletedMatches = () => {
+        let url = "matches/finish";
+        axiosInstanceForFitSixes.get(`${url}`).then((response) => {
+            if (response && response.data && response.data.data && response.data.data.matches && response.data.data.matches.matches) {
+                setCompletedMatches(response.data.data.matches.matches);
+            } else {
+                console.error("Error");
+            }
+        }).catch((e) => {
+            console.log(e);
+        });
+    }
 
     const connectToWebSocket = () => {
         ws.current = new WebSocket(WEB_SOCKET_URL);
@@ -165,6 +180,7 @@ export default function useLiverScoreUpdateService() {
     useEffect(() => {
         connectToWebSocket();
         fetchLiveMatches().catch((e) => console.log(e));
+        fetchCompletedMatches();
 
         return () => {
             if (ws.current && ws.current.readyState === WebSocket.OPEN) {
@@ -175,6 +191,8 @@ export default function useLiverScoreUpdateService() {
 
     return {
         outputArr,
+        completedMatches,
         fetchLiveMatches,
+        fetchCompletedMatches
     }
 }

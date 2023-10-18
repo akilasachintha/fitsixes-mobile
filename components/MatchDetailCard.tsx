@@ -52,6 +52,7 @@ export default function MatchDetailCard({
         if (matchStatus !== "Upcoming") {
             // @ts-ignore
             navigation.navigate("HomeTabScoreboardStack", {
+                    matchStatus: matchStatus,
                     data: matchId,
                     team_1: team1,
                     team_2: team2,

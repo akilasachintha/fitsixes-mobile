@@ -4,17 +4,20 @@ import {THEME} from "@constants/THEME";
 import {useState} from "react";
 import ScoreComponent from "@components/ScoreComponent";
 import useLiverScoreUpdateService from "@services/useLiverScoreUpdateService";
+import {MatchStatus} from "@components/MatchDetailCard";
 
 export default function ScoreboardScreen(props: any) {
     const [selectedTab, setSelectedTab] = useState(0);
-    const {outputArr, fetchLiveMatches} = useLiverScoreUpdateService();
+    const {outputArr, completedMatches, fetchLiveMatches} = useLiverScoreUpdateService();
     const id = props.route.params.data;
     const TEAM_1 = props.route.params.team_1;
     const TEAM_2 = props.route.params.team_2;
     const tossWinner = props.route.params.tossWinner;
     const firstBat = props.route.params.first;
+    const matchStatus = props.route.params.matchStatus;
 
     const getMatchDetails = outputArr.find((item: any) => item.id === id);
+    const getCompletedMatchDetails = completedMatches.find((item: any) => item.id === id);
 
     const handleRefresh = () => {
         fetchLiveMatches().catch((err) => console.error(err));
@@ -31,7 +34,7 @@ export default function ScoreboardScreen(props: any) {
                 }
             >
                 <TeamNamesCard teamName1={TEAM_1} teamName2={TEAM_2} />
-                {tossWinner === firstBat ? (
+                {tossWinner === (firstBat === "team2" ? TEAM_2 : TEAM_1) ? (
                     <Text style={styles.description}>{`${tossWinner} Won the toss and elected to bat.`}</Text>
                 ) : (
                     <Text style={styles.description}>{`${tossWinner} Won the toss and elected to ball.`}</Text>
@@ -62,9 +65,13 @@ export default function ScoreboardScreen(props: any) {
                 {
                     selectedTab === 0 && (
                         <View>
-                            {getMatchDetails && <ScoreComponent
+                            {matchStatus === MatchStatus.Live && getMatchDetails && <ScoreComponent
                                 teamName={TEAM_1}
                                 details={getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1}
+                            />}
+                            {matchStatus === MatchStatus.Completed && getCompletedMatchDetails && <ScoreComponent
+                                teamName={TEAM_1}
+                                details={getCompletedMatchDetails && getCompletedMatchDetails.scorecard && getCompletedMatchDetails.scorecard.team1}
                             />}
                         </View>
                     )
@@ -72,9 +79,13 @@ export default function ScoreboardScreen(props: any) {
                 {
                     selectedTab === 1 && (
                         <View>
-                            {getMatchDetails && <ScoreComponent
+                            {matchStatus === MatchStatus.Live && getMatchDetails && <ScoreComponent
                                 teamName={TEAM_2}
                                 details={getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2}
+                            />}
+                            {matchStatus === MatchStatus.Completed && getCompletedMatchDetails && <ScoreComponent
+                                teamName={TEAM_2}
+                                details={getCompletedMatchDetails && getCompletedMatchDetails && getCompletedMatchDetails.scorecard && getCompletedMatchDetails.scorecard.team2}
                             />}
                         </View>
                     )

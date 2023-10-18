@@ -27,6 +27,10 @@ export default function MatchesCompletedCoordinatorScreen() {
         });
     }
 
+    const handleRefresh = () => {
+        fetchCompletedMatches();
+    };
+
     useEffect(() => {
         fetchCompletedMatches();
     }, []);
@@ -35,10 +39,6 @@ export default function MatchesCompletedCoordinatorScreen() {
         React.useCallback(() => {
             fetchCompletedMatches();
         }, []))
-
-    const handleRefresh = () => {
-        fetchCompletedMatches();
-    };
 
     return (
         <SafeAreaView>
