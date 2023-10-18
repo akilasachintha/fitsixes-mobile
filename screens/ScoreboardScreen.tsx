@@ -8,7 +8,7 @@ import {MatchStatus} from "@components/MatchDetailCard";
 
 export default function ScoreboardScreen(props: any) {
     const [selectedTab, setSelectedTab] = useState(0);
-    const { outputArr, completedMatches, fetchLiveMatches } = useLiverScoreUpdateService();
+    const {outputArr, completedMatches, fetchLiveMatches} = useLiverScoreUpdateService();
     const id = props.route.params.data;
     const TEAM_1 = props.route.params.team_1;
     const TEAM_2 = props.route.params.team_2;
@@ -26,14 +26,14 @@ export default function ScoreboardScreen(props: any) {
     return (
         <SafeAreaView>
             <ScrollView showsVerticalScrollIndicator={false}
-                refreshControl={
-                    <RefreshControl
-                        refreshing={false}
-                        onRefresh={handleRefresh}
-                    />
-                }
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={false}
+                                onRefresh={handleRefresh}
+                            />
+                        }
             >
-                <TeamNamesCard teamName1={TEAM_1} teamName2={TEAM_2} />
+                <TeamNamesCard teamName1={TEAM_1} teamName2={TEAM_2}/>
                 {tossWinner === (firstBat === "team2" ? TEAM_2 : TEAM_1) ? (
                     <Text style={styles.description}>{`${tossWinner} Won the toss and elected to bat.`}</Text>
                 ) : (
@@ -56,7 +56,7 @@ export default function ScoreboardScreen(props: any) {
                                     <Text style={styles.leftText}>{TEAM_2}</Text>
                                 </TouchableOpacity> :
                                 <TouchableOpacity style={styles.rightContainerNotText}
-                                    onPress={() => setSelectedTab(1)}>
+                                                  onPress={() => setSelectedTab(1)}>
                                     <Text style={styles.leftNotText}>{TEAM_2}</Text>
                                 </TouchableOpacity>
                         }

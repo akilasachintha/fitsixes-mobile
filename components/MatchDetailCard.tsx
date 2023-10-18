@@ -32,23 +32,23 @@ export const MatchStatus: Record<MatchStatusType, MatchStatusType> = {
 }
 
 export default function MatchDetailCard({
-    matchNo,
-    team1,
-    team2,
-    matchLevel,
-    pitchNo,
-    team1Score,
-    team2Score,
-    team1Image,
-    team2Image,
-    matchStatus,
-    overs_T1,
-    overs_T2,
-    matchId,
-    tosWinner,
-    firstBat,
-    winner
-}: MatchDetailCardProps) {
+                                            matchNo,
+                                            team1,
+                                            team2,
+                                            matchLevel,
+                                            pitchNo,
+                                            team1Score,
+                                            team2Score,
+                                            team1Image,
+                                            team2Image,
+                                            matchStatus,
+                                            overs_T1,
+                                            overs_T2,
+                                            matchId,
+                                            tosWinner,
+                                            firstBat,
+                                            winner
+                                        }: MatchDetailCardProps) {
     const navigation = useNavigation();
     const handleMatchCardClick = () => {
         if (matchStatus !== "Upcoming") {
@@ -73,7 +73,7 @@ export default function MatchDetailCard({
             <ImageBackground
                 source={PATHS.IMAGES.FIT_SIXES_LOGO}
                 resizeMode="contain"
-                imageStyle={[matchStatus === "Live" ? { display: "flex" } : { display: "none" }, { opacity: 0.5 }]}
+                imageStyle={[matchStatus === "Live" ? {display: "flex"} : {display: "none"}, {opacity: 0.5}]}
                 style={styles.container}>
                 <View style={styles.overlay}>
                     <View style={styles.titleContainer}>

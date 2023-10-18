@@ -10,7 +10,7 @@ export default function StackNavigatorHome() {
             screenOptions={{
                 headerShown: false,
                 animation: "slide_from_right",
-        }}>
+            }}>
             <Stack.Screen name="HomeTabMatchesStack" component={TabNavigatorHome}/>
             <Stack.Screen name="HomeTabScoreboardStack" component={ScoreboardScreen}/>
         </Stack.Navigator>

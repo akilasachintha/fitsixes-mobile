@@ -23,7 +23,7 @@ const ScoreComponent: React.FC<ScoreCardProps> = ({details, teamName, teamNo, to
         <View style={styles.container}>
             <View style={styles.scoreDetails}>
                 <View style={styles.teamContainer}>
-                    <ImageHolder source={teamNo === 1 ? PATHS.IMAGES.Team_1 : PATHS.IMAGES.Team_2} size={80} />
+                    <ImageHolder source={teamNo === 1 ? PATHS.IMAGES.Team_1 : PATHS.IMAGES.Team_2} size={80}/>
                     <View style={styles.teamNameContainer}>
                         <Text style={styles.text3}>{teamName}</Text>
                     </View>

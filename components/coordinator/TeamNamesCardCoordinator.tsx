@@ -23,7 +23,7 @@ const TeamNamesCardCoordinator: React.FC<TeamNamesProps> = ({teamName1, teamName
         <View style={styles.cardContainer}>
             <View style={styles.cardSecondContainer}>
                 <View style={styles.teamDetails}>
-                    <ImageHolder source={teamSource1} size={70} />
+                    <ImageHolder source={teamSource1} size={70}/>
                     <View style={styles.teamNameContainer}>
                         <Text style={styles.teamName} numberOfLines={3} ellipsizeMode="tail">
                             {teamName1.length > 20 ? `${teamName1.slice(0, 30)}...` : teamName1}
@@ -46,10 +46,10 @@ const TeamNamesCardCoordinator: React.FC<TeamNamesProps> = ({teamName1, teamName
                 </View>
 
                 <View style={styles.imageContainer}>
-                    <Image source={PATHS.IMAGES.FIT_SIXES_LOGO} style={styles.image} />
+                    <Image source={PATHS.IMAGES.FIT_SIXES_LOGO} style={styles.image}/>
                 </View>
                 <View style={styles.teamDetails}>
-                    <ImageHolder source={teamSource2} size={70} />
+                    <ImageHolder source={teamSource2} size={70}/>
                     <View style={styles.teamNameContainer}>
                         <Text style={styles.teamName} numberOfLines={3} ellipsizeMode="tail">
                             {teamName2.length > 20 ? `${teamName2.slice(0, 30)}...` : teamName2}

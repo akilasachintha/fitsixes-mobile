@@ -1,17 +1,16 @@
-import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import {Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {useNavigation} from "@react-navigation/native";
 import ImageHolder from "@components/ImageHolder";
-import { PATHS } from "@constants/PATHS";
-import { THEME } from "@constants/THEME";
-import React, { useEffect, useState } from "react";
-import { useAuth } from "@context/AuthContext";
-import { BASE_URL, createAxiosInstance } from "@config/axiosConfig";
-import { getrandomNoImage } from "@constants/PATHS";
+import {getrandomNoImage, PATHS} from "@constants/PATHS";
+import {THEME} from "@constants/THEME";
+import React, {useEffect, useState} from "react";
+import {useAuth} from "@context/AuthContext";
+import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
 
 const ProfileScreen = () => {
     useNavigation();
     const [profileDetails, setProfileDetails] = useState<any>({});
-    const { logout } = useAuth();
+    const {logout} = useAuth();
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
 
@@ -52,7 +51,7 @@ const ProfileScreen = () => {
                     <View style={styles.profileDetailsSubContent}>
                         <View style={styles.iconView}>
                             <View style={styles.iconContent}>
-                                <Image source={PATHS.IMAGES.EMAIL_ICON} style={styles.image} />
+                                <Image source={PATHS.IMAGES.EMAIL_ICON} style={styles.image}/>
                             </View>
                         </View>
                         <View style={styles.inputFieldContent}>
@@ -64,7 +63,7 @@ const ProfileScreen = () => {
                     <View style={styles.profileDetailsSubContent}>
                         <View style={styles.iconView}>
                             <View style={styles.iconContent}>
-                                <Image source={PATHS.IMAGES.EMAIL_ICON} style={styles.image} />
+                                <Image source={PATHS.IMAGES.EMAIL_ICON} style={styles.image}/>
                             </View>
                         </View>
                         <View style={styles.inputFieldContent}>
@@ -76,7 +75,7 @@ const ProfileScreen = () => {
                     <View style={styles.profileDetailsSubContent}>
                         <View style={styles.iconView}>
                             <View style={styles.iconContent}>
-                                <Image source={PATHS.IMAGES.EMAIL_ICON} style={styles.image} />
+                                <Image source={PATHS.IMAGES.EMAIL_ICON} style={styles.image}/>
                             </View>
                         </View>
                         <View style={styles.inputFieldContent}>
@@ -88,11 +87,11 @@ const ProfileScreen = () => {
                     <View style={styles.profileDetailsSubContent}>
                         <View style={styles.iconView}>
                             <View style={styles.iconContent}>
-                                <Image source={PATHS.IMAGES.LOGOUT_ICON} style={styles.image} />
+                                <Image source={PATHS.IMAGES.LOGOUT_ICON} style={styles.image}/>
                             </View>
                         </View>
                         <TouchableOpacity style={styles.inputFieldContent}
-                            onPress={handleLogout}>
+                                          onPress={handleLogout}>
                             <Text style={styles.textView}>Logout</Text>
                         </TouchableOpacity>
                     </View>

@@ -6,27 +6,27 @@ const playerDetails = [
     {
         id: 1,
         name: 'Kasun',
-        details: [{ id: 1, six: 3 }, { id: 2, six: 4 }, { id: 3, six: 6 }, { id: 4, six: 2 }, { id: 5, six: 0 }, { id: 6, six: 3 }]
+        details: [{id: 1, six: 3}, {id: 2, six: 4}, {id: 3, six: 6}, {id: 4, six: 2}, {id: 5, six: 0}, {id: 6, six: 3}]
     },
     {
         id: 2,
         name: 'Sadun',
-        details: [{ id: 1, six: 3 }, { id: 2, six: 4 }, { id: 3, six: 6 }, { id: 4, six: 2 }, { id: 5, six: 0 }, { id: 6, six: 3 }]
+        details: [{id: 1, six: 3}, {id: 2, six: 4}, {id: 3, six: 6}, {id: 4, six: 2}, {id: 5, six: 0}, {id: 6, six: 3}]
     },
     {
         id: 3,
         name: 'Akila',
-        details: [{ id: 1, six: 3 }, { id: 2, six: 4 }, { id: 3, six: 6 }, { id: 4, six: 2 }, { id: 5, six: 0 }, { id: 6, six: 3 }]
+        details: [{id: 1, six: 3}, {id: 2, six: 4}, {id: 3, six: 6}, {id: 4, six: 2}, {id: 5, six: 0}, {id: 6, six: 3}]
     },
     {
         id: 4,
         name: 'Siraj',
-        details: [{ id: 1, six: 3 }, { id: 2, six: 4 }, { id: 3, six: 6 }, { id: 4, six: 2 }, { id: 5, six: 0 }, { id: 6, six: 3 }]
+        details: [{id: 1, six: 3}, {id: 2, six: 4}, {id: 3, six: 6}, {id: 4, six: 2}, {id: 5, six: 0}, {id: 6, six: 3}]
     },
     {
         id: 5,
         name: 'Ranmuthu',
-        details: [{ id: 1, six: 3 }, { id: 2, six: 4 }, { id: 3, six: 6 }, { id: 4, six: 2 }, { id: 5, six: 0 }, { id: 6, six: 3 }]
+        details: [{id: 1, six: 3}, {id: 2, six: 4}, {id: 3, six: 6}, {id: 4, six: 2}, {id: 5, six: 0}, {id: 6, six: 3}]
     }
 ]
 
@@ -34,7 +34,7 @@ interface ScoreCardProps {
 
 }
 
-const ScoreCard: React.FC<ScoreCardProps> = ({ }) => {
+const ScoreCard: React.FC<ScoreCardProps> = ({}) => {
     return (
         <View style={styles.container}>
             <View style={styles.firstCard}>
@@ -43,12 +43,12 @@ const ScoreCard: React.FC<ScoreCardProps> = ({ }) => {
                 </View>
 
                 <View style={styles.cardContent2}>
-                    <View style={styles.cardDetails}><Text style={[styles.firstCardText, { letterSpacing: 1 }]}>6s</Text></View>
-                    <View style={styles.cardDetails}><Text style={[styles.firstCardText, { letterSpacing: 1 }]}>4s</Text></View>
-                    <View style={styles.cardDetails}><Text style={[styles.firstCardText, { letterSpacing: 1 }]}>3s</Text></View>
-                    <View style={styles.cardDetails}><Text style={[styles.firstCardText, { letterSpacing: 1 }]}>2s</Text></View>
-                    <View style={styles.cardDetails}><Text style={[styles.firstCardText, { letterSpacing: 1 }]}>1s</Text></View>
-                    <View style={styles.cardDetails}><Text style={[styles.firstCardText, { letterSpacing: 1 }]}>Ex</Text></View>
+                    <View style={styles.cardDetails}><Text style={[styles.firstCardText, {letterSpacing: 1}]}>6s</Text></View>
+                    <View style={styles.cardDetails}><Text style={[styles.firstCardText, {letterSpacing: 1}]}>4s</Text></View>
+                    <View style={styles.cardDetails}><Text style={[styles.firstCardText, {letterSpacing: 1}]}>3s</Text></View>
+                    <View style={styles.cardDetails}><Text style={[styles.firstCardText, {letterSpacing: 1}]}>2s</Text></View>
+                    <View style={styles.cardDetails}><Text style={[styles.firstCardText, {letterSpacing: 1}]}>1s</Text></View>
+                    <View style={styles.cardDetails}><Text style={[styles.firstCardText, {letterSpacing: 1}]}>Ex</Text></View>
                 </View>
             </View>
 
@@ -59,7 +59,8 @@ const ScoreCard: React.FC<ScoreCardProps> = ({ }) => {
                         <View key={index}>
                             <View style={styles.playerDetails}>
                                 <View style={styles.cardContent1}>
-                                    <Text style={[styles.secondCardText]} numberOfLines={2} ellipsizeMode="tail">{item.name.length > 20 ? `${item.name.slice(0, 25)}...` : item.name}</Text>
+                                    <Text style={[styles.secondCardText]} numberOfLines={2}
+                                          ellipsizeMode="tail">{item.name.length > 20 ? `${item.name.slice(0, 25)}...` : item.name}</Text>
                                 </View>
 
                                 <View style={styles.cardContent2}>
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         elevation: 8,
         shadowColor: '#B4C1D5',
-        shadowOffset: { width: 40, height: 40 },
+        shadowOffset: {width: 40, height: 40},
         shadowOpacity: 0.8,
         shadowRadius: 60,
         flexDirection: 'row',

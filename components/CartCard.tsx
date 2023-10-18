@@ -1,13 +1,12 @@
-import { ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
-import { THEME } from "@constants/THEME";
+import {ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import React, {useState} from "react";
+import {THEME} from "@constants/THEME";
 import ImageHolder from "@components/ImageHolder";
-import { PATHS } from "@constants/PATHS";
-import { Ionicons } from "@expo/vector-icons";
-import { useAuth } from "@context/AuthContext";
-import { BASE_URL, createAxiosInstance } from "@config/axiosConfig";
-import { useToast } from "@context/ToastContext";
-import { getrandomNoImage } from "@constants/PATHS";
+import {getrandomNoImage} from "@constants/PATHS";
+import {Ionicons} from "@expo/vector-icons";
+import {useAuth} from "@context/AuthContext";
+import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
+import {useToast} from "@context/ToastContext";
 
 interface CartCardProps {
     url: ImageSourcePropType;
@@ -15,13 +14,13 @@ interface CartCardProps {
 }
 
 const CartCard: React.FC<CartCardProps> = ({
-    url,
-    text,
-}) => {
+                                               url,
+                                               text,
+                                           }) => {
     const [quantity, setQuantity] = useState<number>(1);
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
-    const { showToast } = useToast();
+    const {showToast} = useToast();
     const handleConfirmButton = async () => {
         try {
             console.log("Confirm Button Pressed " + text);
@@ -73,7 +72,7 @@ const CartCard: React.FC<CartCardProps> = ({
                     <Text numberOfLines={2} style={styles.textView}>Order Your {text} From Here</Text>
                     <View style={styles.quantityView}>
                         <TouchableOpacity style={styles.plusIcon}
-                            onPress={() => handleQuantityChangeIcon('remove-circle-outline')}>
+                                          onPress={() => handleQuantityChangeIcon('remove-circle-outline')}>
                             <Ionicons
                                 name={'remove-circle-outline'}
                                 size={32}
@@ -84,7 +83,7 @@ const CartCard: React.FC<CartCardProps> = ({
                             <Text style={styles.amount}>{quantity}</Text>
                         </View>
                         <TouchableOpacity style={styles.minusIcon}
-                            onPress={() => handleQuantityChangeIcon('add-circle-outline')}>
+                                          onPress={() => handleQuantityChangeIcon('add-circle-outline')}>
                             <Ionicons
                                 name={'add-circle-outline'}
                                 size={32}
@@ -97,7 +96,7 @@ const CartCard: React.FC<CartCardProps> = ({
             </View>
             <View style={styles.buttonView}>
                 <TouchableOpacity style={styles.confirmButton}
-                    onPress={handleConfirmButton}
+                                  onPress={handleConfirmButton}
                 >
                     <Text style={styles.buttonText}>Confirm Your Order</Text>
                 </TouchableOpacity>

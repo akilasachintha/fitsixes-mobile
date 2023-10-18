@@ -22,16 +22,17 @@ export default function TeamScreen() {
 
     const handleTeamCardClick = (players: string[]) => {
         // @ts-ignore
-        navigation.navigate("TeamTabTeamMembersStack", {players:players});
+        navigation.navigate("TeamTabTeamMembersStack", {players: players});
     }
 
-    const renderItem = ({ item, index }: { item: any; index: number }) => {
+    const renderItem = ({item, index}: { item: any; index: number }) => {
         return (
             <View key={index} style={[styles.itemContainer, {padding: 0, marginTop: index % 2 !== 0 ? 30 : 0}]}>
                 <TouchableOpacity onPress={() => handleTeamCardClick(item.players)}
                                   style={styles.touchableHighlight}
                                   activeOpacity={0.9}>
-                    <TeamCard teamName={item.name} index={index} source={item.src !== '' || item.src.length !== 0 ? item.src : require('../assets/no-image.jpg')} />
+                    <TeamCard teamName={item.name} index={index}
+                              source={item.src !== '' || item.src.length !== 0 ? item.src : require('../assets/no-image.jpg')}/>
                 </TouchableOpacity>
             </View>
         )
@@ -68,7 +69,7 @@ export default function TeamScreen() {
                 renderItem={({item, index}: { item: any; index: number }) =>
                     renderItem({item, index})
                 }
-                />
+            />
         </SafeAreaView>
     );
 }

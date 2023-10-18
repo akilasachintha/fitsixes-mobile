@@ -10,11 +10,11 @@ interface ImageHolderProps {
 }
 
 const ImageHolder: React.FC<ImageHolderProps> = ({
-    source,
-    size,
-    borderColor =  THEME.COLORS.border,
-    borderWidth = 2,
-}) => {
+                                                     source,
+                                                     size,
+                                                     borderColor = THEME.COLORS.border,
+                                                     borderWidth = 2,
+                                                 }) => {
     const circleSize = Math.max(size, 0);
 
     return (
@@ -30,7 +30,7 @@ const ImageHolder: React.FC<ImageHolderProps> = ({
                 },
             ]}
         >
-            <Image source={source} style={styles.image} />
+            <Image source={source} style={styles.image}/>
         </View>
     );
 };

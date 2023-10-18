@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { RefreshControl, SafeAreaView, ScrollView, View } from "react-native";
-import MatchDetailCard, { MatchStatus } from "@components/MatchDetailCard";
-import { PATHS } from "@constants/PATHS";
+import React, {useEffect} from "react";
+import {RefreshControl, SafeAreaView, ScrollView, View} from "react-native";
+import MatchDetailCard, {MatchStatus} from "@components/MatchDetailCard";
+import {PATHS} from "@constants/PATHS";
 import useLiverScoreUpdateService from "@services/useLiverScoreUpdateService";
-import { useFocusEffect } from "@react-navigation/native";
+import {useFocusEffect} from "@react-navigation/native";
 
 export default function MatchesLiveScreen() {
-    const { outputArr, fetchLiveMatches } = useLiverScoreUpdateService();
+    const {outputArr, fetchLiveMatches} = useLiverScoreUpdateService();
 
     const handleRefresh = () => {
         fetchLiveMatches().catch((err) => console.error(err));
@@ -27,7 +27,7 @@ export default function MatchesLiveScreen() {
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 refreshControl={
-                    <RefreshControl refreshing={false} onRefresh={handleRefresh} />
+                    <RefreshControl refreshing={false} onRefresh={handleRefresh}/>
                 }
             >
                 <View>

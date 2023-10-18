@@ -1,18 +1,19 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { THEME } from '@constants/THEME'
+import {StyleSheet, Text, View} from "react-native";
+import {THEME} from '@constants/THEME'
 
 interface OverDetailsProps {
     details: (number | string)[];
 }
 
-const OversDetails: React.FC<OverDetailsProps> = ({ details }) => {
+const OversDetails: React.FC<OverDetailsProps> = ({details}) => {
     return (
         <View style={styles.container}>
             <View style={styles.cardContent2}>
                 {details?.map((item) => {
                     return (
-                        <View style={styles.cardDetails}><View style={styles.roundView}><Text style={[styles.firstCardText]}>{item}</Text></View></View>
+                        <View style={styles.cardDetails}><View style={styles.roundView}><Text
+                            style={[styles.firstCardText]}>{item}</Text></View></View>
                     )
                 })}
             </View>

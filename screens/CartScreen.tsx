@@ -1,9 +1,8 @@
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import {SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
 import React from "react";
 import CartCard from "@components/CartCard";
-import { THEME } from "@constants/THEME";
-import { PATHS } from "@constants/PATHS";
-import { getrandomNoImage } from "@constants/PATHS";
+import {THEME} from "@constants/THEME";
+import {getrandomNoImage} from "@constants/PATHS";
 
 export default function CartScreen() {
 
@@ -18,8 +17,8 @@ export default function CartScreen() {
                         hassle-free</Text>
                 </View>
                 <View style={styles.cardView}>
-                    <CartCard url={getrandomNoImage()} text="Food" />
-                    <CartCard url={getrandomNoImage()} text="Water" />
+                    <CartCard url={getrandomNoImage()} text="Food"/>
+                    <CartCard url={getrandomNoImage()} text="Water"/>
                 </View>
             </ScrollView>
         </SafeAreaView>

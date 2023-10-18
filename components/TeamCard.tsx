@@ -10,7 +10,7 @@ interface TeamCardProps {
     index: any;
 }
 
-const TeamCard: React.FC<TeamCardProps> = ({ teamName, source = require('../assets/no-image.jpg'), index }) => {
+const TeamCard: React.FC<TeamCardProps> = ({teamName, source = require('../assets/no-image.jpg'), index}) => {
     return (
         <View key={index} style={styles.cardContainer}>
             <View>
@@ -18,13 +18,13 @@ const TeamCard: React.FC<TeamCardProps> = ({ teamName, source = require('../asse
                     source={PATHS.IMAGES.FIT_SIXES_LOGO}
                     style={[
                         styles.image,
-                        { alignSelf: index % 2 === 0 ? 'flex-start' : 'flex-end' }
+                        {alignSelf: index % 2 === 0 ? 'flex-start' : 'flex-end'}
                     ]}
                 />
             </View>
 
             <View style={styles.teamNameContainer}>
-                <ImageHolder source={source} size={60} />
+                <ImageHolder source={source} size={60}/>
                 <Text style={styles.teamName} numberOfLines={3} ellipsizeMode="tail">
                     {teamName.length > 20 ? `${teamName.slice(0, 30)}...` : teamName}
                 </Text>

@@ -179,7 +179,7 @@ export default function useLiverScoreUpdateService() {
         ws.current.onopen = () => {
             console.log("connected");
             setIsConnected(true);
-            const data = { action: "sendMessage", message: "hello server" };
+            const data = {action: "sendMessage", message: "hello server"};
             // @ts-ignore
             ws.current.send(JSON.stringify(data));
         };

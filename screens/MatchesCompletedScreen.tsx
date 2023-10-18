@@ -6,7 +6,7 @@ import {useFocusEffect} from "@react-navigation/native";
 import useLiverScoreUpdateService, {TMatch} from "@services/useLiverScoreUpdateService";
 
 export default function MatchesCompletedScreen() {
-    const { completedMatches, fetchCompletedMatches } = useLiverScoreUpdateService();
+    const {completedMatches, fetchCompletedMatches} = useLiverScoreUpdateService();
 
     useEffect(() => {
         fetchCompletedMatches().catch((err) => console.error(err));
@@ -24,12 +24,12 @@ export default function MatchesCompletedScreen() {
     return (
         <SafeAreaView>
             <ScrollView showsVerticalScrollIndicator={false}
-                refreshControl={
-                    <RefreshControl
-                        refreshing={false}
-                        onRefresh={handleRefresh}
-                    />
-                }
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={false}
+                                onRefresh={handleRefresh}
+                            />
+                        }
             >
                 {completedMatches && completedMatches.map((item: TMatch) => {
                     return (
