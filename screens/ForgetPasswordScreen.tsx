@@ -1,4 +1,4 @@
-import {KeyboardAvoidingView, SafeAreaView, StyleSheet, Text, View} from "react-native";
+import {KeyboardAvoidingView, Platform, SafeAreaView, StyleSheet, Text, View} from "react-native";
 import ImageHolder from "@components/ImageHolder";
 import HeaderText from "@components/HeaderText";
 import Button from "@components/Button";
@@ -73,13 +73,6 @@ export default function ForgetPasswordScreen() {
     return (
         <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
             <View style={styles.container}>
-                <ImageHolder source={PATHS.IMAGES.FIT_SIXES_LOGO} size={150} borderWidth={0}/>
-                <HeaderText header={"Forget Password"}/>
-                <View style={styles.descriptionContainer}>
-                    <Text style={styles.descriptionText}>
-                        Please enter your registered email address. We will send you a link to reset your password.
-                    </Text>
-                </View>
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
@@ -94,8 +87,16 @@ export default function ForgetPasswordScreen() {
                           , errors
                           , touched
                       }) => (
-                        <KeyboardAvoidingView behavior="padding"
+                        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                                               style={{width: "100%", justifyContent: 'center', alignItems: 'center'}}>
+                            <ImageHolder source={PATHS.IMAGES.FIT_SIXES_LOGO} size={150} borderWidth={0}/>
+                            <HeaderText header={"Forget Password"}/>
+                            <View style={styles.descriptionContainer}>
+                                <Text style={styles.descriptionText}>
+                                    Please enter your registered email address. We will send you a link to reset your
+                                    password.
+                                </Text>
+                            </View>
                             <FormFields
                                 handleChange={handleChange}
                                 handleBlur={handleBlur}

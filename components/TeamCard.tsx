@@ -10,7 +10,7 @@ interface TeamCardProps {
     index: any;
 }
 
-const TeamCard: React.FC<TeamCardProps> = ({teamName, source = require('../assets/no-image.jpg'), index}) => {
+const TeamCard: React.FC<TeamCardProps> = ({teamName, source = PATHS.IMAGES.FIT_SIXES_LOGO, index}) => {
     return (
         <View key={index} style={styles.cardContainer}>
             <View>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         marginTop: -8,
     },
     teamName: {
-        marginTop: "5%",
+        marginTop: "9%",
         color: THEME.COLORS.white,
         fontSize: 14,
         fontWeight: '700',

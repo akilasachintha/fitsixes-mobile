@@ -2,7 +2,7 @@ import React from "react";
 import {ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import ImageHolder from '@components/ImageHolder'
 import {THEME} from "@constants/THEME";
-import {getrandomNoImage} from "@constants/PATHS";
+import {getRandomNoImage} from "@constants/PATHS";
 
 interface TeamScoreProps {
     teamName: String;
@@ -13,7 +13,7 @@ interface TeamScoreProps {
 }
 
 
-const TeamScore: React.FC<TeamScoreProps> = ({teamName, score = 0, wickets = 0, overs = 0.0, src = getrandomNoImage()}) => {
+const TeamScore: React.FC<TeamScoreProps> = ({teamName, score = 0, wickets = 0, overs = 0.0, src = getRandomNoImage()}) => {
     return (
         <View style={styles.container}>
             <ImageHolder source={src} size={100} borderColor={THEME.COLORS.primary} borderWidth={1}/>

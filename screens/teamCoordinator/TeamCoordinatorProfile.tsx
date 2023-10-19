@@ -1,7 +1,7 @@
 import {Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
 import ImageHolder from "@components/ImageHolder";
-import {getrandomNoImage, PATHS} from "@constants/PATHS";
+import {getRandomNoImage, PATHS} from "@constants/PATHS";
 import {THEME} from "@constants/THEME";
 import React, {useEffect, useState} from "react";
 import {useAuth} from "@context/AuthContext";
@@ -40,7 +40,7 @@ const TeamCoordinatorProfile = () => {
                 <View style={{paddingBottom: 30}}>
                     <View style={styles.profileImageView}>
                         <ImageHolder
-                            source={getrandomNoImage()}
+                            source={getRandomNoImage()}
                             size={150}
                             borderColor="#13FAF8"
                             borderWidth={2}

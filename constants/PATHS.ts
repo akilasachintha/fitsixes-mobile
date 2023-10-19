@@ -17,7 +17,7 @@ export const PATHS = {
 };
 
 
-export function getrandomNoImage() {
+export function getRandomNoImage() {
     const noImages = PATHS.IMAGES.NO_IMAGE;
     const randomIndex = Math.floor(Math.random() * noImages.length);
     return noImages[randomIndex];

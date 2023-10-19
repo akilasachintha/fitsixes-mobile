@@ -11,21 +11,12 @@ export default function StackNavigator() {
             animation: "slide_from_right",
         }}>
             <Stack.Screen name="HomeStack"
-                          options={{
-                              animation: "none",
-                          }}
                           component={DrawerNavigator}/>
             <Stack.Screen name="LoginStack"
-                          options={{
-                              animation: "none",
-                          }}
                           component={LoginScreen}/>
             <Stack.Screen name="ForgetPasswordStack"
                           component={ForgetPasswordScreen}/>
             <Stack.Screen name="ArrivedStack"
-                          options={{
-                              animation: "none",
-                          }}
                           component={LoginScreen}/>
         </Stack.Navigator>
     );

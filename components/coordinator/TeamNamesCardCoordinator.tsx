@@ -2,8 +2,9 @@ import React from "react";
 import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import ImageHolder from "@components/ImageHolder";
 import {THEME} from "@constants/THEME";
-import {getrandomNoImage, PATHS} from "@constants/PATHS";
+import {getRandomNoImage, PATHS} from "@constants/PATHS";
 import useLiverScoreUpdateService from "@services/useLiverScoreUpdateService";
+import {MatchStatus} from "@components/MatchDetailCard";
 
 interface TeamNamesProps {
     teamName1: string;
@@ -11,13 +12,13 @@ interface TeamNamesProps {
     matchId: string;
     teamSource1?: ImageSourcePropType;
     teamSource2?: ImageSourcePropType;
+    matchStatus: string;
 }
 
-const TeamNamesCardCoordinator: React.FC<TeamNamesProps> = ({teamName1, teamName2, teamSource1 = getrandomNoImage(), teamSource2 = getrandomNoImage(), matchId}) => {
+const TeamNamesCardCoordinator: React.FC<TeamNamesProps> = ({teamName1, teamName2, teamSource1 = getRandomNoImage(), teamSource2 = getRandomNoImage(), matchId, matchStatus}) => {
     const {outputArr} = useLiverScoreUpdateService();
 
     const getMatchDetails = outputArr.find((item: any) => item.id.toString() === matchId);
-
 
     return (
         <View style={styles.cardContainer}>
@@ -28,20 +29,24 @@ const TeamNamesCardCoordinator: React.FC<TeamNamesProps> = ({teamName1, teamName
                         <Text style={styles.teamName} numberOfLines={3} ellipsizeMode="tail">
                             {teamName1.length > 20 ? `${teamName1.slice(0, 30)}...` : teamName1}
                         </Text>
-                        <View style={{marginTop: 10}}>
-                            <Text
-                                style={styles.score}>
-                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.marks} /
-                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.wickets}
-                            </Text>
-                            <Text
-                                style={styles.score}>
-                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.overs}
-                                .
-                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.balls}
-                                /{getMatchDetails && getMatchDetails.overs}
-                            </Text>
-                        </View>
+                        {
+                            matchStatus === MatchStatus.Live && getMatchDetails && (
+                                <View style={{marginTop: 10}}>
+                                    <Text
+                                        style={styles.score}>
+                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.marks} /
+                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.wickets}
+                                    </Text>
+                                    <Text
+                                        style={styles.score}>
+                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.overs}
+                                        .
+                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.balls}
+                                        /{getMatchDetails && getMatchDetails.overs}
+                                    </Text>
+                                </View>
+                            )
+                        }
                     </View>
                 </View>
 
@@ -54,20 +59,24 @@ const TeamNamesCardCoordinator: React.FC<TeamNamesProps> = ({teamName1, teamName
                         <Text style={styles.teamName} numberOfLines={3} ellipsizeMode="tail">
                             {teamName2.length > 20 ? `${teamName2.slice(0, 30)}...` : teamName2}
                         </Text>
-                        <View style={{marginTop: 10}}>
-                            <Text
-                                style={styles.score}>
-                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.marks} /
-                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.wickets}
-                            </Text>
-                            <Text
-                                style={styles.score}>
-                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.overs}
-                                .
-                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.balls}
-                                /{getMatchDetails && getMatchDetails.overs}
-                            </Text>
-                        </View>
+                        {
+                            matchStatus === MatchStatus.Live && getMatchDetails && (
+                                <View style={{marginTop: 10}}>
+                                    <Text
+                                        style={styles.score}>
+                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.marks} /
+                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.wickets}
+                                    </Text>
+                                    <Text
+                                        style={styles.score}>
+                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.overs}
+                                        .
+                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.balls}
+                                        /{getMatchDetails && getMatchDetails.overs}
+                                    </Text>
+                                </View>
+                            )
+                        }
                     </View>
                 </View>
 

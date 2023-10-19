@@ -103,6 +103,32 @@ export default function ScoreboardScreen(props: any) {
                                     </View>
                                 )
                             }
+                            {
+                                matchStatus === MatchStatus.Completed && getCompletedMatchDetails && (
+                                    <View style={styles.scoreContainer}>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Sixes</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getCompletedMatchDetails && getCompletedMatchDetails.scorecard && getCompletedMatchDetails.scorecard.team1 && getCompletedMatchDetails.scorecard.team1.sixes}</Text>
+                                        </View>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Fours</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getCompletedMatchDetails && getCompletedMatchDetails.scorecard && getCompletedMatchDetails.scorecard.team1 && getCompletedMatchDetails.scorecard.team1.fours}</Text>
+                                        </View>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Twos</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getCompletedMatchDetails && getCompletedMatchDetails.scorecard && getCompletedMatchDetails.scorecard.team1 && getCompletedMatchDetails.scorecard.team1.twos}</Text>
+                                        </View>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Ones</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getCompletedMatchDetails && getCompletedMatchDetails.scorecard && getCompletedMatchDetails.scorecard.team1 && getCompletedMatchDetails.scorecard.team1.ones}</Text>
+                                        </View>
+                                    </View>
+                                )
+                            }
                         </View>
                     )
                 }
@@ -143,6 +169,32 @@ export default function ScoreboardScreen(props: any) {
                                             <Text>Ones</Text>
                                             <Text
                                                 style={styles.scoreRound}>{getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.ones}</Text>
+                                        </View>
+                                    </View>
+                                )
+                            }
+                            {
+                                matchStatus === MatchStatus.Completed && getCompletedMatchDetails && (
+                                    <View style={styles.scoreContainer}>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Sixes</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getCompletedMatchDetails && getCompletedMatchDetails.scorecard && getCompletedMatchDetails.scorecard.team2 && getCompletedMatchDetails.scorecard.team2.sixes}</Text>
+                                        </View>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Fours</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getCompletedMatchDetails && getCompletedMatchDetails.scorecard && getCompletedMatchDetails.scorecard.team2 && getCompletedMatchDetails.scorecard.team2.fours}</Text>
+                                        </View>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Twos</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getCompletedMatchDetails && getCompletedMatchDetails.scorecard && getCompletedMatchDetails.scorecard.team2 && getCompletedMatchDetails.scorecard.team2.twos}</Text>
+                                        </View>
+                                        <View style={styles.scoreCard}>
+                                            <Text>Ones</Text>
+                                            <Text
+                                                style={styles.scoreRound}>{getCompletedMatchDetails && getCompletedMatchDetails.scorecard && getCompletedMatchDetails.scorecard.team2 && getCompletedMatchDetails.scorecard.team2.ones}</Text>
                                         </View>
                                     </View>
                                 )
@@ -230,7 +282,7 @@ const styles = StyleSheet.create({
         color: THEME.COLORS.primary,
         fontSize: 14,
         textAlign: "center",
-        marginVertical: "2%",
+        marginVertical: "4%",
         paddingHorizontal: "4%",
     },
     scoreContainer: {

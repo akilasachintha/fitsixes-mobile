@@ -3,14 +3,14 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import PlayerDetailsCard from '@components/PlayerDetailsCard';
 import ImageHolder from '../components/ImageHolder';
 import {THEME} from '@constants/THEME';
-import {getrandomNoImage} from '@constants/PATHS';
+import {getRandomNoImage} from '@constants/PATHS';
 
 export default function TeamMembersScreen(props: any) {
 
     return (
         <View style={styles.container}>
             <View style={styles.teamCardContainer}>
-                <ImageHolder source={getrandomNoImage()} size={70}/>
+                <ImageHolder source={getRandomNoImage()} size={70}/>
                 <Text style={styles.teamCardText}>Team Players</Text>
             </View>
             <FlatList
@@ -20,7 +20,7 @@ export default function TeamMembersScreen(props: any) {
                 data={props?.route?.params?.players || []}
                 keyExtractor={(item) => item.nic.toString()}
                 renderItem={({item}) => (
-                    <PlayerDetailsCard key={item.id} url={getrandomNoImage()} playerName={item.name}/>
+                    <PlayerDetailsCard key={item.id} url={getRandomNoImage()} playerName={item.name}/>
                 )}
             />
         </View>

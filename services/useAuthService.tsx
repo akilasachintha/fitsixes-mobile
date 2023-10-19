@@ -24,6 +24,7 @@ export const useAuthService = () => {
 
     const loginService = async (email: string, password: string) => {
         try {
+            showLoading();
             const deviceToken = await storeToken();
             if (deviceToken === undefined) {
                 showToast("Failed to get device token");
@@ -45,9 +46,7 @@ export const useAuthService = () => {
                 if (response) {
                     showToast(response);
                 } else {
-                    showLoading();
                     login(type, id, token);
-                    hideLoading();
                 }
             }
 
