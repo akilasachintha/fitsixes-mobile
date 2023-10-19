@@ -3,7 +3,7 @@
     "name": "Fit Sixes",
     "description": "A mobile app for the Fit Sixes website",
     "slug": "fitsixes-mobile",
-    "version": "1.0.0",
+    "version": "1.0.4",
     "owner": "fitsixes",
     "privacy": "public",
     "backgroundColor": "#ffffff",
@@ -28,7 +28,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.fitsixes.mobile",
-      "buildNumber": "1.0.1"
+      "buildNumber": "1.0.4"
     },
     "android": {
       "adaptiveIcon": {
