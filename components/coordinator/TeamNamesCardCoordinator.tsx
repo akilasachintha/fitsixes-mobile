@@ -1,12 +1,15 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import ImageHolder from "@components/ImageHolder";
 import {THEME} from "@constants/THEME";
 import {getRandomNoImage, PATHS} from "@constants/PATHS";
-import useLiverScoreUpdateService from "@services/useLiverScoreUpdateService";
+import {TMatch} from "@services/useLiverScoreUpdateService";
 import {MatchStatus} from "@components/MatchDetailCard";
+import {useAuth} from "@context/AuthContext";
+import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
 
 interface TeamNamesProps {
+    submitPressed?: boolean;
     teamName1: string;
     teamName2: string;
     matchId: string;
@@ -15,10 +18,47 @@ interface TeamNamesProps {
     matchStatus: string;
 }
 
-const TeamNamesCardCoordinator: React.FC<TeamNamesProps> = ({teamName1, teamName2, teamSource1 = getRandomNoImage(), teamSource2 = getRandomNoImage(), matchId, matchStatus}) => {
-    const {outputArr} = useLiverScoreUpdateService();
+const TeamNamesCardCoordinator: React.FC<TeamNamesProps> = ({
+                                                                teamName1,
+                                                                teamName2,
+                                                                teamSource1 = getRandomNoImage(),
+                                                                teamSource2 = getRandomNoImage(),
+                                                                matchId,
+                                                                matchStatus,
+                                                                submitPressed
+                                                            }) => {
+    const [liveMatches, setLiveMatches] = useState<TMatch[]>([]);
+    const authContext = useAuth();
+    const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
+    const getMatchDetails = liveMatches.find((item: any) => item.id.toString() === matchId);
 
-    const getMatchDetails = outputArr.find((item: any) => item.id.toString() === matchId);
+    const fetchLiveMatches = async () => {
+        let url = "matches/ongoing";
+
+        try {
+            axiosInstanceForFitSixes
+                .get(`${url}`)
+                .then((response) => {
+                    if (response?.data?.data?.matches?.matches) {
+                        setLiveMatches(response.data.data.matches.matches);
+                        console.log("API Data Live");
+                    } else {
+                        console.error("Error");
+                    }
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    useEffect(() => {
+        if (submitPressed) {
+            fetchLiveMatches().catch((e) => console.error(e));
+        }
+    }, [submitPressed]);
 
     return (
         <View style={styles.cardContainer}>

@@ -36,6 +36,7 @@ export default function ScoreboardCoordinatorScreen(props: any) {
         }
     }
     const [selectedTab, setSelectedTab] = useState(0);
+    const [submitPressed, setSubmitPressed] = useState(false);
     const [matchDetails, setDetails] = useState<MatchDetailsType>({
         team1: {
             balls: 0,
@@ -105,7 +106,8 @@ export default function ScoreboardCoordinatorScreen(props: any) {
                             />
                         }
             >
-                <TeamNamesCardCoordinator teamName1={TEAM_1} teamName2={TEAM_2} matchId={id} matchStatus={matchStatus}/>
+                <TeamNamesCardCoordinator submitPressed={submitPressed} teamName1={TEAM_1} teamName2={TEAM_2}
+                                          matchId={id} matchStatus={matchStatus}/>
                 {tossWinner === (firstBat === "team2" ? TEAM_2 : TEAM_1) ? (
                     <Text style={styles.description}>{`${tossWinner} Won the toss and elected to bat.`}</Text>
                 ) : (
@@ -144,6 +146,7 @@ export default function ScoreboardCoordinatorScreen(props: any) {
                 {
                     matchStatus === MatchStatus.Live && (
                         <ScoreUpdate matchId={props.route.params.data}
+                                     setSubmitPressed={setSubmitPressed}
                                      selectedTab={selectedTab === 0 ? TEAM_1 : TEAM_2}
                                      team1Name={TEAM_1}
                                      team2Name={TEAM_2}

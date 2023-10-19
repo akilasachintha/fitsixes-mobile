@@ -217,6 +217,7 @@ export default function useLiverScoreUpdateService() {
     }, []);
 
     return {
+        liveMatches,
         outputArr,
         completedMatches,
         fetchLiveMatches,

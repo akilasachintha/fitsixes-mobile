@@ -8,22 +8,25 @@ import {Picker} from "@react-native-picker/picker";
 import {useNavigation} from "@react-navigation/native";
 
 type ScoreUpdateProps = {
+    setSubmitPressed: (value: boolean) => void;
     matchId: number;
     team1Name: string;
     team2Name: string;
     selectedTab: string;
 }
 
-export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdateProps) {
+export default function ScoreUpdate({matchId, team1Name, team2Name, setSubmitPressed}: ScoreUpdateProps) {
     const [selectedButton, setSelectedButton] = useState<string | null>(null);
     const [selectedTeam, setSelectedTeam] = useState<string | null>(null);
     const {showToast} = useToast();
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
     const navigation = useNavigation();
+    const [requestInProgress, setRequestInProgress] = useState(false);
 
     const handleButtonPress = (text: string) => {
         setSelectedButton(text);
+        setSubmitPressed(false);
     };
 
     const handleCancel = () => {
@@ -31,6 +34,12 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
     };
 
     const handleSubmit = async () => {
+        if (requestInProgress) {
+            return;
+        }
+
+        setRequestInProgress(true);
+
         if (selectedButton !== null) {
             console.log(`Selected button: ${selectedButton}`);
 
@@ -52,12 +61,14 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
                     console.log("API call", response.data.data);
                     showToast("Score updated successfully");
                     setSelectedButton(null);
+                    setSubmitPressed(true);
                 } catch (error) {
                     console.log('Score update failed:', error);
                     showToast("Score update failed");
+                } finally {
+                    setRequestInProgress(false);
                 }
             }
-
         } else {
             showToast('Please select a button');
             console.log('No button selected');
@@ -65,6 +76,12 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
     };
 
     const handleMatchFinish = async () => {
+        if (requestInProgress) {
+            return;
+        }
+
+        setRequestInProgress(true);
+
         if (selectedButton === 'finish' && selectedTeam !== null) {
             try {
                 let url = `matchstatus/${matchId.toString()}`;
@@ -81,7 +98,10 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
             } catch (e) {
                 console.log(e);
                 showToast("Match Finish Failed");
+            } finally {
+                setRequestInProgress(false);
             }
+
             setSelectedButton(null);
             return;
         } else {
@@ -91,7 +111,13 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
     }
 
     const handleUndo = async () => {
+        if (requestInProgress) {
+            return;
+        }
+        setRequestInProgress(true);
+
         setSelectedButton(null);
+        setSubmitPressed(false);
         try {
             const data = {
                 score: {
@@ -105,9 +131,12 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
             console.log("API call", response.data.data);
             showToast("Undo Score successfully");
             setSelectedButton(null);
+            setSubmitPressed(true);
         } catch (error) {
             console.log('Score update failed:', error);
             showToast("Score update failed");
+        } finally {
+            setRequestInProgress(false);
         }
     };
 
