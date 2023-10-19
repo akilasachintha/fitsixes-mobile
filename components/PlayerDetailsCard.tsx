@@ -22,7 +22,7 @@ const PlayerDetailsCard: React.FC<PlayerDetailsCardProps> = ({
                 <View style={styles.playerProfileContainer}>
                     <ImageHolder
                         source={url ? url : getRandomNoImage()}
-                        size={60}
+                        size={50}
                         borderColor="#13FAF8"
                         borderWidth={3}
                     />
@@ -72,8 +72,7 @@ const styles = StyleSheet.create({
 
     playerName: {
         color: 'white',
-        fontSize: 16,
-        fontWeight: '700',
+        fontSize: 14,
         width: '100%',
         margin: 2
     },
