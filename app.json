@@ -3,7 +3,7 @@
     "name": "Fit Sixes",
     "description": "A mobile app for the Fit Sixes website",
     "slug": "fitsixes-mobile",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "owner": "fitsixes",
     "privacy": "public",
     "backgroundColor": "#ffffff",
@@ -37,7 +37,7 @@
       },
       "package": "com.fitsixes.mobile",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 3
+      "versionCode": 4
     },
     "web": {
       "favicon": "./assets/favicon.png"
