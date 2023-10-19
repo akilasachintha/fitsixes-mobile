@@ -66,13 +66,7 @@ export default function UpcomingCoordinatorScreen(props: any) {
         <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
             <View>
                 <Text style={styles.titleText}>Select Toss Winner</Text>
-                <View style={{
-                    borderColor: THEME.COLORS.primary,
-                    borderWidth: 3,
-                    borderRadius: 10,
-                    marginVertical: 4,
-                    justifyContent: "center",
-                }}>
+                
                     <Picker
                         selectedValue={selectedTeam}
                         style={styles.picker}
@@ -83,17 +77,11 @@ export default function UpcomingCoordinatorScreen(props: any) {
                         <Picker.Item label={TEAM_1} value={TEAM_1}/>
                         <Picker.Item label={TEAM_2} value={TEAM_2}/>
                     </Picker>
-                </View>
+                
             </View>
             <View>
                 <Text style={styles.titleText}>Select First Batting Team</Text>
-                <View style={{
-                    borderColor: THEME.COLORS.primary,
-                    borderWidth: 3,
-                    borderRadius: 10,
-                    marginVertical: 4,
-                    justifyContent: "center",
-                }}>
+                
                     <Picker
                         selectedValue={selectedBattingTeam}
                         style={styles.picker}
@@ -104,7 +92,7 @@ export default function UpcomingCoordinatorScreen(props: any) {
                         <Picker.Item label={TEAM_1} value={TEAM_1}/>
                         <Picker.Item label={TEAM_2} value={TEAM_2}/>
                     </Picker>
-                </View>
+                
             </View>
             <TouchableOpacity onPress={handleSubmit} style={styles.submitButton}>
                 <Text style={styles.submitText}>
@@ -140,11 +128,7 @@ const styles = StyleSheet.create({
         marginVertical: "5%",
     },
     picker: {
-        width: "100%",
-        borderRadius: 10,
-        height: 40,
-        borderWidth: 10,
-        borderColor: THEME.COLORS.primary,
+
     },
     submitButton: {
         backgroundColor: THEME.COLORS.primary,

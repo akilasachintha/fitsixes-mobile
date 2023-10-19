@@ -447,10 +447,7 @@ const styles = StyleSheet.create({
         marginHorizontal: "5%",
     },
     picker: {
-        borderRadius: 10,
-        borderWidth: 10,
-        borderColor: THEME.COLORS.primary,
-        backgroundColor: THEME.COLORS.white,
+    
     },
     finishContainer: {
         flexDirection: 'column',

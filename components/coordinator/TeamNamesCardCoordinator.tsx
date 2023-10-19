@@ -126,18 +126,40 @@ const TeamNamesCardCoordinator: React.FC<TeamNamesProps> = ({
                         {
                             matchStatus === MatchStatus.Live && getMatchDetails && (
                                 <View style={{marginTop: 10}}>
-                                    <Text
-                                        style={styles.score}>
-                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.marks} /
-                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.wickets}
-                                    </Text>
-                                    <Text
-                                        style={styles.score}>
-                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.overs}
-                                        .
-                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.balls}
-                                        /{getMatchDetails && getMatchDetails.overs}
-                                    </Text>
+                                    {
+                                        !liveMatch ? (
+                                            <Text
+                                                style={styles.score}>
+                                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.marks} /
+                                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.wickets}
+                                            </Text>
+                                        ) : (
+                                            <Text
+                                                style={styles.score}>
+                                                {liveMatch && liveMatch.scorecard && liveMatch.scorecard.team2 && liveMatch.scorecard.team2.marks} /
+                                                {liveMatch && liveMatch.scorecard && liveMatch.scorecard.team2 && liveMatch.scorecard.team2.wickets}
+                                            </Text>
+                                        )
+                                    }
+                                    {
+                                        !liveMatch ? (
+                                            <Text
+                                                style={styles.score}>
+                                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.overs}
+                                                .
+                                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team2 && getMatchDetails.scorecard.team2.balls}
+                                                /{getMatchDetails && getMatchDetails.overs}
+                                            </Text>
+                                        ) : (
+                                            <Text
+                                                style={styles.score}>
+                                                {liveMatch && liveMatch.scorecard && liveMatch.scorecard.team2 && liveMatch.scorecard.team2.overs}
+                                                .
+                                                {liveMatch && liveMatch.scorecard && liveMatch.scorecard.team2 && liveMatch.scorecard.team2.balls}
+                                                /{liveMatch && liveMatch.overs}
+                                            </Text>
+                                        )
+                                    }
                                 </View>
                             )
                         }
