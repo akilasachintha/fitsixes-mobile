@@ -53,11 +53,25 @@ export default function MatchDetailCoordinatorCard({
         if (matchStatus == MatchStatus.Live || matchStatus === MatchStatus.Completed) {
             console.log("Upcoming" + matchId);
             // @ts-ignore
-            navigation.navigate("CoordinatorTabScoreboardCoordinatorStack", {data: matchId, team_1: team1, team_2: team2, tossWinner: tosWinner, first: firstBat, matchStatus: matchStatus});
+            navigation.navigate("CoordinatorTabScoreboardCoordinatorStack", {
+                data: matchId,
+                team_1: team1,
+                team_2: team2,
+                tossWinner: tosWinner,
+                first: firstBat,
+                matchStatus: matchStatus
+            });
         } else if (matchStatus === MatchStatus.Upcoming) {
             console.log("Upcoming" + matchId);
             // @ts-ignore
-            navigation.navigate("CoordinatorTabUpcomingCoordinatorStack", {data: matchId, team_1: team1, team_2: team2, tossWinner: tosWinner, first: firstBat, matchStatus: matchStatus.toString()});
+            navigation.navigate("CoordinatorTabUpcomingCoordinatorStack", {
+                data: matchId,
+                team_1: team1,
+                team_2: team2,
+                tossWinner: tosWinner,
+                first: firstBat,
+                matchStatus: matchStatus.toString()
+            });
         }
     }
 

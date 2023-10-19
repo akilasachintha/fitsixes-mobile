@@ -13,7 +13,13 @@ interface TeamScoreProps {
 }
 
 
-const TeamScore: React.FC<TeamScoreProps> = ({teamName, score = 0, wickets = 0, overs = 0.0, src = getRandomNoImage()}) => {
+const TeamScore: React.FC<TeamScoreProps> = ({
+                                                 teamName,
+                                                 score = 0,
+                                                 wickets = 0,
+                                                 overs = 0.0,
+                                                 src = getRandomNoImage()
+                                             }) => {
     return (
         <View style={styles.container}>
             <ImageHolder source={src} size={100} borderColor={THEME.COLORS.primary} borderWidth={1}/>

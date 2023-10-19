@@ -3,7 +3,7 @@ import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import ImageHolder from "@components/ImageHolder";
 import {THEME} from "@constants/THEME";
 import {getRandomNoImage, PATHS} from "@constants/PATHS";
-import {TMatch} from "@services/useLiverScoreUpdateService";
+import useLiverScoreUpdateService, {TMatch} from "@services/useLiverScoreUpdateService";
 import {MatchStatus} from "@components/MatchDetailCard";
 import {useAuth} from "@context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
@@ -30,9 +30,11 @@ const TeamNamesCardCoordinator: React.FC<TeamNamesProps> = ({
     const [liveMatches, setLiveMatches] = useState<TMatch[]>([]);
     const authContext = useAuth();
     const axiosInstanceForFitSixes = createAxiosInstance(authContext, BASE_URL.FIT_SIXES);
-    const getMatchDetails = liveMatches.find((item: any) => item.id.toString() === matchId);
+    const {outputArr, fetchLiveMatches} = useLiverScoreUpdateService();
+    const getMatchDetails = outputArr.find((item: any) => item.id.toString() === matchId);
+    const liveMatch = liveMatches.find((item: any) => item.id.toString() === matchId);
 
-    const fetchLiveMatches = async () => {
+    const fetchLiveScreenMatches = async () => {
         let url = "matches/ongoing";
 
         try {
@@ -56,7 +58,7 @@ const TeamNamesCardCoordinator: React.FC<TeamNamesProps> = ({
 
     useEffect(() => {
         if (submitPressed) {
-            fetchLiveMatches().catch((e) => console.error(e));
+            fetchLiveScreenMatches().catch((e) => console.error(e));
         }
     }, [submitPressed]);
 
@@ -72,18 +74,40 @@ const TeamNamesCardCoordinator: React.FC<TeamNamesProps> = ({
                         {
                             matchStatus === MatchStatus.Live && getMatchDetails && (
                                 <View style={{marginTop: 10}}>
-                                    <Text
-                                        style={styles.score}>
-                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.marks} /
-                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.wickets}
-                                    </Text>
-                                    <Text
-                                        style={styles.score}>
-                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.overs}
-                                        .
-                                        {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.balls}
-                                        /{getMatchDetails && getMatchDetails.overs}
-                                    </Text>
+                                    {
+                                        !liveMatch ? (
+                                            <Text
+                                                style={styles.score}>
+                                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.marks} /
+                                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.wickets}
+                                            </Text>
+                                        ) : (
+                                            <Text
+                                                style={styles.score}>
+                                                {liveMatch && liveMatch.scorecard && liveMatch.scorecard.team1 && liveMatch.scorecard.team1.marks} /
+                                                {liveMatch && liveMatch.scorecard && liveMatch.scorecard.team1 && liveMatch.scorecard.team1.wickets}
+                                            </Text>
+                                        )
+                                    }
+                                    {
+                                        !liveMatch ? (
+                                            <Text
+                                                style={styles.score}>
+                                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.overs}
+                                                .
+                                                {getMatchDetails && getMatchDetails.scorecard && getMatchDetails.scorecard.team1 && getMatchDetails.scorecard.team1.balls}
+                                                /{getMatchDetails && getMatchDetails.overs}
+                                            </Text>
+                                        ) : (
+                                            <Text
+                                                style={styles.score}>
+                                                {liveMatch && liveMatch.scorecard && liveMatch.scorecard.team1 && liveMatch.scorecard.team1.overs}
+                                                .
+                                                {liveMatch && liveMatch.scorecard && liveMatch.scorecard.team1 && liveMatch.scorecard.team1.balls}
+                                                /{liveMatch && liveMatch.overs}
+                                            </Text>
+                                        )
+                                    }
                                 </View>
                             )
                         }

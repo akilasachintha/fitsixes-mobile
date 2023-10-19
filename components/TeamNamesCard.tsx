@@ -12,7 +12,12 @@ interface TeamNamesProps {
 }
 
 
-const TeamNamesCard: React.FC<TeamNamesProps> = ({teamName1, teamName2, teamSource1 = getRandomNoImage(), teamSource2 = getRandomNoImage()}) => {
+const TeamNamesCard: React.FC<TeamNamesProps> = ({
+                                                     teamName1,
+                                                     teamName2,
+                                                     teamSource1 = getRandomNoImage(),
+                                                     teamSource2 = getRandomNoImage()
+                                                 }) => {
     return (
         <View style={styles.cardContainer}>
             <View style={styles.cardSecondContainer}>

@@ -1,4 +1,4 @@
-import {KeyboardAvoidingView, Platform, SafeAreaView, StyleSheet, Text, View} from "react-native";
+import {KeyboardAvoidingView, Platform, StyleSheet, Text, View} from "react-native";
 import ImageHolder from "@components/ImageHolder";
 import HeaderText from "@components/HeaderText";
 import Button from "@components/Button";
@@ -72,7 +72,7 @@ export default function ForgetPasswordScreen() {
 
     return (
         <KeyboardAvoidingView style={{flex: 1, justifyContent: 'center'}}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         >
             <View style={styles.container}>
                 <Formik
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     },
     descriptionContainer: {
         width: "100%",
-        alignItems: "flex-start", 
+        alignItems: "flex-start",
     },
     descriptionText: {
         color: THEME.COLORS.primary,

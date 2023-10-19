@@ -113,7 +113,12 @@ function MyDrawer() {
                             {
                                 item.id === 4 && (
                                     <View
-                                        style={{height: 2, backgroundColor: THEME.COLORS.white, marginVertical: 20, borderRadius: 30}}/>
+                                        style={{
+                                            height: 2,
+                                            backgroundColor: THEME.COLORS.white,
+                                            marginVertical: 20,
+                                            borderRadius: 30
+                                        }}/>
                                 )
                             }
                         </View>

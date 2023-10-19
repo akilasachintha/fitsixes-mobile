@@ -29,8 +29,24 @@ const validationSchema = Yup.object().shape({
 });
 
 const fields: IFormField[] = [
-    {id: "1", placeholder: 'Email', name: 'email', required: true, secureTextEntry: false, isEyeEnabled: false, keyboardType: 'email-address'},
-    {id: "2", placeholder: 'Password', name: 'password', required: true, secureTextEntry: true, isEyeEnabled: true, keyboardType: 'default'},
+    {
+        id: "1",
+        placeholder: 'Email',
+        name: 'email',
+        required: true,
+        secureTextEntry: false,
+        isEyeEnabled: false,
+        keyboardType: 'email-address'
+    },
+    {
+        id: "2",
+        placeholder: 'Password',
+        name: 'password',
+        required: true,
+        secureTextEntry: true,
+        isEyeEnabled: true,
+        keyboardType: 'default'
+    },
 ];
 
 const initialValues: ILoginFormValues = {email: '', password: ''};
@@ -56,7 +72,8 @@ export default function LoginScreen() {
     };
 
     return (
-        <KeyboardAvoidingView style={{flex: 1, justifyContent: 'center'}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <KeyboardAvoidingView style={{flex: 1, justifyContent: 'center'}}
+                              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
             <View style={styles.container}>
                 <ImageHolder source={PATHS.IMAGES.FIT_SIXES_LOGO} size={150} borderWidth={0}/>
                 <HeaderText header={'Login'}/>
