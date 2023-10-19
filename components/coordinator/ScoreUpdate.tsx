@@ -91,6 +91,7 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
     }
 
     const handleUndo = async () => {
+        setSelectedButton(null);
         try {
             const data = {
                 score: {
