@@ -5,9 +5,9 @@ import {useToast} from "@context/ToastContext";
 
 const I2_AUTH_BASE_URL = 'https://fw2svr60sl.execute-api.ap-south-1.amazonaws.com/beta/';
 const FIT_SIXES_BASE_URL = 'https://j1kydf6tp3.execute-api.ap-south-1.amazonaws.com/dev/v1/';
-export const PROJECT_CODE = "651db236cd16f62e555ba30fAVT60UVT4300";
+// export const PROJECT_CODE = "651db236cd16f62e555ba30fAVT60UVT4300";
 
-// export const PROJECT_CODE = '65130a05357ed283360539acAVT60UVT4300';
+export const PROJECT_CODE = '65130a05357ed283360539acAVT60UVT4300';
 
 export const WEB_SOCKET_URL = 'wss://bzkg9tjte7.execute-api.ap-south-1.amazonaws.com/production';
 

@@ -48,15 +48,14 @@ const CartCard: React.FC<CartCardProps> = ({
         }
     }
 
-    const handleQuantityChangeIcon = (iconName: String) => {
-        if (iconName === 'remove-circle-outline') {
-            if (quantity > 1) {
-                setQuantity(quantity - 1);
-            }
-        } else if (iconName === 'add-circle-outline') {
+    const handleQuantityChangeIcon = (iconName: string) => {
+        if (iconName === 'remove-circle-outline' && quantity > 1) {
+            setQuantity(quantity - 1);
+        } else if (iconName === 'add-circle-outline' && quantity < 32) {
             setQuantity(quantity + 1);
         }
     }
+
     return (
         <View style={styles.mainContainer}>
             <View style={styles.subContainer}>
