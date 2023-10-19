@@ -25,7 +25,8 @@ export default function CartScreen() {
 }
 const styles = StyleSheet.create({
     textContainer: {
-        margin: 20
+        marginTop: 20,
+        marginHorizontal: 20,
     },
     textView: {
         textAlign: 'center',

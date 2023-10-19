@@ -56,7 +56,7 @@ export default function LoginScreen() {
     };
 
     return (
-        <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
+        <KeyboardAvoidingView style={{flex: 1, justifyContent: 'center'}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
             <View style={styles.container}>
                 <ImageHolder source={PATHS.IMAGES.FIT_SIXES_LOGO} size={150} borderWidth={0}/>
                 <HeaderText header={'Login'}/>
@@ -74,8 +74,8 @@ export default function LoginScreen() {
                           , errors
                           , touched
                       }) => (
-                        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                                              style={{width: "100%", justifyContent: 'center', alignItems: 'center'}}>
+                        <View
+                            style={{width: "100%", justifyContent: 'center', alignItems: 'center'}}>
                             <FormFields
                                 handleChange={handleChange}
                                 handleBlur={handleBlur}
@@ -91,11 +91,11 @@ export default function LoginScreen() {
                                 </TouchableOpacity>
                             </View>
                             <Button title="Login" onPress={handleSubmit}/>
-                        </KeyboardAvoidingView>
+                        </View>
                     )}
                 </Formik>
             </View>
-        </SafeAreaView>
+        </KeyboardAvoidingView>
     );
 }
 

@@ -71,7 +71,9 @@ export default function ForgetPasswordScreen() {
     }
 
     return (
-        <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
+        <KeyboardAvoidingView style={{flex: 1, justifyContent: 'center'}}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        >
             <View style={styles.container}>
                 <Formik
                     initialValues={initialValues}
@@ -87,8 +89,8 @@ export default function ForgetPasswordScreen() {
                           , errors
                           , touched
                       }) => (
-                        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                                              style={{width: "100%", justifyContent: 'center', alignItems: 'center'}}>
+                        <View
+                            style={{width: "100%", justifyContent: 'center', alignItems: 'center'}}>
                             <ImageHolder source={PATHS.IMAGES.FIT_SIXES_LOGO} size={150} borderWidth={0}/>
                             <HeaderText header={"Forget Password"}/>
                             <View style={styles.descriptionContainer}>
@@ -106,11 +108,11 @@ export default function ForgetPasswordScreen() {
                                 fields={fields}
                             />
                             <Button title="Reset Password" onPress={handleSubmit}/>
-                        </KeyboardAvoidingView>
+                        </View>
                     )}
                 </Formik>
             </View>
-        </SafeAreaView>
+        </KeyboardAvoidingView>
     );
 }
 
@@ -122,13 +124,12 @@ const styles = StyleSheet.create({
     },
     descriptionContainer: {
         width: "100%",
-        alignItems: "flex-start",
-        paddingVertical: "5%",
+        alignItems: "flex-start", 
     },
     descriptionText: {
         color: THEME.COLORS.primary,
         fontSize: 14,
         textAlign: "left",
-        marginBottom: "5%",
+        paddingBottom: "5%",
     },
 });

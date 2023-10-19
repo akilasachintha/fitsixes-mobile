@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: THEME.COLORS.primary,
         fontWeight: "bold",
-        marginVertical: '8%',
+        paddingVertical: '8%',
     },
 });
 
