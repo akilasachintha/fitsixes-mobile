@@ -2,7 +2,7 @@ import React from "react";
 import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import ImageHolder from "@components/ImageHolder";
 import {THEME} from "@constants/THEME";
-import {getrandomNoImage, PATHS} from "@constants/PATHS";
+import {getRandomNoImage, PATHS} from "@constants/PATHS";
 
 interface TeamNamesProps {
     teamName1: string;
@@ -12,7 +12,7 @@ interface TeamNamesProps {
 }
 
 
-const TeamNamesCard: React.FC<TeamNamesProps> = ({teamName1, teamName2, teamSource1 = getrandomNoImage(), teamSource2 = getrandomNoImage()}) => {
+const TeamNamesCard: React.FC<TeamNamesProps> = ({teamName1, teamName2, teamSource1 = getRandomNoImage(), teamSource2 = getRandomNoImage()}) => {
     return (
         <View style={styles.cardContainer}>
             <View style={styles.cardSecondContainer}>

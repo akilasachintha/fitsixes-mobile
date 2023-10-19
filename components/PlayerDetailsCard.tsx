@@ -2,7 +2,7 @@ import {Image, ImageSourcePropType, StyleSheet, Text, View} from 'react-native'
 import React from 'react'
 import ImageHolder from './ImageHolder'
 import {THEME} from "@constants/THEME";
-import {getrandomNoImage, PATHS} from "@constants/PATHS";
+import {getRandomNoImage, PATHS} from "@constants/PATHS";
 
 interface PlayerDetailsCardProps {
     key: number;
@@ -21,7 +21,7 @@ const PlayerDetailsCard: React.FC<PlayerDetailsCardProps> = ({
             <View style={styles.playerCardSubContainer}>
                 <View style={styles.playerProfileContainer}>
                     <ImageHolder
-                        source={url ? url : getrandomNoImage()}
+                        source={url ? url : getRandomNoImage()}
                         size={60}
                         borderColor="#13FAF8"
                         borderWidth={3}

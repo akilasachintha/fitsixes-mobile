@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import TeamCard from "@components/TeamCard";
 import {useNavigation} from "@react-navigation/native";
 import {UseTeamsService} from "@services/useTeamsService";
+import {PATHS} from "@constants/PATHS";
 
 export default function TeamScreen() {
     const navigation = useNavigation();
@@ -32,7 +33,7 @@ export default function TeamScreen() {
                                   style={styles.touchableHighlight}
                                   activeOpacity={0.9}>
                     <TeamCard teamName={item.name} index={index}
-                              source={item.src !== '' || item.src.length !== 0 ? item.src : require('../assets/no-image.jpg')}/>
+                              source={item.src !== '' || item.src.length !== 0 ? item.src : PATHS.IMAGES.FIT_SIXES_LOGO}/>
                 </TouchableOpacity>
             </View>
         )
@@ -77,12 +78,11 @@ export default function TeamScreen() {
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
-        paddingHorizontal: "5%",
     },
     flatList: {},
     columnWrapperStyle: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
     },
     itemContainer: {
         margin: "2%",

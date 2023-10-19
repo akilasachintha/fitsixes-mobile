@@ -77,7 +77,7 @@ export default function MatchDetailCard({
                 style={styles.container}>
                 <View style={styles.overlay}>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.titleText}>Match {matchNo} {matchLevel} | Pitch {pitchNo}</Text>
+                        <Text style={styles.titleText}>Match {matchLevel}{matchNo} | Pitch {pitchNo}</Text>
                         <View style={{flexDirection: "row"}}>
                             <Text style={styles.titleText}>{matchStatus}</Text>
                             {
@@ -98,8 +98,19 @@ export default function MatchDetailCard({
                             <View style={styles.teamContainer}>
                                 <View style={styles.teamImageContainer}>
                                     <ImageHolder source={team1Image} size={40}/>
-                                    <Text style={styles.teamImageText} numberOfLines={2}
-                                          ellipsizeMode="tail">{team1.length > 20 ? `${team1.slice(0, 25)}...` : team1}</Text>
+                                    <View style={{
+                                        flexDirection: "column",
+                                        justifyContent: "center",
+                                        alignItems: "flex-start",
+                                    }}>
+                                        <Text style={styles.teamImageText} numberOfLines={2}
+                                              ellipsizeMode="tail">{team1.length > 20 ? `${team1.slice(0, 25)}...` : team1}</Text>
+                                        {
+                                            matchStatus === MatchStatus.Completed && winner === team1 && (
+                                                <Text style={styles.teamImageWinnerText}>Winner</Text>
+                                            )
+                                        }
+                                    </View>
                                 </View>
                                 {
                                     matchStatus === MatchStatus.Live && (
@@ -114,8 +125,19 @@ export default function MatchDetailCard({
                             <View style={styles.teamContainer}>
                                 <View style={styles.teamImageContainer}>
                                     <ImageHolder source={team2Image} size={40}/>
-                                    <Text style={styles.teamImageText} numberOfLines={2}
-                                          ellipsizeMode="tail">{team2.length > 20 ? `${team2.slice(0, 25)}...` : team2}</Text>
+                                    <View style={{
+                                        flexDirection: "column",
+                                        justifyContent: "center",
+                                        alignItems: "flex-start",
+                                    }}>
+                                        <Text style={styles.teamImageText} numberOfLines={2}
+                                              ellipsizeMode="tail">{team2.length > 20 ? `${team2.slice(0, 25)}...` : team2}</Text>
+                                        {
+                                            matchStatus === MatchStatus.Completed && winner === team2 && (
+                                                <Text style={styles.teamImageWinnerText}>Winner</Text>
+                                            )
+                                        }
+                                    </View>
                                 </View>
                                 {
                                     matchStatus === MatchStatus.Live && (
@@ -128,11 +150,6 @@ export default function MatchDetailCard({
                             </View>
                         </View>
                         <View style={{alignItems: "flex-end", justifyContent: "center"}}>
-                            {
-                                matchStatus === MatchStatus.Completed && (
-                                    <Text style={styles.vsText}>{`${winner} Won the match.`}</Text>
-                                )
-                            }
                         </View>
                         {
                             matchStatus !== MatchStatus.Live && (
@@ -157,7 +174,7 @@ const styles = StyleSheet.create({
         marginBottom: "4%",
     },
     overlay: {
-        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
         borderRadius: 20,
         padding: "5%",
     },
@@ -208,4 +225,22 @@ const styles = StyleSheet.create({
         marginVertical: "2%",
         paddingHorizontal: "4%",
     },
+    vsTextWon: {
+        color: THEME.COLORS.primary,
+        fontSize: 10,
+        fontWeight: "bold",
+        textAlign: "right",
+        marginVertical: "2%",
+        backgroundColor: THEME.COLORS.white,
+        paddingHorizontal: "2%",
+        paddingVertical: "2%",
+        borderRadius: 10,
+    },
+    teamImageWinnerText: {
+        color: THEME.COLORS.border,
+        fontSize: 14,
+        fontWeight: "bold",
+        textAlign: 'justify',
+        marginLeft: 15
+    }
 });

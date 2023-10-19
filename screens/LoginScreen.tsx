@@ -1,5 +1,5 @@
 import React from 'react';
-import {KeyboardAvoidingView, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {KeyboardAvoidingView, Platform, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
@@ -11,6 +11,7 @@ import {THEME} from '@constants/THEME';
 import {PATHS} from '@constants/PATHS';
 import FormFields, {IFormField} from "@components/FormFields";
 import {useAuthService} from "@services/useAuthService";
+import {useLoadingContext} from "@context/LoadingContext";
 
 export interface ILoginFormValues {
     email: string;
@@ -37,10 +38,11 @@ const initialValues: ILoginFormValues = {email: '', password: ''};
 export default function LoginScreen() {
     const navigation = useNavigation();
     const {loginService} = useAuthService()
+    const {showLoading} = useLoadingContext();
 
     const handleLogin = async (values: ILoginFormValues) => {
         console.log('values', values);
-
+        showLoading();
         try {
             await loginService(values.email, values.password);
         } catch (e) {
@@ -72,7 +74,7 @@ export default function LoginScreen() {
                           , errors
                           , touched
                       }) => (
-                        <KeyboardAvoidingView behavior="padding"
+                        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                                               style={{width: "100%", justifyContent: 'center', alignItems: 'center'}}>
                             <FormFields
                                 handleChange={handleChange}

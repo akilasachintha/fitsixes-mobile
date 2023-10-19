@@ -2,7 +2,7 @@ import {ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View} from "rea
 import React, {useState} from "react";
 import {THEME} from "@constants/THEME";
 import ImageHolder from "@components/ImageHolder";
-import {getrandomNoImage} from "@constants/PATHS";
+import {getRandomNoImage} from "@constants/PATHS";
 import {Ionicons} from "@expo/vector-icons";
 import {useAuth} from "@context/AuthContext";
 import {BASE_URL, createAxiosInstance} from "@config/axiosConfig";
@@ -62,7 +62,7 @@ const CartCard: React.FC<CartCardProps> = ({
             <View style={styles.subContainer}>
                 <View style={styles.imageContainer}>
                     <ImageHolder
-                        source={url ? url : getrandomNoImage()}
+                        source={url ? url : getRandomNoImage()}
                         size={100}
                         borderColor="#13FAF8"
                         borderWidth={3}

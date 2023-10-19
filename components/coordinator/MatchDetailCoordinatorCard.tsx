@@ -14,6 +14,7 @@ interface MatchDetailCardProps {
     team1Image: ImageProps;
     team2Image: ImageProps;
     matchStatus: MatchStatusType;
+    winner?: string;
     pitchNo: number;
     overs_T1?: string;
     overs_T2?: string;
@@ -44,6 +45,7 @@ export default function MatchDetailCoordinatorCard({
                                                        overs_T2,
                                                        matchId,
                                                        tosWinner,
+                                                       winner,
                                                        firstBat
                                                    }: MatchDetailCardProps) {
     const navigation = useNavigation();
@@ -64,62 +66,93 @@ export default function MatchDetailCoordinatorCard({
             <ImageBackground
                 source={PATHS.IMAGES.FIT_SIXES_LOGO}
                 resizeMode="contain"
-                imageStyle={matchStatus === "Live" ? {display: "flex"} : {display: "none"}}
+                imageStyle={[matchStatus === "Live" ? {display: "flex"} : {display: "none"}, {opacity: 0.5}]}
                 style={styles.container}>
-                <View style={styles.titleContainer}>
-                    <Text style={styles.titleText}>Match {matchNo} {matchLevel} | Pitch {pitchNo}</Text>
-                    <View style={{flexDirection: "row"}}>
-                        <Text style={styles.titleText}>{matchStatus}</Text>
+                <View style={styles.overlay}>
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.titleText}>Match {matchLevel}{matchNo} | Pitch {pitchNo}</Text>
+                        <View style={{flexDirection: "row"}}>
+                            <Text style={styles.titleText}>{matchStatus}</Text>
+                            {
+                                matchStatus === MatchStatus.Live && (
+                                    <View style={{
+                                        backgroundColor: THEME.COLORS.border,
+                                        width: 6,
+                                        height: 6,
+                                        borderRadius: 3,
+                                    }}/>
+                                )
+                            }
+                        </View>
+                    </View>
+                    <View
+                        style={[styles.contentContainer, matchStatus !== MatchStatus.Live ? {flexDirection: "row"} : {flexDirection: "column"}]}>
+                        <View style={{flex: 1}}>
+                            <View style={styles.teamContainer}>
+                                <View style={styles.teamImageContainer}>
+                                    <ImageHolder source={team1Image} size={40}/>
+                                    <View style={{
+                                        flexDirection: "column",
+                                        justifyContent: "center",
+                                        alignItems: "flex-start",
+                                    }}>
+                                        <Text style={styles.teamImageText} numberOfLines={2}
+                                              ellipsizeMode="tail">{team1.length > 20 ? `${team1.slice(0, 25)}...` : team1}</Text>
+                                        {
+                                            matchStatus === MatchStatus.Completed && winner === team1 && (
+                                                <Text style={styles.teamImageWinnerText}>Winner</Text>
+                                            )
+                                        }
+                                    </View>
+                                </View>
+                                {
+                                    matchStatus === MatchStatus.Live && (
+                                        <View>
+                                            <Text style={styles.teamScoreText}>{team1Score}</Text>
+                                            <Text style={styles.teamScoreBottomText}>{'(' + overs_T1 + ')'}</Text>
+                                        </View>
+                                    )
+                                }
+                            </View>
+                            <Text style={styles.vsText}>Vs.</Text>
+                            <View style={styles.teamContainer}>
+                                <View style={styles.teamImageContainer}>
+                                    <ImageHolder source={team2Image} size={40}/>
+                                    <View style={{
+                                        flexDirection: "column",
+                                        justifyContent: "center",
+                                        alignItems: "flex-start",
+                                    }}>
+                                        <Text style={styles.teamImageText} numberOfLines={2}
+                                              ellipsizeMode="tail">{team2.length > 20 ? `${team2.slice(0, 25)}...` : team2}</Text>
+                                        {
+                                            matchStatus === MatchStatus.Completed && winner === team2 && (
+                                                <Text style={styles.teamImageWinnerText}>Winner</Text>
+                                            )
+                                        }
+                                    </View>
+                                </View>
+                                {
+                                    matchStatus === MatchStatus.Live && (
+                                        <View>
+                                            <Text style={styles.teamScoreText}>{team2Score}</Text>
+                                            <Text style={styles.teamScoreBottomText}>{'(' + overs_T2 + ')'}</Text>
+                                        </View>
+                                    )
+                                }
+                            </View>
+                        </View>
+                        <View style={{alignItems: "flex-end", justifyContent: "center"}}>
+                        </View>
                         {
-                            matchStatus === MatchStatus.Live && (
-                                <View style={{
-                                    backgroundColor: THEME.COLORS.border,
-                                    width: 6,
-                                    height: 6,
-                                    borderRadius: 3,
-                                }}/>
+                            matchStatus !== MatchStatus.Live && (
+                                <Image
+                                    source={PATHS.IMAGES.FIT_SIXES_LOGO}
+                                    resizeMode="cover"
+                                    style={{width: 150, height: 100, opacity: 0.5, position: 'absolute', right: 0}}/>
                             )
                         }
                     </View>
-                </View>
-                <View
-                    style={[styles.contentContainer, matchStatus !== MatchStatus.Live ? {flexDirection: "row"} : {flexDirection: "column"}]}>
-                    <View>
-                        <View style={styles.teamContainer}>
-                            <View style={styles.teamImageContainer}>
-                                <ImageHolder source={team1Image} size={40}/>
-                                <Text style={styles.teamImageText}>{team1}</Text>
-                            </View>
-                            {
-                                matchStatus === MatchStatus.Live && (
-                                    <View>
-                                        <Text style={styles.teamScoreText}>{team1Score}</Text>
-                                        <Text style={styles.teamScoreBottomText}>{'(' + overs_T1 + ')'}</Text>
-                                    </View>
-                                )
-                            }
-                        </View>
-                        <Text style={styles.vsText}>Vs.</Text>
-                        <View style={styles.teamContainer}>
-                            <View style={styles.teamImageContainer}>
-                                <ImageHolder source={team2Image} size={40}/>
-                                <Text style={styles.teamImageText}>{team2}</Text>
-                            </View>
-                            {
-                                matchStatus === MatchStatus.Live && (
-                                    <View>
-                                        <Text style={styles.teamScoreText}>{team2Score}</Text>
-                                        <Text style={styles.teamScoreBottomText}>{'(' + overs_T2 + ')'}</Text>
-                                    </View>
-                                )
-                            }
-                        </View>
-                    </View>
-                    {
-                        matchStatus !== MatchStatus.Live && (
-                            <Image source={PATHS.IMAGES.FIT_SIXES_LOGO} style={{width: 140, height: 100}}/>
-                        )
-                    }
                 </View>
             </ImageBackground>
         </TouchableOpacity>
@@ -129,10 +162,14 @@ export default function MatchDetailCoordinatorCard({
 const styles = StyleSheet.create({
     container: {
         marginHorizontal: "6%",
-        padding: "4%",
         backgroundColor: THEME.COLORS.green,
         borderRadius: 20,
         marginBottom: "4%",
+    },
+    overlay: {
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        borderRadius: 20,
+        padding: "5%",
     },
     titleContainer: {
         width: "100%",
@@ -149,7 +186,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     teamContainer: {
-        width: "100%",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
@@ -161,8 +197,9 @@ const styles = StyleSheet.create({
     teamImageText: {
         color: THEME.COLORS.white,
         fontSize: 14,
-        marginLeft: "8%",
         fontWeight: "bold",
+        textAlign: 'justify',
+        marginLeft: 15
     },
     teamScoreText: {
         color: THEME.COLORS.white,
@@ -181,4 +218,22 @@ const styles = StyleSheet.create({
         marginVertical: "2%",
         paddingHorizontal: "4%",
     },
+    vsTextWon: {
+        color: THEME.COLORS.primary,
+        fontSize: 10,
+        fontWeight: "bold",
+        textAlign: "right",
+        marginVertical: "2%",
+        backgroundColor: THEME.COLORS.white,
+        paddingHorizontal: "2%",
+        paddingVertical: "2%",
+        borderRadius: 10,
+    },
+    teamImageWinnerText: {
+        color: THEME.COLORS.border,
+        fontSize: 14,
+        fontWeight: "bold",
+        textAlign: 'justify',
+        marginLeft: 15
+    }
 });

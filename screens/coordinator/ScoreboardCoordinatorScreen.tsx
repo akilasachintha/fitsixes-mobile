@@ -105,7 +105,7 @@ export default function ScoreboardCoordinatorScreen(props: any) {
                             />
                         }
             >
-                <TeamNamesCardCoordinator teamName1={TEAM_1} teamName2={TEAM_2} matchId={id}/>
+                <TeamNamesCardCoordinator teamName1={TEAM_1} teamName2={TEAM_2} matchId={id} matchStatus={matchStatus}/>
                 {tossWinner === (firstBat === "team2" ? TEAM_2 : TEAM_1) ? (
                     <Text style={styles.description}>{`${tossWinner} Won the toss and elected to bat.`}</Text>
                 ) : (

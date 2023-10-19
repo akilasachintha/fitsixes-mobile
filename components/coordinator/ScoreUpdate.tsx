@@ -85,7 +85,7 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
             setSelectedButton(null);
             return;
         } else {
-            showToast('Please select a team');
+            showToast('Please select team to finish the match');
             console.log('No team selected');
         }
     }
@@ -200,7 +200,7 @@ export default function ScoreUpdate({matchId, team1Name, team2Name}: ScoreUpdate
                 </View>
             </View>
             <View style={styles.marksSubFinish}>
-                <Text style={styles.titleText}>Update Winning Team and press Finish button</Text>
+                <Text style={styles.titleText}>Finish the Match | Select Winning Team</Text>
                 <View style={styles.finishContainer}>
                     {
                         selectedButton === 'finish' && (

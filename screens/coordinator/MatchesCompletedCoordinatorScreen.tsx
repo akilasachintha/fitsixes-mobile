@@ -65,6 +65,7 @@ export default function MatchesCompletedCoordinatorScreen() {
                             matchId={item.id}
                             tosWinner={item.tos_winner}
                             firstBat={item.first_bat}
+                            winner={item.winner}
                         />
                     )
                 })}
